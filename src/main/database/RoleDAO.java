@@ -11,17 +11,26 @@ public class RoleDAO {
     private final String GET_ROLE_NAME = "select roleId from roles where roleName=?";
 
     public int getRoleByName(String roleName) {
+        DBManager dbManager=DBManager.getInstance();
         int roleId = 0;
+        Connection con=null;
         try {
-            Connection con = DBManager.getInstance().getConnection();
+            con = dbManager.getConnection();
             PreparedStatement pstm = con.prepareStatement(GET_ROLE_NAME);
             pstm.setString(1, roleName);
             ResultSet rs = pstm.executeQuery();
             while (rs.next()) {
                 roleId = rs.getInt(Fields.ROLE_ID);
             }
+            rs.close();
+            pstm.close();
         } catch (SQLException e) {
             e.printStackTrace();
+                dbManager.rollbackAndClose(con);
+        }finally {
+            if(con!=null){
+                dbManager.commitAndClose(con);
+            }
         }
         return roleId;
     }

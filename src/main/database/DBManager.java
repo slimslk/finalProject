@@ -37,4 +37,36 @@ public class DBManager {
         }
         return connection;
     }
+
+    /**
+     * Commit and close connection
+     * @param con
+     * Connection to be committed and closed.
+     */
+
+    public void commitAndClose(Connection con){
+        try {
+            con.commit();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Rollback and close connection
+     * @param con
+     * Connection to be rollback and closed.
+     *
+     */
+
+    public void rollbackAndClose(Connection con){
+        try {
+            con.rollback();
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

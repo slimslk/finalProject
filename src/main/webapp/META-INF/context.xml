@@ -11,5 +11,6 @@ Data source and connection pool configuration
               username="root"
               password="rootroot"
               driverClassName="com.mysql.jdbc.Driver"
+              defaultTransactionIsolation="READ_COMMITTED"
               url="jdbc:mysql://localhost:3306"/>
 </context>
