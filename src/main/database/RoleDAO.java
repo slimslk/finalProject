@@ -1,7 +1,5 @@
 package main.database;
 
-import main.entity.Role;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,14 +14,14 @@ public class RoleDAO {
         Connection con=null;
         try {
             con = dbManager.getConnection();
-            PreparedStatement pstm = con.prepareStatement(GET_ROLE_NAME);
-            pstm.setString(1, roleName);
-            ResultSet rs = pstm.executeQuery();
-            while (rs.next()) {
-                roleId = rs.getInt(Fields.ROLE_ID);
+            try (PreparedStatement pstm = con.prepareStatement(GET_ROLE_NAME)) {
+                pstm.setString(1, roleName);
+                ResultSet rs = pstm.executeQuery();
+                while (rs.next()) {
+                    roleId = rs.getInt(Fields.ROLE_ID);
+                }
+                rs.close();
             }
-            rs.close();
-            pstm.close();
         } catch (SQLException e) {
             e.printStackTrace();
                 dbManager.rollbackAndClose(con);

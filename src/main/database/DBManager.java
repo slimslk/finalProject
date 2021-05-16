@@ -29,11 +29,17 @@ public class DBManager {
         Connection connection = null;
         try {
             Context initContext = new InitialContext();
-            Context envContext = (Context) initContext.lookup("java:/comp/env");
-            DataSource ds = (DataSource) envContext.lookup("jdbc/finalProject");
-            connection = ds.getConnection();
+            DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/finalProject");
+            System.out.println("Check2");
+            System.out.println("Datasource: "+ds);
+            try{
+                connection = ds.getConnection();
+            }catch (SQLException ex){
+                System.out.println(ex.getErrorCode());
+            }
+            System.out.println(connection+" connection");
         } catch (NamingException ex) {
-            System.out.println(ex.getCause());
+            System.out.println("NamingException: "+ex.getExplanation());
         }
         return connection;
     }

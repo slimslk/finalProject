@@ -8,7 +8,7 @@ public class UserDAO {
 
     private final String FIND_USER_BY_ID = "select * from users where id=?";
     private final String FIND_USER_BY_USERNAME = "select * from users where username=?";
-    private final String INSERT_USER = "insert into users (id, userName, password, role) values (?,?,?,?)";
+    private final String INSERT_USER = "insert into users (id, userName, password, roleId) values (?,?,?,?)";
 
     public User getUserById(long id) {
         DBManager dbManager = DBManager.getInstance();
@@ -75,13 +75,13 @@ public class UserDAO {
         int i = 0;
         try {
             connection = dbManager.getConnection();
-            PreparedStatement pstm = connection.prepareStatement(INSERT_USER);
-            pstm.setString(++i, user.getUsername());
-            pstm.setString(++i, user.getPassword());
-            pstm.setInt(++i, roleId);
-            pstm.close();
+            try (PreparedStatement pstm = connection.prepareStatement(INSERT_USER)) {
+                pstm.setString(++i, user.getUsername());
+                pstm.setString(++i, user.getPassword());
+                pstm.setInt(++i, roleId);
+            }
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(connection);
+                dbManager.rollbackAndClose(connection);
         } finally {
             if (connection != null) {
                 dbManager.commitAndClose(connection);
