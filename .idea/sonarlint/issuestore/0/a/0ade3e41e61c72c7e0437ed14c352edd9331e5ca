@@ -1,0 +1,14 @@
+
+<
+java:S1170"!Make this final field static too.(¼ÛËº8Š ù¶—/
+<
+java:S1170"!Make this final field static too.(ì²¶ž8Š ù¶—/
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ë®ÖÝþÿÿÿÿ8Š ù¶—/
+t	java:S116"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8Š ù¶—/
+u	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â×ÏÆøÿÿÿÿ8Š ù¶—/
+A
+java:S1170"!Make this final field static too.(â×ÏÆøÿÿÿÿ8Š ù¶—/
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´ý®8Š ù¶—/
+z	java:S116"`Rename this field "FIND_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì²¶ž8Š ù¶—/

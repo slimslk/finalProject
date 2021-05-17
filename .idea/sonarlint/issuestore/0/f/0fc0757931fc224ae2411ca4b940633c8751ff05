@@ -1,0 +1,8 @@
+
+X	java:S106"9Replace this use of System.out or System.err by a logger.(¿ğüØúÿÿÿÿ8½²Á¶—/
+R	java:S106"9Replace this use of System.out or System.err by a logger.(­ğÊ78µ„Ë¶—/
+S	java:S106"9Replace this use of System.out or System.err by a logger.(Ã¸Œ„8õ®‰µ—/
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ƒäŞ¿8°‡Ÿ´—/
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ëø¥‘8£ßµ—/
+U
+java:S1141"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8µ„Ë¶—/

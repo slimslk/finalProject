@@ -1,0 +1,11 @@
+
+X	java:S106"9Replace this use of System.out or System.err by a logger.(´ğÊÃøÿÿÿÿ8¯•ñ°—/
+V	java:S125"<This block of commented-out lines of code should be removed.(ÄÈ†8óí’±—/
+
+java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8¯•ñ°—/
+S	java:S106"9Replace this use of System.out or System.err by a logger.(¢½„Ô8¯•ñ°—/
+S	java:S106"9Replace this use of System.out or System.err by a logger.(‘§²Í8¯•ñ°—/
+
+java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8¯•ñ°—/
+A
+java:S1128"&Remove this unused import 'main.Path'.(«üËÃ8¯•ñ°—/

@@ -5,6 +5,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -26,7 +27,8 @@ public class DBManager {
      */
 
     public Connection getConnection() throws SQLException {
-        Connection connection = null;
+//Connection pool
+                Connection connection = null;
         try {
             Context initContext = new InitialContext();
             DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/finalProject");
@@ -41,6 +43,14 @@ public class DBManager {
         } catch (NamingException ex) {
             System.out.println("NamingException: "+ex.getExplanation());
         }
+
+//        Connection connection= null;
+//        try {
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eshop","root","rootroot");
+//        } catch (SQLException e) {
+//            System.out.println("Connection error code:"+ e.getErrorCode());
+//
+//        }
         return connection;
     }
 
