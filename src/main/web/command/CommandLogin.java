@@ -22,25 +22,20 @@ public class CommandLogin implements Command {
         //Obtain username and password from request
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        String forward = Path.LOGINPAGE;
+        String forward = Path.CATALOG;
         String errorMsg;
-        System.out.println("Before all");
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             errorMsg = "Username or password can't be empty";
             return setErrorMessage(errorMsg, request);
         }
-        System.out.println("username: "+username);
-        System.out.println("password: "+password);
         User user = new UserDAO().getUserByUsername(username);
-        System.out.println(user);
-        if (user==null||!user.getPassword().equals(password)){
-            System.out.println("user: "+user);
+        if (user == null || !user.getPassword().equals(password)) {
             errorMsg = "Incorrect username or password";
-            return setErrorMessage(errorMsg,request);
+            return setErrorMessage(errorMsg, request);
         }
 
-//        session.setAttribute("user", user);
-            return forward;
+        session.setAttribute("user", user);
+        return forward;
     }
 
     private String setErrorMessage(String errorMsg, HttpServletRequest request) {

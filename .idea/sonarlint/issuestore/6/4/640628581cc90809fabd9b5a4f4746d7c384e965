@@ -1,0 +1,8 @@
+
+C
+java:S1170"!Make this final field static too.(øŠãÁşÿÿÿÿ8ç§²ƒ˜/
+€	java:S116"_Rename this field "GET_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øŠãÁşÿÿÿÿ8ç§²ƒ˜/
+D
+java:S1068"'Remove this unused "log" private field.(¯‚¢8ç§²ƒ˜/
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘åÿı8¸ãƒ˜/

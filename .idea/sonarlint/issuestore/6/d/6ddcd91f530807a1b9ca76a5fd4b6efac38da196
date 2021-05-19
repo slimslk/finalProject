@@ -1,11 +1,3 @@
 
-Z	java:S106 "9Replace this use of System.out or System.err by a logger.(Ê Ùáøÿÿÿÿ8½¶˜±—/
-U	java:S106#"9Replace this use of System.out or System.err by a logger.(Ø¼¢ƒ8€“™±—/
-U	java:S106"9Replace this use of System.out or System.err by a logger.(†åêÚ8óþ–±—/
-U	java:S106!"9Replace this use of System.out or System.err by a logger.(‹£¸’8Ä¼œ±—/
-X	java:S125*"<This block of commented-out lines of code should be removed.(¦¤Ø8øæŠ±—/
-]
-java:S1854";Remove this useless assignment to local variable "session".(ûÝÙ¹þÿÿÿÿ8øæŠ±—/
-N
-java:S1481",Remove this unused "session" local variable.(ûÝÙ¹þÿÿÿÿ8øæŠ±—/
-U	java:S106%"9Replace this use of System.out or System.err by a logger.(‹þ—¯8ß€¬±—/
+\
+java:S2441%":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ÝÉ¹ß—/

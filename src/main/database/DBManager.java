@@ -1,11 +1,12 @@
 package main.database;
 
+import org.apache.log4j.Logger;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 
 /**
@@ -15,11 +16,16 @@ import java.sql.SQLException;
 public class DBManager {
 
     private static DBManager instance;
+    private static final Logger log=Logger.getLogger(DBManager.class);
 
     public static synchronized DBManager getInstance() {
-        if (instance == null)
+        if (instance == null) {
             instance = new DBManager();
+        }
         return instance;
+    }
+
+    private DBManager(){
     }
 
     /**
@@ -27,40 +33,28 @@ public class DBManager {
      */
 
     public Connection getConnection() throws SQLException {
-//Connection pool
-                Connection connection = null;
+        Connection connection = null;
         try {
             Context initContext = new InitialContext();
             DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/finalProject");
-            System.out.println("Check2");
-            System.out.println("Datasource: "+ds);
-            try{
+            try {
                 connection = ds.getConnection();
-            }catch (SQLException ex){
-                System.out.println(ex.getErrorCode());
+            } catch (SQLException ex) {
+                ex.printStackTrace();
             }
-            System.out.println(connection+" connection");
         } catch (NamingException ex) {
-            System.out.println("NamingException: "+ex.getExplanation());
+            System.out.println("NamingException: " + ex.getExplanation());
         }
-
-//        Connection connection= null;
-//        try {
-//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/eshop","root","rootroot");
-//        } catch (SQLException e) {
-//            System.out.println("Connection error code:"+ e.getErrorCode());
-//
-//        }
         return connection;
     }
 
     /**
      * Commit and close connection
-     * @param con
-     * Connection to be committed and closed.
+     *
+     * @param con Connection to be committed and closed.
      */
 
-    public void commitAndClose(Connection con){
+    public void commitAndClose(Connection con) {
         try {
             con.commit();
             con.close();
@@ -71,12 +65,11 @@ public class DBManager {
 
     /**
      * Rollback and close connection
-     * @param con
-     * Connection to be rollback and closed.
      *
+     * @param con Connection to be rollback and closed.
      */
 
-    public void rollbackAndClose(Connection con){
+    public void rollbackAndClose(Connection con) {
         try {
             con.rollback();
             con.close();
@@ -84,5 +77,4 @@ public class DBManager {
             e.printStackTrace();
         }
     }
-
 }

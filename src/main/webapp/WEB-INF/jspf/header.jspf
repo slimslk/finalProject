@@ -10,9 +10,9 @@
             </ul>
             <c:choose>
                 <c:when test="${not empty user}">
+                    <p>${sessionScope.user.username}</p>
                     <div class="text-end">
                         <a href="controller?command=logout">
-                            <p>${sessionScope="user.getUsername"}</p>
                             <button type="button" class="btn btn-outline-light me-2">Logout</button>
                         </a>
                     </div>

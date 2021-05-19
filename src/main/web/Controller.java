@@ -47,10 +47,12 @@ public class Controller extends HttpServlet {
         System.out.println("Execute command and forward to address: " + forward);
         log.debug("Controller finished");
         if (forward != null) {
-            response.sendRedirect(forward);
-//            RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
-//            dispatcher.forward(request, response);
+            if (forward.equals(Path.ERRORPAGE)) {
+                RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
+                dispatcher.forward(request, response);
+            }else {
+                response.sendRedirect(forward);
+            }
         }
-
     }
 }

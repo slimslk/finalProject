@@ -3,7 +3,7 @@ Configuration file for Tomcat
 Data source and connection pool configuration
 =============================================================-->
 
-<context>
+<Context>
     <Resource name="jdbc/finalProject"
               auth="Container"
               type="javax.sql.DataSource"
@@ -14,4 +14,4 @@ Data source and connection pool configuration
               defaultAutoCommit="false"
               defaultTransactionIsolation="READ_COMMITTED"
               url="jdbc:mysql://localhost:3306/eshop"/>
-</context>
+</Context>
