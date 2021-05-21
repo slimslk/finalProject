@@ -2,7 +2,7 @@ package main.entity;
 
 import java.util.List;
 
-public class UserCrate extends Entity{
+public class UserCart extends Entity{
     private long userId;
     private List<Long> goodsId;
 

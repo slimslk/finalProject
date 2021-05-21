@@ -6,7 +6,7 @@
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="/index.jsp" class="nav-link px-2 text-secondary">Home</a></li>
+                <li><a href="./index.jsp" class="nav-link px-2 text-secondary">Home</a></li>
             </ul>
             <c:choose>
                 <c:when test="${not empty user}">
@@ -19,7 +19,7 @@
                 </c:when>
                 <c:when test="${empty user}">
                     <div class="text-end">
-                        <a href="/login.jsp">
+                        <a href="./login.jsp">
                             <button type="button" class="btn btn-outline-light me-2">Login</button>
                         </a>
                         <a href="controller?command=sing-up">

@@ -5,15 +5,7 @@ public class User extends Entity {
     private String username;
     private String password;
     private int roleId;
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", roleId=" + roleId +
-                '}';
-    }
+    private UserInfo userInfo;
 
     public String getUsername() {
         return username;
@@ -37,5 +29,22 @@ public class User extends Entity {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public UserInfo getUserInfo() {
+        return userInfo;
+    }
+
+    public void setUserInfo(UserInfo userInfo) {
+        this.userInfo = userInfo;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "username='" + username + '\'' +
+                ", roleId=" + roleId +
+                ", userInfo=" + userInfo +
+                '}';
     }
 }

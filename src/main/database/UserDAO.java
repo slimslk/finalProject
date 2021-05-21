@@ -98,6 +98,7 @@ public class UserDAO {
                 user.setUsername(rs.getString(Fields.USERNAME));
                 user.setPassword(rs.getString(Fields.PASSWORD));
                 user.setRoleId(rs.getInt(Fields.ROLE_ID));
+                user.setUserInfo(new UserInfoDAO().getUserInfoById(user.getId()));
                 return user;
             } catch (SQLException e) {
                 e.printStackTrace();

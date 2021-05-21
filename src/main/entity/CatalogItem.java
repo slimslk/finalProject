@@ -2,11 +2,12 @@ package main.entity;
 
 import java.util.Date;
 
-public class Catalog extends Entity {
+public class CatalogItem extends Entity {
     private long goodsId;
     private double price;
     private int quantity;
     private Date addDate;
+    private Goods goods;
 
     public long getGoodsId() {
         return goodsId;
@@ -40,13 +41,18 @@ public class Catalog extends Entity {
         this.addDate = addDate;
     }
 
+    public Goods getGoods(){ return goods;}
+
+    public void setGoods(Goods goods){this.goods=goods;}
+
     @Override
     public String toString() {
-        return "Catalog{" +
+        return "CatalogItem{" +
                 "goodsId=" + goodsId +
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", addDate=" + addDate +
+                ", goods=" + goods +
                 '}';
     }
 }

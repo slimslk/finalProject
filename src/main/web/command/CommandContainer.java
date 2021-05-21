@@ -14,9 +14,11 @@ public class CommandContainer {
     static {
         commandsMap.put("login", new CommandLogin());
         commandsMap.put("logout",new CommandLogout());
+        commandsMap.put("catalog",new CommandCatalog());
     }
 
     public static Command getCommand(String commandName) {
+        log.trace("Get command from Controller: "+commandName);
         if (commandsMap == null || !commandsMap.containsKey(commandName)) {
             log.trace("Command: " + commandName + " not found");
             return commandsMap.get("noCommand");

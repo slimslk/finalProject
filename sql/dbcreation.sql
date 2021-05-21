@@ -5,7 +5,7 @@ DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS orders;
 DROP TABLE IF EXISTS statuses;
 DROP TABLE IF EXISTS usersInfo;
-DROP TABLE IF EXISTS catalog;
+DROP TABLE IF EXISTS catalogItem;
 DROP TABLE IF EXISTS usersCrate;
 DROP TABLE IF EXISTS goods;
 
@@ -74,7 +74,7 @@ CREATE TABLE IF NOT EXISTS orders
     FOREIGN KEY (orderStatus) REFERENCES statuses (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS catalog
+CREATE TABLE IF NOT EXISTS catalogItem
 (
     id       INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     goodsId  INT                NOT NULL,
@@ -98,7 +98,23 @@ VALUES ('toy1'),
        ('toy2'),
        ('toy3');
 
-INSERT INTO catalog (goodsId, price, quantity, addDate)
+INSERT INTO goods (name)
+VALUES ('toy4'),
+       ('toy5'),
+       ('toy6'),
+       ('toy7'),
+       ('toy8'),
+       ('toy9');
+
+INSERT INTO catalogItem (goodsId, price, quantity, addDate)
 VALUES (1, 10, 3, CURRENT_DATE),
        (2, 3, 5, CURRENT_DATE),
        (3, 15, 0, CURRENT_DATE);
+
+INSERT INTO catalog (goodsId, price, quantity, addDate)
+VALUES (4, 10, 3, CURRENT_DATE),
+       (5, 3, 5, CURRENT_DATE),
+       (6, 15, 7, CURRENT_DATE),
+       (7, 10, 1, CURRENT_DATE),
+       (8, 3, 6, CURRENT_DATE),
+       (9, 15, 12, CURRENT_DATE);
