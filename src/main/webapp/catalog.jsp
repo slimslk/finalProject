@@ -6,23 +6,22 @@
 <%@include file="WEB-INF/jspf/head.jspf" %>
 <body>
 <%@include file="WEB-INF/jspf/header.jspf" %>
-    <ul class="list-group">
-        <button type="button" class="btn btn-primary" onclick="alertFunction()">Add</button>
-    </ul>
-<script>
-    function alertFunction(){
-Java.type()
-        alert("added to cart")
-    }
-</script>
+
+<ul class="list-group">
+    <button type="button" class="btn btn-primary" onclick="alertFunction()">Add</button>
+</ul>
+<hr/>
+<hr/>
+<c:set var="count" value="0" scope="page" />
 <c:forEach var="catalogItem" items="${catalog}">
-    <form id="add_to_cart" action="controller" >
-        <input type="hidden" name="command" value="cart">
-        <input type="hidden" name="command" value="${catalogItem.goodsId}">
-        <p>${catalogItem.goods.name} = ${catalogItem.price}</p>
-        <button class="w-100 btn btn-lg btn-primary" onclick="alertFunction()" type="submit">Add to cart</button>
+    <form name="add_to_cart${count}">
+        <input type="hidden" name="item_id" value="${catalogItem.id}">
+            <p>${catalogItem.goods.name} = ${catalogItem.price}</p>
+        <button class="w-100 btn btn-lg btn-primary" onclick="addToCart(${count})">Sign in</button>
+        <c:set var="count" value="${count + 1}" scope="page"/>
     </form>
 </c:forEach>
 <p>${userCrate}</p>
+<script type="text/javascript" src="js/myScript.js"></script>
 </body>
 </html>
