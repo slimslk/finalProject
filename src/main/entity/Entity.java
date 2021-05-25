@@ -8,7 +8,7 @@ import java.io.Serializable;
  * @author Dmitry Kuzavkov
  */
 
-public abstract class Entity {
+public abstract class Entity implements Serializable{
 
     private long id;
 

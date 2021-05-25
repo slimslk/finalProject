@@ -75,10 +75,10 @@ public class UserInfoDAO {
         try {
             connection = dbManager.getConnection();
             try (PreparedStatement pstm = connection.prepareStatement(INSERT_USER_INFO)) {
-                pstm.setLong(++i,userInfo.getId());
                 pstm.setLong(++i, userInfo.getUserId());
                 pstm.setString(++i, userInfo.getName());
                 pstm.setString(++i, userInfo.getSurname());
+                pstm.executeUpdate();
             }
         } catch (SQLException e) {
             dbManager.rollbackAndClose(connection);

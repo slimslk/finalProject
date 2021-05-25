@@ -1,8 +1,9 @@
 package main.web.command;
 
-import main.Path;
+import main.web.Path;
 import main.database.UserDAO;
 import main.entity.User;
+import main.entity.UserCart;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -35,6 +36,8 @@ public class CommandLogin implements Command {
         }
 
         session.setAttribute("user", user);
+        UserCart userCart=(UserCart)session.getAttribute("userCart");
+        userCart.setUserId(user.getId());
         return forward;
     }
 

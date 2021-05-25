@@ -1,6 +1,5 @@
 package main.web;
 
-import main.Path;
 import main.web.command.Command;
 import main.web.command.CommandContainer;
 import org.apache.log4j.Logger;
@@ -12,7 +11,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-
 
 @WebServlet(value = "/controller")
 public class Controller extends HttpServlet {

@@ -1,8 +1,16 @@
 
-l
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘åÿı8šåß°˜/
-€	java:S116"_Rename this field "GET_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øŠãÁşÿÿÿÿ8šåß°˜/
+u	java:S116"YRename this field "GET_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô³ï 8´Á›ÿ˜/
 C
 java:S1170"!Make this final field static too.(øŠãÁşÿÿÿÿ8šåß°˜/
+|	java:S116"[Rename this field "INSERT_USER_INFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ùØ¯ÿÿÿÿÿ8µ…Äÿ˜/
+€	java:S116"_Rename this field "GET_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øŠãÁşÿÿÿÿ8šåß°˜/
+>
+java:S1170"!Make this final field static too.(Ô³ï 8Ù‡›ÿ˜/
 D
 java:S1068"'Remove this unused "log" private field.(¯‚¢8šåß°˜/
+C
+java:S1170"!Make this final field static too.(˜ùØ¯ÿÿÿÿÿ8µ…Äÿ˜/
+q
+java:S20954"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı–îşúÿÿÿÿ8ö¥ÿ˜/
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘åÿı8šåß°˜/

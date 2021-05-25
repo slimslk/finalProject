@@ -41,8 +41,6 @@ O
 src/main/webapp/WEB-INF/web.xml,2/e/2e22b6edd746fa3dc40ad7276c87c8d87d72a392
 I
 src/main/webapp/login.jsp,8/5/85ee523d01e5e19376db640e846c91bbcb0a1c22
-B
-src/main/Path.java,e/e/ee63c60a1f145c17e4d8580c94c75887289911c7
 H
 src/resources.properties,d/b/dbe303e5c03d59cb1d39f208bf981791ef566046
 K
@@ -99,15 +97,33 @@ Y
 )src/main/webapp/WEB-INF/jsp/errorpage.jsp,8/e/8e228ec7cd2b3838caf9b1cdefe5cad9052a715d
 Q
 !src/main/database/CatalogDAO.java,1/f/1f3371736990fffe30e403c3ae228f162fae7df8
-L
-src/main/entity/Catalog.java,6/6/6603ba260dd0d2aa6d01d0a59c94a2910bd4d327
 J
 src/main/entity/Goods.java,f/c/fccb58a3929e5450180f4814686dac2d7f7a9358
 J
 src/main/entity/Order.java,0/3/037bb3b7669d2f7a04d94bbcd442e2d9e762e470
 K
 src/main/entity/Status.java,2/7/27791cec651325366002b8cccfc62f8675b8b3f2
-N
-src/main/entity/UserCrate.java,5/8/587579f2ab815c94f079e9821f8eda7102d9619e
+O
+src/main/database/GoodsDAO.java,f/e/fed811f3e1770500e7b1d5becb7bd18ddd5ecefa
+P
+ src/main/entity/CatalogItem.java,a/a/aaee26b4465b47f6d126aa2ef9a8006644475e09
+X
+(src/main/web/command/CommandCatalog.java,8/a/8ab9bc786ec3af65c7f768624300459180b2ff02
+U
+%src/main/web/command/CommandCart.java,f/4/f47b74e007435b32efb216455d4e9ab7bbe9c07e
+M
+src/main/entity/UserCart.java,0/b/0ba464e3ec6c3a47aae8d17b4d735e3adbe78c6a
+O
+src/main/webapp/js/addToCart.js,4/f/4fe92868439ee5a674077f4897321255d39f81d2
+W
+'src/main/web/command/CommandSingUp.java,4/a/4a94c631476be96ea7ca19e0e4bd9634acdef6a8
+T
+$src/main/database/UserStatusDAO.java,6/2/626ac1cdc0b6b83d64c7f4de999f9641633d32d5
 K
-src/main/webapp/catalog.jsp,3/1/31f1107307ac6cc200e7489f94a75fe043cd4a84
+src/main/webapp/sign-up.jsp,9/1/91177bf19f3d7f7a240f67fe29958ceb481ff5e8
+M
+src/main/webapp/user/cart.jsp,f/2/f239292562d77066c9cefa4cde2f7e887656f2d5
+P
+ src/main/webapp/user/catalog.jsp,9/b/9b2a39979e0d8059d55baf6d663533d225953d93
+F
+src/main/web/Path.java,a/f/af29fdb2a0b9406430d035392153501d12a91bca

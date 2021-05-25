@@ -16,6 +16,7 @@ public class CommandContainer {
         commandsMap.put("logout",new CommandLogout());
         commandsMap.put("catalog",new CommandCatalog());
         commandsMap.put("cart",new CommandCart());
+        commandsMap.put("signup",new CommandSingUp());
     }
 
     public static Command getCommand(String commandName) {

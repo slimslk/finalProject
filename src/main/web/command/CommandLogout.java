@@ -1,6 +1,6 @@
 package main.web.command;
 
-import main.Path;
+import main.web.Path;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;

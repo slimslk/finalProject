@@ -1,14 +1,16 @@
 
-<
-java:S1170"!Make this final field static too.(¼ÛËº8ï¦éƒ˜/
-j
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´ý®8€íƒ˜/
-z	java:S116"`Rename this field "FIND_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì²¶ž8ï¦éƒ˜/
-u	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(â×ÏÆøÿÿÿÿ8ï¦éƒ˜/
-o
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ë®ÖÝþÿÿÿÿ8ï¦éƒ˜/
-<
-java:S1170"!Make this final field static too.(ì²¶ž8ï¦éƒ˜/
-A
-java:S1170"!Make this final field static too.(â×ÏÆøÿÿÿÿ8ï¦éƒ˜/
-t	java:S116"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8ï¦éƒ˜/
+C
+java:S1170"!Make this final field static too.(„ Œÿÿÿÿÿ8ï¦éƒ˜/
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´ý®8€íƒ˜/
+q
+java:S20951"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ë®ÖÝþÿÿÿÿ8ï¦éƒ˜/
+v	java:S116	"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8ï¦éƒ˜/
+>
+java:S1170	"!Make this final field static too.(¼ÛËº8ï¦éƒ˜/
+w	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ Œÿÿÿÿÿ8ï¦éƒ˜/
+>
+java:S1170
+"!Make this final field static too.(ì²¶ž8ï¦éƒ˜/
+|	java:S116
+"`Rename this field "FIND_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì²¶ž8ï¦éƒ˜/

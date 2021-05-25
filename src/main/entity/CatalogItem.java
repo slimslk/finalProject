@@ -3,18 +3,20 @@ package main.entity;
 import java.util.Date;
 
 public class CatalogItem extends Entity {
-    private long goodsId;
+    private long goodsParamId;
     private double price;
     private int quantity;
     private Date addDate;
+    private GoodsParam goodsParam;
     private Goods goods;
 
-    public long getGoodsId() {
-        return goodsId;
+
+    public long getGoodsParamId() {
+        return goodsParamId;
     }
 
-    public void setGoodsId(long goodsId) {
-        this.goodsId = goodsId;
+    public void setGoodsParamId(long goodsParamId) {
+        this.goodsParamId = goodsParamId;
     }
 
     public double getPrice() {
@@ -45,13 +47,22 @@ public class CatalogItem extends Entity {
 
     public void setGoods(Goods goods){this.goods=goods;}
 
+    public GoodsParam getGoodsParam() {
+        return goodsParam;
+    }
+
+    public void setGoodsParam(GoodsParam goodsParam) {
+        this.goodsParam = goodsParam;
+    }
+
     @Override
     public String toString() {
         return "CatalogItem{" +
-                "goodsId=" + goodsId +
+                "goodsParamId=" + goodsParamId +
                 ", price=" + price +
                 ", quantity=" + quantity +
                 ", addDate=" + addDate +
+                ", goodsParam=" + goodsParam +
                 ", goods=" + goods +
                 '}';
     }

@@ -1,8 +1,16 @@
 
-ƒ
-java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
 U	java:S106/"9Replace this use of System.out or System.err by a logger.(‘§²Í8äõ©˜/
 ƒ
-java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
-Z	java:S106'"9Replace this use of System.out or System.err by a logger.(´ğÊÃøÿÿÿÿ8äõ©˜/
+java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
+
+java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8óãÜÿ˜/
+M
+java:S1128"0Remove this unused import 'java.io.PrintWriter'.(ÓŞÏÛ8¶Şİğ™/
+ƒ
+java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
 U	java:S106*"9Replace this use of System.out or System.err by a logger.(¢½„Ô8äõ©˜/
+x
+java:S4144"VUpdate this method so that its implementation is not identical to "doPost" on line 23.(Ïû©Öûÿÿÿÿ8Á®İÿ˜/
+
+java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8Á®İÿ˜/
+Z	java:S106'"9Replace this use of System.out or System.err by a logger.(´ğÊÃøÿÿÿÿ8äõ©˜/

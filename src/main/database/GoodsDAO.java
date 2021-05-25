@@ -1,6 +1,5 @@
 package main.database;
 
-import main.entity.CatalogItem;
 import main.entity.Goods;
 
 import java.sql.Connection;
@@ -75,8 +74,9 @@ public class GoodsDAO {
         public Goods mapRow(ResultSet rs) {
             try {
                 Goods goods = new Goods();
-                goods.setId(rs.getLong("id"));
-                goods.setName(rs.getString("name"));
+                goods.setId(rs.getLong(Fields.ENTITY_ID));
+                goods.setName(rs.getString(Fields.NAME));
+                goods.setImg(rs.getString(Fields.IMG));
                 return goods;
             } catch (SQLException e) {
                 e.printStackTrace();

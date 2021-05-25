@@ -5,6 +5,7 @@ public class User extends Entity {
     private String username;
     private String password;
     private int roleId;
+    private int statusId;
     private UserInfo userInfo;
 
     public String getUsername() {
@@ -29,6 +30,14 @@ public class User extends Entity {
 
     public void setRoleId(int roleId) {
         this.roleId = roleId;
+    }
+
+    public int getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(int statusId) {
+        this.statusId = statusId;
     }
 
     public UserInfo getUserInfo() {
