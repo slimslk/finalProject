@@ -1,7 +1,11 @@
 package main.web.command;
 
+import main.entity.UserCart;
+import main.exception.DBException;
 import main.web.Path;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -14,15 +18,18 @@ import java.io.IOException;
  */
 
 public class CommandLogout implements Command {
-    private static final Logger log=Logger.getLogger(CommandLogout.class);
+    private static final Logger log=LogManager.getLogger(CommandLogout.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
         HttpSession httpSession=request.getSession(false);
         if(httpSession!=null){
             httpSession.invalidate();
         }
+        UserCart userCart=new UserCart();
+        httpSession=request.getSession();
+        httpSession.setAttribute("userCart", userCart);
         log.debug("Session invalidated");
-        return Path.STARTPAGE;
+        return Path.CATALOG;
     }
 }

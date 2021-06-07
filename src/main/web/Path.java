@@ -1,11 +1,19 @@
 package main.web;
 
+import static main.web.listener.ContextListener.getContextPath;
+
 /**
  * Path class for holding addresses
  */
 public final class Path {
-    public static final String STARTPAGE="./index.jsp";
-    public static final String LOGINPAGE="./login.jsp";
-    public static final String ERRORPAGE="./WEB-INF/jsp/errorpage.jsp";
-    public static final String CATALOG="./user/catalog.jsp";
+    public static final String STARTPAGE = getContextPath() + "/index.jsp";
+    public static final String LOGINPAGE = getContextPath() + "/login.jsp";
+    public static final String ERRORPAGE = "/error-page.jsp";
+    public static final String CATALOG = getContextPath() + "/user/catalog.jsp";
+    public static final String ADMIN_CATALOG = getContextPath() + "/admin/admin-catalog.jsp";
+    public static final String CART = getContextPath() + "/user/cart.jsp";
+    public static final String REDIRECT_TO_USER_ORDERS = getContextPath() + "/controller?command=orders";
+    public static final String USER_ORDERS = getContextPath() + "/user/user-orders.jsp";
+    public static final String ADMIN_ORDERS = getContextPath() + "/admin/admin-orders.jsp";
+    public static final String ADMIN_USERS = getContextPath() + "/admin/admin-users.jsp";
 }

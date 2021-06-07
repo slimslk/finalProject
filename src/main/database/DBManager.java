@@ -1,6 +1,8 @@
 package main.database;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -16,7 +18,7 @@ import java.sql.SQLException;
 public class DBManager {
 
     private static DBManager instance;
-    private static final Logger log=Logger.getLogger(DBManager.class);
+    private static final Logger log= LogManager.getLogger(DBManager.class);
 
     public static synchronized DBManager getInstance() {
         if (instance == null) {
@@ -43,7 +45,7 @@ public class DBManager {
                 ex.printStackTrace();
             }
         } catch (NamingException ex) {
-            System.out.println("NamingException: " + ex.getExplanation());
+            log.error("NamingException: " + ex.getExplanation());
         }
         return connection;
     }

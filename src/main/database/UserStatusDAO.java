@@ -1,5 +1,7 @@
 package main.database;
 
+import main.exception.DBException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +10,7 @@ import java.sql.SQLException;
 public class UserStatusDAO {
     private final String GET_STATUS_BY_NAME = "select id from userStatuses where statusName=?";
 
-    public int getStatusByName(String statusName) {
+    public int getStatusByName(String statusName) throws DBException {
         DBManager dbManager = DBManager.getInstance();
         int id = 0;
         Connection con = null;
@@ -25,6 +27,7 @@ public class UserStatusDAO {
         } catch (SQLException e) {
             e.printStackTrace();
             dbManager.rollbackAndClose(con);
+            throw new DBException("Cant get user status from Database, try later", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);

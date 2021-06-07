@@ -1,7 +1,10 @@
 package main.database;
 
 import main.entity.GoodsParam;
-import org.apache.log4j.Logger;
+import main.exception.DBException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,11 +12,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class GoodsParamDAO {
-    private static final Logger log = Logger.getLogger(GoodsParamDAO.class);
+    private static final Logger log = LogManager.getLogger(GoodsParamDAO.class);
     private final DBManager dbManager = DBManager.getInstance();
     private final String GET_PARAMS_BY_ID = "SELECT * FROM goodsParam WHERE id=?";
 
-    public GoodsParam getGoodsParamByID(long id) {
+    public GoodsParam getGoodsParamByID(long id) throws DBException {
         GoodsParam goodsParam = new GoodsParam();
         PreparedStatement pstm;
         ResultSet rs;
@@ -31,7 +34,7 @@ public class GoodsParamDAO {
             pstm.close();
         } catch (SQLException e) {
             dbManager.rollbackAndClose(con);
-            e.printStackTrace();
+            throw new DBException("Cant get Goods parameter from Database, try later.", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);
@@ -44,14 +47,15 @@ public class GoodsParamDAO {
     private static class GoodsParamMapper implements EntityMapper<GoodsParam> {
         @Override
         public GoodsParam mapRow(ResultSet rs) {
+            ParamDAO paramDAO=new ParamDAO();
             try {
                 GoodsParam goodsParam = new GoodsParam();
                 //Get names from DB associated with it's ID
-                String gender = new ParamDAO().getParamName(Fields.GENDER, rs.getLong("genderId"));
-                String age = new ParamDAO().getParamName(Fields.AGE, rs.getLong("ageId"));
-                String size = new ParamDAO().getParamName(Fields.SIZE, rs.getLong("sizeID"));
-                String category = new ParamDAO().getParamName(Fields.CATEGORY, rs.getLong("categoryId"));
-                String style = new ParamDAO().getParamName(Fields.STYLE, rs.getLong("styleId"));
+                String gender = paramDAO.getParamName(Fields.GENDER, rs.getLong("genderId"));
+                String age = paramDAO.getParamName(Fields.AGE, rs.getLong("ageId"));
+                String size = paramDAO.getParamName(Fields.SIZE, rs.getLong("sizeID"));
+                String category = paramDAO.getParamName(Fields.CATEGORY, rs.getLong("categoryId"));
+                String style = paramDAO.getParamName(Fields.STYLE, rs.getLong("styleId"));
                 //Set to the GoodsParam object
                 goodsParam.setId(rs.getLong("id"));
                 goodsParam.setGoodsId(rs.getLong("goodsId"));
@@ -61,7 +65,7 @@ public class GoodsParamDAO {
                 goodsParam.setCategoryName(category);
                 goodsParam.setStyleName(style);
                 return goodsParam;
-            } catch (SQLException e) {
+            } catch (SQLException | DBException e) {
                 e.printStackTrace();
                 return null;
             }

@@ -8,7 +8,7 @@
 <body class="text-center">
 <link rel="stylesheet" type="text/css" href="style/signin.css">
 <main class="form-signin">
-    <form id="login_form" action="controller" method="post">
+    <form id="login_form" action="${pageContext.request.contextPath}/controller" method="post">
         <input type="hidden" name="command" value="login">
         <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
         <div class="form-floating">

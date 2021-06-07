@@ -1,10 +1,13 @@
 package main.web.command;
 
+import main.exception.DBException;
 import main.web.Path;
 import main.database.UserDAO;
 import main.entity.User;
 import main.entity.UserCart;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -13,16 +16,17 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 public class CommandLogin implements Command {
-    private static final Logger log = Logger.getLogger(CommandLogin.class);
+    private static final Logger log = LogManager.getLogger(CommandLogin.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
 
         HttpSession session = request.getSession();
 
         //Obtain username and password from request
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        System.err.println("PATH: "+Path.CATALOG);
         String forward = Path.CATALOG;
         String errorMsg;
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {

@@ -1,8 +1,11 @@
 package main.web;
 
+import main.exception.DBException;
 import main.web.command.Command;
 import main.web.command.CommandContainer;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -14,7 +17,7 @@ import java.io.IOException;
 
 @WebServlet(value = "/controller")
 public class Controller extends HttpServlet {
-    private static final Logger log = Logger.getLogger(Controller.class);
+    private static final Logger log = LogManager.getLogger(Controller.class);
     private static final long serialVersionUID = -2865377066620126318L;
 
     @Override
@@ -34,23 +37,27 @@ public class Controller extends HttpServlet {
      */
 
     private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-
+        String forward = Path.ERRORPAGE;
         log.debug("Controller starts");
-        System.out.println("Controller starts");
+        System.out.println("Controller");
         String commandName = request.getParameter("command");
-        log.trace("Get command from request: " + commandName);
-        System.out.println("Get command from request: " + commandName);
+        log.error("Get command from request: " + commandName);
         Command command = CommandContainer.getCommand(commandName);
-        log.trace("Obtain command");
-        String forward = command.execute(request, response);
-        log.trace("Execute command and forward to address: " + forward);
+        log.error("Obtain command");
+        try {
+            forward = command.execute(request, response);
+        } catch (DBException ex) {
+            log.error("Catch exception "+ex);
+            request.setAttribute("errorMessage", ex);
+        }
+        log.error("Execute command and forward to address: " + forward);
         System.out.println("Execute command and forward to address: " + forward);
         log.debug("Controller finished");
         if (forward != null) {
             if (forward.equals(Path.ERRORPAGE)) {
                 RequestDispatcher dispatcher = request.getRequestDispatcher(forward);
                 dispatcher.forward(request, response);
-            }else {
+            } else {
                 response.sendRedirect(forward);
             }
         }

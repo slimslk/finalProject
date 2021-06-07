@@ -1,6 +1,7 @@
 package main.database;
 
 import main.entity.Goods;
+import main.exception.DBException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ public class GoodsDAO {
     private final String GET_ALL_ITEMS = "SELECT * FROM goods";
     private final String GET_ITEM_BY_ID="SELECT * FROM goods WHERE id=?";
 
-    public List<Goods> getAllItems() {
+    public List<Goods> getAllItems() throws DBException {
         List<Goods> allGoods=new ArrayList<>();
         PreparedStatement pstm;
         ResultSet rs;
@@ -33,7 +34,7 @@ public class GoodsDAO {
             pstm.close();
         } catch (SQLException e) {
             dbManager.rollbackAndClose(con);
-            e.printStackTrace();
+            throw new DBException("Can't get all goods", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);
@@ -42,7 +43,7 @@ public class GoodsDAO {
         return allGoods;
     }
 
-    public Goods getGoodsById(long id) {
+    public Goods getGoodsById(long id) throws DBException {
         PreparedStatement pstm;
         ResultSet rs;
         Connection con = null;
@@ -60,7 +61,7 @@ public class GoodsDAO {
             pstm.close();
         } catch (SQLException e) {
             dbManager.rollbackAndClose(con);
-            e.printStackTrace();
+            throw new DBException("Database not response, can't get goods by ID", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);

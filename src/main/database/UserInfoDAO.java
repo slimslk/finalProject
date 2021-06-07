@@ -1,7 +1,10 @@
 package main.database;
 
 import main.entity.UserInfo;
-import org.apache.log4j.Logger;
+import main.exception.DBException;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -9,12 +12,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserInfoDAO {
-    private static final Logger log = Logger.getLogger(UserInfoDAO.class);
+    private static final Logger log = LogManager.getLogger(UserInfoDAO.class);
     private final String GET_USER_BY_USERNAME = "SELECT usersInfo.id, name, surname, userId FROM usersInfo INNER JOIN users u on usersInfo.userId = u.id WHERE username=?";
     private final String GET_USER_BY_ID = "SELECT * FROM usersInfo  WHERE id=?";
     private final String INSERT_USER_INFO="INSERT INTO usersInfo(userId,name,surname) VALUES (?,?,?)";
 
-    public UserInfo getUserInfoByUsername(String username) {
+    public UserInfo getUserInfoByUsername(String username) throws DBException {
         UserInfo userInfo = new UserInfo();
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
@@ -32,7 +35,7 @@ public class UserInfoDAO {
             pstm.close();
         } catch (SQLException e) {
             dbManager.rollbackAndClose(con);
-            e.printStackTrace();
+            throw new DBException("Cant get user info from Database, try later", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);
@@ -41,7 +44,7 @@ public class UserInfoDAO {
         return userInfo;
     }
 
-    public UserInfo getUserInfoById(long id) {
+    public UserInfo getUserInfoById(long id) throws DBException {
         UserInfo userInfo = new UserInfo();
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
@@ -59,7 +62,7 @@ public class UserInfoDAO {
             pstm.close();
         } catch (SQLException e) {
             dbManager.rollbackAndClose(con);
-            e.printStackTrace();
+            throw new DBException("Cant get user info from Database, try later", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);
@@ -68,7 +71,7 @@ public class UserInfoDAO {
         return userInfo;
     }
 
-    public void insertUserInfo(UserInfo userInfo) {
+    public void insertUserInfo(UserInfo userInfo) throws DBException {
         DBManager dbManager = DBManager.getInstance();
         Connection connection = null;
         int i = 0;
@@ -82,6 +85,7 @@ public class UserInfoDAO {
             }
         } catch (SQLException e) {
             dbManager.rollbackAndClose(connection);
+            throw new DBException("Cant insert user info to Database, try later", e);
         } finally {
             if (connection != null) {
                 dbManager.commitAndClose(connection);

@@ -1,14 +1,20 @@
 package main.entity;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserCart extends Entity{
+    private static final Logger log= LogManager.getLogger(UserCart.class);
+
     private long userId;
-    private List<Long> goodsId;
+    //Map key - "goods id" and value - "quantity"
+    private Map<Long,Integer> goodsId;
 
     public UserCart(){
-        goodsId=new ArrayList<>();
+        goodsId=new HashMap<>();
     }
 
     public long getUserId() {
@@ -19,23 +25,52 @@ public class UserCart extends Entity{
         this.userId = userId;
     }
 
-    public List<Long> getGoodsId() {
+    public Map<Long, Integer> getGoodsId() {
         return goodsId;
     }
 
-    public void setGoodsId(List<Long> goodsId) {
+    public void setGoodsId(Map<Long,Integer> goodsId) {
         this.goodsId = goodsId;
     }
 
     public void addToCart(long id){
-        System.out.println("id is: "+id);
-        goodsId.add(id);
-        System.out.println("item added to cart");
+        if(!goodsId.containsKey(id)){
+            goodsId.put(id,1);
+        }else {
+            int quantity = goodsId.get(id);
+            goodsId.put(id,++quantity);
+        }
+        log.debug("Quantity of the goods in the cart is: "+goodsId.get(id));
+    }
+
+    public void removeFromCart(long id, int q){
+        if(!goodsId.containsKey(id)){
+            log.error("There are no goods in the cart");
+            return;
+        }
+        if(goodsId.get(id)>0){
+            int quantity=goodsId.get(id);
+            quantity-=q;
+            goodsId.put(id,quantity);
+            if(quantity==0){
+                goodsId.remove(id);
+            }
+        }
+        log.debug("item removed from cart");
+        log.debug("Quantity of the goods in the cart is: "+goodsId.get(id));
+    }
+
+    public int getSize(){
+        return goodsId.size();
+    }
+
+    public int getQuantity(long id){
+        return goodsId.get(id);
     }
 
     @Override
     public String toString() {
-        return "userCrate{" +
+        return "userCart{" +
                 " userId=" + userId +
                 ", goodsId=" + goodsId +
                 '}';

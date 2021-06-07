@@ -2,21 +2,22 @@ CREATE DATABASE IF NOT EXISTS eshop;
 
 SET FOREIGN_KEY_CHECKS = 0;
 
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS roles;
-DROP TABLE IF EXISTS userStatuses;
-DROP TABLE IF EXISTS ordersStatuses;
-DROP TABLE IF EXISTS statuses;
-DROP TABLE IF EXISTS usersInfo;
-DROP TABLE IF EXISTS itemsCatalog;
-DROP TABLE IF EXISTS usersCart;
-DROP TABLE IF EXISTS gender;
 DROP TABLE IF EXISTS age;
 DROP TABLE IF EXISTS category;
-DROP TABLE IF EXISTS size;
-DROP TABLE IF EXISTS style;
+DROP TABLE IF EXISTS gender;
 DROP TABLE IF EXISTS goods;
 DROP TABLE IF EXISTS goodsParam;
+DROP TABLE IF EXISTS itemsCatalog;
+DROP TABLE IF EXISTS orders;
+DROP TABLE IF EXISTS ordersList;
+DROP TABLE IF EXISTS orderStatus;
+DROP TABLE IF EXISTS roles;
+DROP TABLE IF EXISTS size;
+DROP TABLE IF EXISTS style;
+DROP TABLE IF EXISTS users;
+DROP TABLE IF EXISTS usersCart;
+DROP TABLE IF EXISTS usersInfo;
+DROP TABLE IF EXISTS userStatuses;
 
 CREATE TABLE IF NOT EXISTS roles
 (
@@ -39,6 +40,7 @@ CREATE TABLE IF NOT EXISTS users
     password VARCHAR(255)       NOT NULL,
     roleId   INT                NOT NULL,
     status   INT                NOT NULL,
+    locale   VARCHAR(20)        NOT NULL,
     UNIQUE (id, username),
     FOREIGN KEY (roleId) REFERENCES roles (roleId) ON DELETE CASCADE,
     FOREIGN KEY (status) REFERENCES userStatuses (id) ON DELETE CASCADE
@@ -108,6 +110,7 @@ CREATE TABLE IF NOT EXISTS goodsParam
     categoryId INT                NOT NULL,
     styleId    INT                NOT NULL,
     UNIQUE (id),
+    FOREIGN KEY (goodsId) REFERENCES goods(id) ON DELETE CASCADE,
     FOREIGN KEY (genderId) REFERENCES gender (id) ON DELETE CASCADE,
     FOREIGN KEY (ageId) REFERENCES age (id) ON DELETE CASCADE,
     FOREIGN KEY (sizeId) REFERENCES size (id) ON DELETE CASCADE,
@@ -125,7 +128,7 @@ CREATE TABLE IF NOT EXISTS usersCart
     FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS orderStatuses
+CREATE TABLE IF NOT EXISTS orderStatus
 (
     id         INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     statusName VARCHAR(255)       NOT NULL,
@@ -134,16 +137,24 @@ CREATE TABLE IF NOT EXISTS orderStatuses
 
 CREATE TABLE IF NOT EXISTS orders
 (
-    id          INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    orderNumber INT                NOT NULL,
-    userId      INT                NOT NULL,
-    goodsId     INT                NOT NULL,
-    orderStatus INT                NOT NULL,
-    orderDate   DATETIME           NOT NULL,
-    UNIQUE (id),
+    orderNumber INT      NOT NULL PRIMARY KEY,
+    userId      INT      NOT NULL,
+    orderStatus INT      NOT NULL,
+    orderDate   DATETIME NOT NULL,
+    UNIQUE (orderNumber),
     FOREIGN KEY (userId) REFERENCES users (id) ON DELETE CASCADE,
-    FOREIGN KEY (goodsId) REFERENCES goods (id) ON DELETE CASCADE,
-    FOREIGN KEY (orderStatus) REFERENCES orderStatuses (id) ON DELETE CASCADE
+    FOREIGN KEY (orderStatus) REFERENCES orderStatus (id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS ordersList
+(
+    id            INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    orderId       INT                NOT NULL,
+    goodsId       INT                NOT NULL,
+    goodsQuantity INT                NOT NULL,
+    UNIQUE (id),
+    FOREIGN KEY (orderId) REFERENCES orders (orderNumber) ON DELETE CASCADE,
+    FOREIGN KEY (goodsId) REFERENCES itemsCatalog (goodsParamId) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS itemsCatalog
@@ -166,7 +177,7 @@ INSERT INTO userStatuses(statusName)
 VALUES ('active'),
        ('disabled');
 
-INSERT INTO orderStatuses(statusName)
+INSERT INTO orderStatus(statusName)
 VALUES ('registered'),
        ('paid'),
        ('canceled');
@@ -193,7 +204,7 @@ VALUES ('bottoms'),
        ('sets'),
        ('shoes'),
        ('dresses'),
-       ('rampers');
+       ('rompers');
 
 INSERT INTO size(sizeName)
 VALUES ('3m'),
@@ -213,15 +224,15 @@ VALUES ('graphics'),
        ('romper');
 
 INSERT INTO goods (name, img)
-VALUES ('toy1', 'img1'),
-       ('toy2', 'img2'),
-       ('toy3', 'img3'),
-       ('toy4', 'img4'),
-       ('toy5', 'img5'),
-       ('toy6', 'imm6'),
-       ('toy7', 'img7'),
-       ('toy8', 'img8'),
-       ('toy9', 'img9');
+VALUES ('Pants', 'img1.jpg'),
+       ('Top', 'img2.jpg'),
+       ('Romper', 'img3.jpg'),
+       ('Dress', 'img4.jpg'),
+       ('T-shirt', 'img5.jpg'),
+       ('Socks', 'img6.jpg'),
+       ('Red Shoes', 'img7.jpg'),
+       ('Body', 'img8.jpg'),
+       ('Tulip', 'img9.jpg');
 
 INSERT INTO goodsParam(goodsId, genderId, ageId, sizeId, categoryId, styleId)
 VALUES (1, 1, 1, 1, 1, 1),
@@ -249,23 +260,10 @@ VALUES (1, 10.5, 3, CURRENT_DATE),
        (6, 15.12, 7, CURRENT_DATE),
        (7, 10.43, 1, CURRENT_DATE),
        (8, 3.56, 6, CURRENT_DATE),
-       (9, 15.0, 12, CURRENT_DATE);
+       (9, 15.0, 12, CURRENT_DATE),
+       (10, 15.0, 12, CURRENT_DATE),
+       (11, 15.0, 12, CURRENT_DATE),
+       (12, 15.0, 12, CURRENT_DATE),
+       (13, 15.0, 12, CURRENT_DATE);
 
-SELECT name,
-       genderName,
-       ageName,
-       sizeName,
-       categoryName,
-       styleName,
-       price,
-       quantity,
-       addDate
-FROM goodsParam
-         INNER JOIN goods g ON g.id = goodsId
-         INNER JOIN gender g2 on goodsParam.genderId = g2.id
-         INNER JOIN age a on goodsParam.ageId = a.id
-         INNER JOIN size s on goodsParam.sizeId = s.id
-         INNER JOIN category c on goodsParam.categoryId = c.id
-         INNER JOIN style s2 on goodsParam.styleId = s2.id
-         INNER JOIN itemsCatalog iC on goodsParam.id = iC.goodsParamId
-ORDER BY name;
+ALTER TABLE users ADD locale VARCHAR(20) NOT NULL AFTER status;

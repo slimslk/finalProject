@@ -1,3 +1,7 @@
 
-\
-java:S2441&":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8šåß°˜/
+T
+java:S26291"7Use the built-in formatting to construct this argument.(›ƒƒ8 ÿáË›/
+^
+java:S34571"AFormat specifiers should be used instead of string concatenation.(›ƒƒ8 ÿáË›/
+W
+java:S1128";Remove this unused import 'org.apache.logging.log4j.Level'.(±âØl8 ÿáË›/

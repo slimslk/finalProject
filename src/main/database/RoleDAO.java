@@ -1,5 +1,7 @@
 package main.database;
 
+import main.exception.DBException;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,7 +10,7 @@ import java.sql.SQLException;
 public class RoleDAO {
     private final String GET_ROLE_NAME = "select roleId from roles where roleName=?";
 
-    public int getRoleByName(String roleName) {
+    public int getRoleByName(String roleName) throws DBException {
         DBManager dbManager = DBManager.getInstance();
         int roleId = 0;
         Connection con = null;
@@ -23,8 +25,8 @@ public class RoleDAO {
                 rs.close();
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             dbManager.rollbackAndClose(con);
+            throw new DBException("Cant get role name from Database, try later", e);
         } finally {
             if (con != null) {
                 dbManager.commitAndClose(con);

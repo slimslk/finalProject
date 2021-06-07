@@ -1,5 +1,7 @@
 package main.web.command;
 
+import main.exception.DBException;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,5 +16,5 @@ public interface Command {
      *Executing method for command
      * @return Address to go.
      */
-    String execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException;
+    String execute(HttpServletRequest request, HttpServletResponse response) throws DBException;
 }

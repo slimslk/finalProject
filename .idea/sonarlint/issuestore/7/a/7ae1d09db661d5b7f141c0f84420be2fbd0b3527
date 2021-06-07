@@ -1,16 +1,23 @@
 
-U	java:S106/"9Replace this use of System.out or System.err by a logger.(‘§²Í8äõ©˜/
 ƒ
-java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
+java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
+^
+java:S3457/"AFormat specifiers should be used instead of string concatenation.(å«ƒ‹8îÓçË›/
+U	java:S1060"9Replace this use of System.out or System.err by a logger.(‘§²Í8äõ©˜/
 
-java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8óãÜÿ˜/
-M
-java:S1128"0Remove this unused import 'java.io.PrintWriter'.(ÓŞÏÛ8¶Şİğ™/
-ƒ
-java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
-U	java:S106*"9Replace this use of System.out or System.err by a logger.(¢½„Ô8äõ©˜/
+java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8Á®İÿ˜/
 x
-java:S4144"VUpdate this method so that its implementation is not identical to "doPost" on line 23.(Ïû©Öûÿÿÿÿ8Á®İÿ˜/
+java:S4144"VUpdate this method so that its implementation is not identical to "doPost" on line 23.(Ïû©Öûÿÿÿÿ8Á®İÿ˜/
 
-java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8Á®İÿ˜/
-Z	java:S106'"9Replace this use of System.out or System.err by a logger.(´ğÊÃøÿÿÿÿ8äõ©˜/
+java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8óãÜÿ˜/
+ƒ
+java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8äõ©˜/
+W
+java:S1128";Remove this unused import 'org.apache.logging.log4j.Level'.(±âØl8úµ×Ì›/
+Z	java:S106)"9Replace this use of System.out or System.err by a logger.(§€È—üÿÿÿÿ8ì½‡Ñ›/
+Y
+java:S2629+"7Use the built-in formatting to construct this argument.(î³§ªÿÿÿÿÿ8îÓçË›/
+T
+java:S2629/"7Use the built-in formatting to construct this argument.(å«ƒ‹8îÓçË›/
+c
+java:S3457+"AFormat specifiers should be used instead of string concatenation.(î³§ªÿÿÿÿÿ8îÓçË›/

@@ -1,13 +1,14 @@
 package main.entity;
 
+import java.sql.Timestamp;
 import java.util.Date;
 
-public class Order extends Entity {
-    private long orderNumber;
+public class Order {
     private long userId;
-    private long goodsId;
+    private long orderNumber;
     private int orderStatus;
-    private Date orderDate;
+    private Timestamp orderDate;
+
 
     public long getOrderNumber() {
         return orderNumber;
@@ -25,14 +26,6 @@ public class Order extends Entity {
         this.userId = userId;
     }
 
-    public long getGoodsId() {
-        return goodsId;
-    }
-
-    public void setGoodsId(long goodsId) {
-        this.goodsId = goodsId;
-    }
-
     public int getOrderStatus() {
         return orderStatus;
     }
@@ -45,16 +38,16 @@ public class Order extends Entity {
         return orderDate;
     }
 
-    public void setOrderDate(Date orderDate) {
+    public void setOrderDate(Timestamp orderDate) {
         this.orderDate = orderDate;
     }
+
 
     @Override
     public String toString() {
         return "Order{" +
                 "orderNumber=" + orderNumber +
                 ", userId=" + userId +
-                ", goodsId=" + goodsId +
                 ", orderStatus=" + orderStatus +
                 ", orderDate=" + orderDate +
                 '}';

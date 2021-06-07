@@ -1,0 +1,12 @@
+<%@ include file="WEB-INF/jspf/head.jspf"%>
+
+<fmt:setLocale value="${param.locale}" scope="session"/>
+
+<%-- load the bundle (by locale) --%>
+<fmt:setBundle basename="resources"/>
+${param.locale}
+<%-- set current locale to session --%>
+<c:set var="currentLocale" value="${param.locale}" scope="session"/>
+
+<%-- goto back to the settings--%>
+<jsp:forward page="index.jsp"/>

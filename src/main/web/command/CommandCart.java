@@ -3,52 +3,45 @@ package main.web.command;
 import main.database.CatalogDAO;
 import main.entity.CatalogItem;
 import main.entity.UserCart;
-import org.apache.log4j.Logger;
+import main.exception.DBException;
+import main.web.Path;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class CommandCart implements Command {
-    private static final Logger log = Logger.getLogger(CommandCart.class);
-
-    private String addToCart(HttpSession session, long id) {
-        log.debug("Goods ID parameter is: " + id);
-        CatalogItem cItem = new CatalogDAO().getItemsByGoodsId(id);
-        int count = cItem.getQuantity();
-        log.debug("Quantity of goods in the stock: " + count);
-        if (count < 1) {
-            log.debug("No goods in the stock, return 0");
-            return "0";
-        }
-
-        UserCart userCart = (UserCart) session.getAttribute("userCart");
-        userCart.addToCart(id);
-        log.debug("Goods added to cart: " + userCart.getGoodsId());
-        return "1";
-    }
+    private static final Logger log = LogManager.getLogger(CommandCart.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws DBException {
         HttpSession session = req.getSession();
-        String parameter = req.getParameter("cart");
-        log.debug("Value of the the parameter cart is: " + parameter);
-        log.debug("Value of the parameter Goods ID is: " + req.getParameter("goodsId"));
-        if (parameter.equals("add")) {
-            long id = Long.parseLong(req.getParameter("goodsId"));
-            log.debug("Goods ID parameter is: " + id);
-            CatalogItem cItem = new CatalogDAO().getItemsByGoodsId(id);
-            int count = cItem.getQuantity();
-            log.debug("Quantity of goods in the stock: " + count);
-            res.setContentType("text/plain");
-            PrintWriter out = res.getWriter();
-            out.print(addToCart(session, id));
-            out.flush();
-            out.close();
+        UserCart userCart = (UserCart) session.getAttribute("userCart");
+        log.error("user cart is in session: "+userCart);
+        Map<Long, Integer> map = userCart.getGoodsId();
+        if (map.size() > 0) {
+            List<Long> listId = new ArrayList<>();
+            for (Map.Entry<Long,Integer> entry: map.entrySet() ) {
+                log.error("k is:" +entry.getKey());
+                listId.add(entry.getKey());
+                log.error("user map: "+userCart.getGoodsId());
+                log.error("list Id is: " + listId);
+            }
+            List<CatalogItem> catalogItemList = new CatalogDAO().getItemsByGoodsId(listId);
+            log.error("Items in cart: " + catalogItemList);
+            log.error("In the cart!");
+            session.setAttribute("cartGoods",catalogItemList);
+        } else {
+            log.error("No items on the cart");
         }
-        return null;
+        return Path.CART;
     }
 }
