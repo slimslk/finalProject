@@ -1,0 +1,41 @@
+
+l
+java:S2095Ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹•ƒL8—£©Ÿ/
+l
+java:S2095¯"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹•ƒL8—£©Ÿ/
+ƒ	java:S116"bRename this field "UPDATE_ITEM_BY_GOODS_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùœ¸æıÿÿÿÿ8ÿ—¥ÿ/
+y	java:S116"]Rename this field "GET_COUNT_OF_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ïÔŒ8³ª©Ÿ/
+Z
+java:S2629å"7Use the built-in formatting to construct this argument.(Åş˜Ïûÿÿÿÿ8—£©Ÿ/
+z	java:S116"^Rename this field "GET_LIST_OF_GOODS_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Í£Ÿ8ÿ—¥ÿ/
+d
+java:S3457å"AFormat specifiers should be used instead of string concatenation.(Åş˜Ïûÿÿÿÿ8—£©Ÿ/
+>
+java:S1170"!Make this final field static too.(¾Í£Ÿ8ÿ—¥ÿ/
+>
+java:S1170"!Make this final field static too.(ïÔŒ8Ú‡…©Ÿ/
+t	java:S116"XRename this field "COUNT_OF_ROWS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ÓØğ8ÿ—¥ÿ/
+t
+java:S3776K"RRefactor this method to reduce its Cognitive Complexity from 39 to the 15 allowed.(íğƒıÿÿÿÿ8—£©Ÿ/
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8—£©Ÿ/
+^
+java:S3457’"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8—£©Ÿ/
+J
+java:S1125:"(Remove the literal "true" boolean value.(¨šû°øÿÿÿÿ8ÒË“©Ÿ/
+C
+java:S1170"!Make this final field static too.(ùœ¸æıÿÿÿÿ8ÿ—¥ÿ/
+C
+java:S1170"!Make this final field static too.(ÉÅëòıÿÿÿÿ8ÿ—¥ÿ/
+^	java:S125£"<This block of commented-out lines of code should be removed.(×Òúæùÿÿÿÿ8—£©Ÿ/
+`
+java:S1117â"=Rename "dbManager" which hides the field declared at line 18.(µü«íùÿÿÿÿ8—£©Ÿ/
+m
+java:S2095‰"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‰±ØÛ8—£©Ÿ/
+€	java:S116"_Rename this field "GET_ITEM_BY_GOODS_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÅëòıÿÿÿÿ8ÿ—¥ÿ/
+>
+java:S1170"!Make this final field static too.(·ÓØğ8ÿ—¥ÿ/
+
+java:S1192Ÿ"^Define a constant instead of duplicating this literal "Can't get items from Database" 3 times.(É÷¸–ûÿÿÿÿ8—£©Ÿ/
+^
+java:S2259Ô"@A "NullPointerException" could be thrown; "rs" is nullable here.(ÅÌ”Ù8—£©Ÿ/

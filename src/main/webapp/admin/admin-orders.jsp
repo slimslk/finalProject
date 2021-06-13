@@ -23,10 +23,10 @@
                                         <!--Button status start-->
                                         <div class="row mb-2">
                                             <div class="col mt-2">
-                                                <span>Username: <b>${userOrder.value[0].username}</b></span>
+                                                <span><fmt:message key="admin-orders.jsp.username"/>: <b>${userOrder.value[0].username}</b></span>
                                             </div>
                                             <div class="col-1 mt-2">
-                                                <span>Status:</span>
+                                                <span><fmt:message key="admin-orders.jsp.status"/>:</span>
                                             </div>
                                             <div class="col-3">
                                                 <span class="text-end">
@@ -42,7 +42,7 @@
                                             </div>
                                             <div class="col-2">
                                                 <button class="btn btn-success"
-                                                        onclick="changeStatus(${userOrder.key},'orders')">Confirm
+                                                        onclick="changeStatus(${userOrder.key},'orders')"><fmt:message key="admin-orders.jsp.confirm"/>
                                                 </button>
                                             </div>
                                         </div>
@@ -53,13 +53,13 @@
                                                         data-bs-target="#order${userOrder.key}" aria-expanded="false">
                                                 <span class="row">
                                                     <span class="col-3">
-                                                        Order number <b>#${userOrder.key}</b>
+                                                        <fmt:message key="admin-orders.jsp.order_number"/> <b>#${userOrder.key}</b>
                                                     </span>
                                                 <span class="col-4">
-                                                    Order date: <b>${userOrder.value[0].orderDate}</b>
+                                                    <fmt:message key="admin-orders.jsp.order_date"/>: <b>${userOrder.value[0].orderDate}</b>
                                                 </span>
                                                 <span class="col-3">
-                                                    Total price:<b>$
+                                                    <fmt:message key="admin-orders.jsp.total_price"/>:<b>$
                                                     <c:set var="totalPrice" scope="page" value="0"/>
                                                     <c:forEach var="price" items="${userOrder.value}">
                                                         <c:set var="totalPrice" scope="page"
@@ -97,13 +97,13 @@
                                                                             <div>
                                                                                 <h5>${order.goods.name}</h5>
                                                                                 <p class="mb-2 text-muted text-uppercase small">
-                                                                                    Size
+                                                                                    <fmt:message key="goods.parameters.size"/>
                                                                                     : ${order.goodsParam.sizeName}</p>
                                                                                 <p class="text-muted text-uppercase small">
-                                                                                    Quantity:
+                                                                                    <fmt:message key="goods.parameters.quantity"/>:
                                                                                         ${order.quantity}</p>
                                                                                 <p class="mb-2 text-muted text-uppercase small">
-                                                                                    Price: $<sz:total
+                                                                                    <fmt:message key="goods.parameters.price"/>: $<sz:total
                                                                                         value="${order.price*order.quantity}"/>
                                                                                 </p>
                                                                             </div>

@@ -1,6 +1,6 @@
 package main.database;
 
-import main.exception.DBException;
+import main.exception.AppException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -10,28 +10,28 @@ import java.sql.SQLException;
 public class UserStatusDAO {
     private final String GET_STATUS_BY_NAME = "select id from userStatuses where statusName=?";
 
-    public int getStatusByName(String statusName) throws DBException {
+    public int getStatusByName(String statusName) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         int id = 0;
         Connection con = null;
+        ResultSet rs = null;
         try {
             con = dbManager.getConnection();
             try (PreparedStatement pstm = con.prepareStatement(GET_STATUS_BY_NAME)) {
                 pstm.setString(1, statusName);
-                ResultSet rs = pstm.executeQuery();
+                rs = pstm.executeQuery();
                 while (rs.next()) {
                     id = rs.getInt(Fields.ENTITY_ID);
                 }
-                rs.close();
+                con.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Cant get user status from Database, try later", e);
+            dbManager.rollback(con);
+            throw new AppException("Cant get user status from Database, try later", e);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(rs);
+            dbManager.close(con);
         }
         return id;
     }

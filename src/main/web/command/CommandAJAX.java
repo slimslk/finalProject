@@ -4,29 +4,31 @@ import main.database.CatalogDAO;
 import main.entity.CatalogItem;
 import main.entity.User;
 import main.entity.UserCart;
-import main.exception.DBException;
+import main.exception.AppException;
 import main.jackson.JSONParser;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class CommandAJAX implements Command {
     private static final Logger log = LogManager.getLogger(CommandAJAX.class);
 
-    private String filterGoods(HttpServletRequest req) throws DBException {
+    private String filterGoods(HttpServletRequest req) throws AppException {
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
         log.error("In filter now!");
-        List<CatalogItem> catalog;
+        List<CatalogItem> catalog = null;
         String[] params;
         String s = "";
+        int count = 0;
         //Getting sorting parameters from request
         params = req.getParameterValues("param");
         String sort = req.getParameter("sort").toLowerCase();
@@ -41,24 +43,31 @@ public class CommandAJAX implements Command {
             s = sb.toString().toLowerCase();
         }
         log.error(s + " || " + "Sort parameter: " + sort + " || Direction: " + dir + " || Start index: " + start + " || Count of columns: ");
-        catalog = new CatalogDAO().getListOfSortedItems(params, sort, dir, start);
+        Map<Integer, Object> map;
+        map = new CatalogDAO().getListOfSortedItems(params, sort, dir, start);
+        count = (Integer) map.get(0);
+        log.error("Count in Map: " + count);
+        catalog = (List<CatalogItem>) map.get(1);
         if (user != null && user.getRoleId() < 3) {
             session.setAttribute("itemCatalogList", catalog);
         }
         if (catalog == null) {
-            req.setAttribute("errorMessage", "Something wrong whit query to DB, try again in few a minutes");
+            session.setAttribute("errorMessage", "Something wrong whit query to DB, try again in few a minutes");
             return "errorMessage";
         }
+        session.setAttribute("itemsCount", count);
         JSONParser jsonParser = new JSONParser();
         String jsonString = jsonParser.generateJSONFromList(catalog);
-        return jsonString;
+        StringBuilder sb=new StringBuilder();
+        sb.append(count).append("|").append(jsonString);
+        return sb.toString();
     }
 
-    private String addToCart(HttpServletRequest request, boolean isAdd) throws DBException {
+    private String addToCart(HttpServletRequest request, boolean isAdd) throws AppException {
         CatalogDAO catalogDAO = new CatalogDAO();
         HttpSession session = request.getSession();
-        int inCartCount=0;
-        if(session.getAttribute("inCartCount")!=null){
+        int inCartCount = 0;
+        if (session.getAttribute("inCartCount") != null) {
             inCartCount = (int) session.getAttribute("inCartCount");
         }
         long id;
@@ -90,7 +99,7 @@ public class CommandAJAX implements Command {
         } else {
             log.error("We are in remove and quantity is:" + q);
             userCart.removeFromCart(id, q);
-            inCartCount-=q;
+            inCartCount -= q;
             log.error("Goods removed from cart: " + userCart.getGoodsId());
             cItem.setQuantity(quantity + q);
         }
@@ -101,8 +110,8 @@ public class CommandAJAX implements Command {
 
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws DBException {
-        String responseString = "";
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {
+        String responseString;
         String parameter = req.getParameter("do");
 
         log.error("Value of the the parameter ajax is: " + parameter);
@@ -120,13 +129,13 @@ public class CommandAJAX implements Command {
                 responseString = "Invalid parameter";
         }
 
-        res.setContentType("text/plain");
-        PrintWriter out = null;
+        res.setContentType("text/plain; charset=UTF-8");
+        PrintWriter out;
         try {
             out = res.getWriter();
         } catch (IOException e) {
             log.error("Cant write to response");
-            throw new DBException("Server not response, try later", e);
+            throw new AppException("Server not response, try later", e);
         }
         out.print(responseString);
         out.flush();

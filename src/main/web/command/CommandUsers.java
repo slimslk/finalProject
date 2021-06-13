@@ -2,17 +2,15 @@ package main.web.command;
 
 import main.database.UserDAO;
 import main.entity.User;
-import main.exception.DBException;
+import main.exception.AppException;
 import main.web.Path;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,9 +33,9 @@ public class CommandUsers implements Command {
     }
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         String path = Path.ERRORPAGE;
-        request.setAttribute(ERROR, "Invalid parameter action");
+        request.getSession().setAttribute("errorMessage", "Invalid parameter action");
         String s = request.getParameter("action");
         log.error("Action: " + s);
         if (s.equals("users")) {
@@ -49,7 +47,7 @@ public class CommandUsers implements Command {
         return path;
     }
 
-    public String redirectToUsers(HttpServletRequest request) throws DBException {
+    public String redirectToUsers(HttpServletRequest request) throws AppException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user.getRoleId() > 2) {
@@ -63,13 +61,13 @@ public class CommandUsers implements Command {
         return Path.ADMIN_USERS;
     }
 
-    public String changeUserStatus(HttpServletRequest request) throws DBException {
+    public String changeUserStatus(HttpServletRequest request) throws AppException {
         String usernameToChange = request.getParameter("param");
         int status;
         try {
             status = Integer.parseInt(request.getParameter("status"));
         } catch (NumberFormatException e) {
-            request.setAttribute(ERROR, "Something wrong with parameters!");
+            request.getSession().setAttribute("errorMessage", "Something wrong with parameters!");
             e.printStackTrace();
             log.log(Level.ERROR, e.getMessage());
             return Path.ERRORPAGE;

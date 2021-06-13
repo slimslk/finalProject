@@ -23,5 +23,9 @@
 ${header['referer']}
 ${sessionScope.currentLocale}
 </body>
-
+<%--<script>--%>
+<%--    window.onload=function (){--%>
+<%--        location.href='${pageContext.request.contextPath}/controller?command=catalog';--%>
+<%--    }--%>
+<%--</script>--%>
 </html>

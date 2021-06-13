@@ -3,6 +3,12 @@ function removeItem(id, qnt) {
     let itemPrice = parseFloat(document.getElementById(id + "-total").innerText);
     let subtotal = document.getElementById("subtotal");
     let total = document.getElementById("order-total");
+    let idForm=document.getElementById(("id-form-"+id));
+    let quantityForm=document.getElementById(("quantity-form-"+id));
+    if(idForm!==null&&quantityForm!==null){
+        idForm.remove();
+        quantityForm.remove();
+    }
     ele.remove();
     removeFromCart(id, qnt)
     let subPrice = parseFloat(subtotal.innerText) - itemPrice;
@@ -18,6 +24,12 @@ function removeItem(id, qnt) {
         document.getElementById("main-container").appendChild(newDiv);
     }
 // <div><h3 class="text-center mt-4">Your shopping cart is empty</h3></div>
+}
+
+function makeZero() {
+    alert("Make ZERO");
+    let inCartCount = document.querySelector("#countInCart");
+    inCartCount.textContent = '0'.toString();
 }
 
 function removeFromCart(goodsParamID, quantity) {

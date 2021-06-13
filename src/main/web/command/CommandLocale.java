@@ -2,22 +2,20 @@ package main.web.command;
 
 import main.database.UserDAO;
 import main.entity.User;
-import main.exception.DBException;
+import main.exception.AppException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.jstl.core.Config;
-import java.io.IOException;
 
 public class CommandLocale implements Command {
     private static final Logger log = LogManager.getLogger(CommandContainer.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String lang = request.getParameter("lang").toLowerCase();

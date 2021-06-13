@@ -21,7 +21,7 @@ function changeLocal(hostname) {
             location.reload();
         }
     }
-    xhr.open('POST', hostname+"/controller");
+    xhr.open('POST', hostname + "/controller");
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     xhr.send("command=locale&lang=" + lang.value);
 }

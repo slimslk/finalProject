@@ -1,0 +1,37 @@
+
+R
+java:S2629Z"7Use the built-in formatting to construct this argument.(ü©Í‰şÿÿÿÿ
+}
+java:S14884"bImmediately return this expression instead of assigning it to the temporary variable "jsonString".(Üù¶Çûÿÿÿÿ
+R
+java:S2629H"7Use the built-in formatting to construct this argument.(ÈÎ³×şÿÿÿÿ
+\
+java:S3457H"AFormat specifiers should be used instead of string concatenation.(ÈÎ³×şÿÿÿÿ
+V
+java:S3457W"AFormat specifiers should be used instead of string concatenation.(ÅááG
+R
+java:S2629O"7Use the built-in formatting to construct this argument.(§ÆÎ¢üÿÿÿÿ
+\
+java:S3457O"AFormat specifiers should be used instead of string concatenation.(§ÆÎ¢üÿÿÿÿ
+R
+java:S2629*"7Use the built-in formatting to construct this argument.(ÍèÜ…úÿÿÿÿ
+R
+java:S2629k"7Use the built-in formatting to construct this argument.(õ¤Û½şÿÿÿÿ
+\
+java:S3457N"AFormat specifiers should be used instead of string concatenation.(Ãüû¿ÿÿÿÿÿ
+\
+java:S3457Z"AFormat specifiers should be used instead of string concatenation.(ü©Í‰şÿÿÿÿ
+\
+java:S3457]"AFormat specifiers should be used instead of string concatenation.(ü·½ìüÿÿÿÿ
+R
+java:S2629N"7Use the built-in formatting to construct this argument.(Ãüû¿ÿÿÿÿÿ
+\
+java:S3457k"AFormat specifiers should be used instead of string concatenation.(õ¤Û½şÿÿÿÿ
+R
+java:S2629I"7Use the built-in formatting to construct this argument.(Í÷Ÿùÿÿÿÿ
+\
+java:S3457*"AFormat specifiers should be used instead of string concatenation.(ÍèÜ…úÿÿÿÿ
+\
+java:S3457I"AFormat specifiers should be used instead of string concatenation.(Í÷Ÿùÿÿÿÿ
+b
+java:S1192<"LDefine a constant instead of duplicating this literal "inCartCount" 3 times.(Øá„

@@ -1,7 +1,7 @@
 package main.database;
 
 import main.entity.Order;
-import main.exception.DBException;
+import main.exception.AppException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,65 +13,62 @@ public class OrderDAO {
     private final String SET_ORDER = "INSERT INTO orders (userId, orderNumber, orderStatus, orderDate) VALUES (?,?,?,?)";
     private final String GET_MAX_ID = "SELECT MAX(orderNumber) FROM orders";
 
-    public Order getOrderByNumber(int orderNumber) {
+    public Order getOrderByNumber(int orderNumber) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         Order order = new Order();
         Connection con = null;
-        PreparedStatement pstm;
-        ResultSet rs;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         try {
-            OrderMapper orderMapper = new OrderMapper();
             con = dbManager.getConnection();
             pstm = con.prepareStatement(GET_ORDER_BY_ORDER_NUMBER);
             pstm.setInt(1, orderNumber);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                order = orderMapper.mapRow(rs);
+                order = mapRow(rs);
             }
-            rs.close();
-            pstm.close();
+            con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            dbManager.rollbackAndClose(con);
+            dbManager.rollback(con);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
         return order;
     }
 
-    public long getMaxId() {
+    public long getMaxId() throws AppException {
         log.error("Get max ID");
         long maxId = 0;
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
-        Statement st;
+        Statement st = null;
         ResultSet rs = null;
         try {
-            con=dbManager.getConnection();
+            con = dbManager.getConnection();
             st = con.createStatement();
             rs = st.executeQuery(GET_MAX_ID);
             while (rs.next()) {
                 log.error("has a rs");
                 maxId = rs.getLong(1);
-                log.error("max id"+maxId);
+                log.error("max id" + maxId);
             }
-            rs.close();
-            st.close();
+            con.commit();
         } catch (SQLException e) {
             e.printStackTrace();
-            dbManager.rollbackAndClose(con);
+            dbManager.rollback(con);
             return 0;
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(rs);
+            dbManager.close(st);
+            dbManager.close(con);
         }
         return maxId;
     }
 
-    public long insertOrder(Order order, String status) throws DBException {
+    public long insertOrder(Order order, String status) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         Connection connection = null;
         int statusId = new OrderStatusDAO().getStatusByName(status);
@@ -84,35 +81,30 @@ public class OrderDAO {
                 pstm.setInt(++i, statusId);
                 pstm.setTimestamp(++i, (Timestamp) order.getOrderDate());
                 pstm.executeUpdate();
+                connection.commit();
             }
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(connection);
-            throw new DBException("Cant create order. Database not response, try later.", e);
+            dbManager.rollback(connection);
+            throw new AppException("Cant create order. Database not response, try later.", e);
         } finally {
-            if (connection != null) {
-                dbManager.commitAndClose(connection);
-            }
+            dbManager.close(connection);
         }
         log.error("Order number is:" + order.getOrderNumber());
         return order.getOrderNumber();
     }
 
-    private static class OrderMapper implements EntityMapper<Order> {
+    private Order mapRow(ResultSet rs) {
         Order order;
-
-        @Override
-        public Order mapRow(ResultSet rs) {
-            try {
-                order = new Order();
-                order.setOrderNumber(rs.getLong(Fields.ORDER_NUMBER));
-                order.setUserId(rs.getLong(Fields.USER_ID));
-                order.setOrderStatus(rs.getInt(Fields.ORDER_STATUS));
-                order.setOrderDate(rs.getTimestamp(Fields.ORDER_DATE));
-            } catch (SQLException e) {
-                e.printStackTrace();
-                return null;
-            }
-            return order;
+        try {
+            order = new Order();
+            order.setOrderNumber(rs.getLong(Fields.ORDER_NUMBER));
+            order.setUserId(rs.getLong(Fields.USER_ID));
+            order.setOrderStatus(rs.getInt(Fields.ORDER_STATUS));
+            order.setOrderDate(rs.getTimestamp(Fields.ORDER_DATE));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
         }
+        return order;
     }
 }

@@ -25,15 +25,15 @@
                                                 <div class="col">
                                                     <div class="row">
                                                         <div class="col">
-                                                            Username: <b>${a_user.username}</b>
+                                                            <fmt:message key="admin-orders.jsp.username"/>: <b>${a_user.username}</b>
                                                         </div>
                                                     </div>
                                                     <span class="row">
                                                 <span class="col">
-                                                    Name: <b>${a_user.userInfo.name}</b>
+                                                    <fmt:message key="sing-up.jsp.label.name"/>: <b>${a_user.userInfo.name}</b>
                                                 </span>
                                                 <span class="col">
-                                                    Surname: <b>${a_user.userInfo.surname}</b>
+                                                    <fmt:message key="sing-up.jsp.label.surname"/>: <b>${a_user.userInfo.surname}</b>
                                                 </span>
 <%--To display user role uncomment below and in the CommandUser class--%>
 <%--                                                <span class="col">--%>
@@ -52,7 +52,7 @@
                                                     </select>
                                                    <span>
                                                       <button class="btn btn-success"
-                                                              onclick="changeStatus('${a_user.username}','users')">Confirm
+                                                              onclick="changeStatus('${a_user.username}','users')"><fmt:message key="admin-orders.jsp.confirm"/>
                                                 </button>
                                                    </span>
                                                 </span>

@@ -64,7 +64,6 @@
                                         </div>
 
                                     </div>
-
                                 </div>
                                 <hr>
                             </div>
@@ -115,15 +114,14 @@
                                     <form name="checkout" action="${pageContext.request.contextPath}/controller" method="GET">
                                         <input type="hidden" name="command" value="addorder">
                                         <c:forEach var="cartItem" items="${cartGoods}">
-                                            <input type="hidden" name="goodsId" value="${cartItem.goodsParamId}">
-                                            <input type="hidden" name="quantity" value="${userCart.getQuantity(cartItem.goodsParamId)}">
+                                            <input type="hidden" name="goodsId" value="${cartItem.goodsParamId}" id="id-form-${cartItem.goodsParamId}">
+                                            <input type="hidden" name="quantity" value="${userCart.getQuantity(cartItem.goodsParamId)}" id="quantity-form-${cartItem.goodsParamId}">
                                         </c:forEach>
-                                        <button type="submit" class="btn btn-primary btn-block">Checkout</button>
+                                        <button type="submit" class="btn btn-primary btn-block" onclick="makeZero()">Checkout</button>
                                     </form>
                                 </c:when>
                                 <c:when test="${empty user}">
-                                    <button type="button" class="btn btn-outline-primary btn-block">Sing in for
-                                        checkout
+                                    <button type="button" class="btn btn-outline-primary btn-block" onclick="location.href='${pageContext.request.contextPath}/login.jsp'">Sing in for checkout
                                     </button>
                                 </c:when>
                             </c:choose>
@@ -132,7 +130,6 @@
                 </div>
                 <!-- Total -->
                 <!-- Card -->
-
                 <!--Grid column-->
             </div>
             <!-- Grid row -->

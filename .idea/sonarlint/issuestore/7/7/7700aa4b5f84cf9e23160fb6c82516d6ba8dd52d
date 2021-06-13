@@ -1,0 +1,20 @@
+
+~	java:S116"dRename this field "GET_ORDER_BY_ORDER_NUMBER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¸àžúÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(¨¸àžúÿÿÿÿ
+n	java:S116"TRename this field "SET_ORDER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·“¸áÿÿÿÿÿ
+b
+java:S20955"GUse try-with-resources or close this "Statement" in a "finally" clause.(í…³þÿÿÿÿ
+7
+java:S1170"!Make this final field static too.(·âŒ 
+\
+java:S3457:"AFormat specifiers should be used instead of string concatenation.(àæÆäúÿÿÿÿ
+e
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(â™Òý
+R
+java:S2629:"7Use the built-in formatting to construct this argument.(àæÆäúÿÿÿÿ
+j	java:S116"URename this field "GET_MAX_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·âŒ 
+<
+java:S1170"!Make this final field static too.(·“¸áÿÿÿÿÿ
+\
+java:S3457`"AFormat specifiers should be used instead of string concatenation.(àò˜öÿÿÿÿÿ

@@ -5,16 +5,14 @@ import main.database.OrderListDAO;
 import main.entity.Order;
 import main.entity.User;
 import main.entity.UserCart;
-import main.exception.DBException;
+import main.exception.AppException;
 import main.web.Path;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.HashMap;
 import java.util.Map;
@@ -23,7 +21,7 @@ public class CommandAddOrder implements Command {
     private static final Logger log = LogManager.getLogger(CommandAddOrder.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         Map<Long, Integer> goodsMap = new HashMap<>();
@@ -33,7 +31,7 @@ public class CommandAddOrder implements Command {
         goodsIdAsStringArray = request.getParameterValues("goodsId");
         goodsQuantityAsStringArray = request.getParameterValues("quantity");
         if (goodsIdAsStringArray.length != goodsQuantityAsStringArray.length) {
-            request.setAttribute("errorMessage", "Something wrong with creating order");
+            session.setAttribute("errorMessage", "Something wrong with creating order");
             return Path.ERRORPAGE;
         }
         try {
@@ -46,7 +44,7 @@ public class CommandAddOrder implements Command {
         } catch (NumberFormatException e) {
             log.error("Parameter not a number");
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Something wrong with parameters when we trying to add your order to the cart");
+            session.setAttribute("errorMessage", "Something wrong with parameters when we trying to add your order to the cart");
             return Path.ERRORPAGE;
         }
         log.error("Goods map: " + goodsMap);
@@ -63,6 +61,7 @@ public class CommandAddOrder implements Command {
         UserCart userCart = new UserCart();
         userCart.setUserId(userId);
         session.setAttribute("userCart", userCart);
+        session.setAttribute("inCartCount", 0);
         return Path.REDIRECT_TO_USER_ORDERS;
     }
 }

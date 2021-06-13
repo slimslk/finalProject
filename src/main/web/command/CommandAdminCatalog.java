@@ -2,14 +2,19 @@ package main.web.command;
 
 import main.database.ChangeGoodsDAO;
 import main.entity.*;
-import main.exception.DBException;
+import main.exception.AppException;
 import main.web.Path;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDate;
 
 public class CommandAdminCatalog implements Command {
@@ -17,12 +22,12 @@ public class CommandAdminCatalog implements Command {
 
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         String path = Path.ERRORPAGE;
         if (user.getRoleId() > 2) {
-            request.setAttribute("errorMessage", "You don't have permission for that");
+            session.setAttribute("errorMessage", "You don't have permission for that");
             return Path.ERRORPAGE;
         }
 
@@ -45,9 +50,9 @@ public class CommandAdminCatalog implements Command {
         try {
             long goodsParamId = Long.parseLong(request.getParameter("goodsParamId"));
             new ChangeGoodsDAO().removeGoods(goodsParamId);
-        } catch (NumberFormatException | DBException e) {
+        } catch (NumberFormatException | AppException e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Wrong number parameters");
+            request.getSession().setAttribute("errorMessage", "Wrong number parameters");
             return Path.ERRORPAGE;
         }
         return Path.ADMIN_CATALOG;
@@ -59,7 +64,7 @@ public class CommandAdminCatalog implements Command {
      * @param action parameter set what kind of the action need to do: create new or update exist goods item
      * @return path to the admin catalog
      */
-    public String changeItem(HttpServletRequest request, String action) {
+    public String changeItem(HttpServletRequest request, String action) throws AppException {
         try {
             CatalogItem catalogItem = new CatalogItem();
             GoodsParam goodsParam = new GoodsParam();
@@ -70,10 +75,25 @@ public class CommandAdminCatalog implements Command {
             String gender = request.getParameter("gender");
             String size = request.getParameter("size");
             String style = request.getParameter("style");
-            String img = request.getParameter("img");
-            long itemCatalogId=0;
-            long goodsParamId=0;
-            long goodsId=0;
+            Part file = request.getPart("img");
+            System.out.println("File size is: " + file.getSize());
+            String javaPath = "/Users/dimm/MyFiles/JavaLearn/EPAM/finalProject/src/main/webapp/img/";
+            String fileName;
+            if (file.getSize() > 0) {
+                System.out.println("File is: " + file);
+                fileName = file.getSubmittedFileName();
+                System.err.println("SIZE OF FILE: " + file.getSize());
+                String path = request.getServletContext().getRealPath("/") + "img/";
+                file.write(path + fileName);
+                if (new File(javaPath).exists()) {
+                    file.write(javaPath + fileName);
+                }
+            } else {
+                fileName = request.getParameter("filename");
+            }
+            long itemCatalogId = 0;
+            long goodsParamId = 0;
+            long goodsId = 0;
             if (action.equals("confirm")) {
                 itemCatalogId = Long.parseLong(request.getParameter("itemCatalogId"));
                 goodsParamId = Long.parseLong(request.getParameter("goodsParamId"));
@@ -83,7 +103,7 @@ public class CommandAdminCatalog implements Command {
             int quantity = Integer.parseInt(request.getParameter("quantity"));
             goods.setId(goodsId);
             goods.setName(name);
-            goods.setImg(img);
+            goods.setImg(fileName);
             goodsParam.setGoodsId(goodsId);
             goodsParam.setId(goodsParamId);
             goodsParam.setAgeName(age);
@@ -105,10 +125,10 @@ public class CommandAdminCatalog implements Command {
             log.error("Catalog item is: " + catalogItem);
             new ChangeGoodsDAO().updateGoods(catalogItem);
             return Path.ADMIN_CATALOG;
-        } catch (NumberFormatException | DBException e) {
+        } catch (NumberFormatException | AppException | IOException | ServletException e) {
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Wrong number parameters");
-            return Path.ERRORPAGE;
+            request.getSession().setAttribute("errorMessage", "Wrong number parameters");
+            throw new AppException("Wrong parameters", e);
         }
     }
 }

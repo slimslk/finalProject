@@ -1,32 +1,41 @@
 
-Y
-java:S2629A"7Use the built-in formatting to construct this argument.(Û¼ûÿÿÿÿ8³ì™â/
-v	java:S116"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8ï¦éƒ˜/
-l
-java:S20957"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¥Ó¼8ö™…â/
-C
-java:S1170"!Make this final field static too.(–‹ê­øÿÿÿÿ8—ûöá/
-^
-java:S3457"AFormat specifiers should be used instead of string concatenation.(Ù Îş8ç¾Ûí/
->
-java:S1170"!Make this final field static too.(õíûë8ÙÚÈâ/
-l
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(éÃ°†8·äÌâ/
->
-java:S1170"!Make this final field static too.(ì²¶8ï¦éƒ˜/
-u	java:S116"TRename this field "GET_USERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‹ê­øÿÿÿÿ8—ûöá/
-w	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ Œÿÿÿÿÿ8ï¦éƒ˜/
-y	java:S116"]Rename this field "UPDATE_USER_STATUS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õíûë8ÙÚÈâ/
-l
-java:S2095V"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´ı®8€íƒ˜/
-|	java:S116"`Rename this field "FIND_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì²¶8ï¦éƒ˜/
->
-java:S1170"!Make this final field static too.(¼ÛËº8ï¦éƒ˜/
-C
-java:S1170"!Make this final field static too.(„ Œÿÿÿÿÿ8ï¦éƒ˜/
 c
-java:S3457A"AFormat specifiers should be used instead of string concatenation.(Û¼ûÿÿÿÿ8³ì™â/
+java:S34573"AFormat specifiers should be used instead of string concatenation.(åÓîúşÿÿÿÿ8´ÊŸÿ/
+>
+java:S1170"!Make this final field static too.(õíûë8´ÊŸÿ/
+C
+java:S1170"!Make this final field static too.(½µ†½ùÿÿÿÿ8´ÊŸÿ/
+Y
+java:S2629Y"7Use the built-in formatting to construct this argument.(Û¼ûÿÿÿÿ8³ì™â/
+l
+java:S2095O"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¥Ó¼8Œß±ÿ/
+>
+java:S1170"!Make this final field static too.(¼ÛËº8ï¦éƒ˜/
+l
+java:S2095n"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(´ı®8€íƒ˜/
+r
+java:S2095Š"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ë®Öİşÿÿÿÿ8Œß±ÿ/
 T
-java:S2629"7Use the built-in formatting to construct this argument.(Ù Îş8ç¾Ûí/
-q
-java:S2095q"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ë®Öİşÿÿÿÿ8ï¦éƒ˜/
+java:S2629"7Use the built-in formatting to construct this argument.(Ù Îş8ç¾Ûí/
+>
+java:S1170"!Make this final field static too.(ì²¶8ï¦éƒ˜/
+C
+java:S1170"!Make this final field static too.(„ Œÿÿÿÿÿ8ÙÚÈâ/
+c
+java:S3457Y"AFormat specifiers should be used instead of string concatenation.(Û¼ûÿÿÿÿ8³ì™â/
+l
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(éÃ°†8Œß±ÿ/
+l
+java:S20956"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÈİÅÆ8´ÊŸÿ/
+|	java:S116"`Rename this field "FIND_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì²¶8ï¦éƒ˜/
+u	java:S116"TRename this field "GET_USERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‹ê­øÿÿÿÿ8—ûöá/
+v	java:S116"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8ï¦éƒ˜/
+~	java:S116"]Rename this field "UPDATE_USER_LOCALE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½µ†½ùÿÿÿÿ8´ÊŸÿ/
+y	java:S116"]Rename this field "UPDATE_USER_STATUS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õíûë8ÙÚÈâ/
+Y
+java:S26293"7Use the built-in formatting to construct this argument.(åÓîúşÿÿÿÿ8´ÊŸÿ/
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(Ù Îş8ç¾Ûí/
+C
+java:S1170"!Make this final field static too.(–‹ê­øÿÿÿÿ8ï¦éƒ˜/
+w	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(„ Œÿÿÿÿÿ8ï¦éƒ˜/

@@ -1,8 +1,6 @@
 
-U	java:S1060"9Replace this use of System.out or System.err by a logger.(ƒäŞ¿8ã÷èØ—/
-I
-java:S1068"'Remove this unused "log" private field.(ƒÙøŸúÿÿÿÿ8ş‰©ß—/
+c
+java:S3457-"AFormat specifiers should be used instead of string concatenation.(ÀŞø°ûÿÿÿÿ8ñ’¬ÿ/
+X	java:S125."<This block of commented-out lines of code should be removed.(Î’Ô8çÊÕ¦Ÿ/
 W
-java:S1141*"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8ã÷èØ—/
-W
-java:S1128";Remove this unused import 'org.apache.logging.log4j.Level'.(±âØl8¾¹éÉ›/
+java:S1128";Remove this unused import 'org.apache.logging.log4j.Level'.(±âØl8§±ÿ/

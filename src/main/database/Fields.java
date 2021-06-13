@@ -22,6 +22,7 @@ public final class Fields {
     public static final String USERNAME = "username";
     public static final String PASSWORD = "password";
     public static final String ROLE_ID = "roleId";
+    public static final String LOCALE = "locale";
     public static final String NAME = "name";
     public static final String SURNAME = "surname";
     public static final String USER_ID = "userId";

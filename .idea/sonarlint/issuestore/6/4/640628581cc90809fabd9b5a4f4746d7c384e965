@@ -1,18 +1,16 @@
 
 >
 java:S1170"!Make this final field static too.(Ô³ï 8Ù‡›ÿ˜/
-W
-java:S1128";Remove this unused import 'org.apache.logging.log4j.Level'.(±âØl8¨ÆêÉ›/
 C
 java:S1170"!Make this final field static too.(˜ùØ¯ÿÿÿÿÿ8µ…Äÿ˜/
-|	java:S116"[Rename this field "INSERT_USER_INFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ùØ¯ÿÿÿÿÿ8µ…Äÿ˜/
-C
-java:S1170"!Make this final field static too.(øŠãÁşÿÿÿÿ8šåß°˜/
+q
+java:S20956"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı–îşúÿÿÿÿ8ö¥ÿ˜/
+I
+java:S1068"'Remove this unused "log" private field.(ôËÊ‚üÿÿÿÿ8šåß°˜/
+€	java:S116"_Rename this field "GET_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øŠãÁşÿÿÿÿ8šåß°˜/
 l
 java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‘åÿı8šåß°˜/
 u	java:S116"YRename this field "GET_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ô³ï 8´Á›ÿ˜/
-I
-java:S1068"'Remove this unused "log" private field.(ôËÊ‚üÿÿÿÿ8šåß°˜/
-q
-java:S20956"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ı–îşúÿÿÿÿ8ö¥ÿ˜/
-€	java:S116"_Rename this field "GET_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(øŠãÁşÿÿÿÿ8šåß°˜/
+C
+java:S1170"!Make this final field static too.(øŠãÁşÿÿÿÿ8šåß°˜/
+|	java:S116"[Rename this field "INSERT_USER_INFO" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(˜ùØ¯ÿÿÿÿÿ8µ…Äÿ˜/

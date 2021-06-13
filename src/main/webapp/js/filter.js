@@ -5,7 +5,6 @@ const szMap = new Map;
 const styleMap = new Map;
 const paramsCount = new Map;
 let parameter = "";
-let req = "";
 
 let all = document.getElementsByClassName('form-check-input');
 paramsCount.set("age", 0);
@@ -94,11 +93,11 @@ for (let i = 0; i < all.length; i++) {
                 }
                 break;
         }
-        doIt();
+        doIt(0);
     });
 }
 
-function doIt() {
+function doIt(pagination) {
     parameter = "";
     parameter = parameter + mapAge.get("age");
     for (let key of mapAge.keys()) {
@@ -130,5 +129,5 @@ function doIt() {
             parameter = parameter + styleMap.get(key);
         }
     }
-    filterParam(parameter);
+    filterParam(parameter,pagination);
 }

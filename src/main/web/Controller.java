@@ -1,14 +1,14 @@
 package main.web;
 
-import main.exception.DBException;
+import main.exception.AppException;
 import main.web.command.Command;
 import main.web.command.CommandContainer;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(value = "/controller")
+@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1,
+        maxFileSize = 1024 * 1024 * 10,
+        maxRequestSize = 1024 * 1024 * 100)
 public class Controller extends HttpServlet {
     private static final Logger log = LogManager.getLogger(Controller.class);
     private static final long serialVersionUID = -2865377066620126318L;
@@ -46,9 +49,10 @@ public class Controller extends HttpServlet {
         log.error("Obtain command");
         try {
             forward = command.execute(request, response);
-        } catch (DBException ex) {
-            log.error("Catch exception "+ex);
-            request.setAttribute("errorMessage", ex);
+        } catch (AppException ex) {
+            log.error("Catch exception " + ex);
+            request.getSession().setAttribute("errorMessage", ex);
+            //request.setAttribute("errorMessage", ex);
         }
         log.error("Execute command and forward to address: " + forward);
         System.out.println("Execute command and forward to address: " + forward);

@@ -12,7 +12,7 @@
 <template id="tempCard">
     <div class="col-4 my-3">
         <div class="card" style="width: 18rem;">
-            <img src="${pageContext.request.contextPath}" class="card-img-top" style="width: 100%" alt="Some text"
+            <img src="${pageContext.request.contextPath}" class="card-img-top mx-auto" style="width: 75%;height: auto" alt="Some text"
                  id="goods-img">
             <div class="card-body">
                 <p class="border-top"></p>
@@ -246,12 +246,17 @@
         <div class="col-10">
             <div class="row" id="mainRow">
             </div>
+            <div class="row">
+                <ul class="pagination justify-content-center" id="paginationUl">
+                </ul>
+            </div>
         </div>
     </div>
 </div>
 <script>
     window.onload = function () {
-        doIt();
+        doIt(0);
+        createPaginationNumbers(${sessionScope.itemsCount});
     }
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/addToCart.js"></script>

@@ -1,8 +1,7 @@
 package main.database;
 
 import main.entity.CatalogItem;
-import main.exception.DBException;
-import org.apache.logging.log4j.Level;
+import main.exception.AppException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,10 +14,12 @@ import java.util.Map;
 public class CatalogDAO {
     private static final Logger log = LogManager.getLogger(CatalogDAO.class);
 
-    private final int COUNT_OF_ROWS = 9999;
+    private final int COUNT_OF_ROWS = 3;
     private final DBManager dbManager = DBManager.getInstance();
     private final String GET_ITEM_BY_GOODS_ID = "SELECT * FROM itemsCatalog WHERE goodsParamId=?";
     private final String UPDATE_ITEM_BY_GOODS_ID = "UPDATE itemsCatalog SET price=?, quantity=?, addDate=? WHERE goodsParamId=?;";
+    private final String GET_COUNT_OF_GOODS = "SELECT COUNT(id) FROM itemsCatalog";
+    private final String COUNT_OF_GOODS = "SELECT COUNT(iC.id)";
 
     private final String GET_LIST_OF_GOODS_1 = "SELECT name,\n" +
             "       genderName,\n" +
@@ -30,8 +31,8 @@ public class CatalogDAO {
             "       quantity,\n" +
             "       addDate,\n" +
             "       iC.id,\n" +
-            "       goodsParamId\n" +
-            "FROM goodsParam\n" +
+            "       goodsParamId\n";
+    private final String GET_LIST_OF_GOODS_2 = "FROM goodsParam\n" +
             "         INNER JOIN goods g ON g.id = goodsId\n" +
             "         INNER JOIN gender g2 on goodsParam.genderId = g2.id\n" +
             "         INNER JOIN age a on goodsParam.ageId = a.id\n" +
@@ -46,11 +47,37 @@ public class CatalogDAO {
      * @return List of Catalog items
      */
 
-    public List<CatalogItem> getListOfSortedItems(String[] param, String sort, String dir, int start) throws DBException {
+    public int getCountOfGoods() throws AppException {
+        int count = 0;
+        Connection con = null;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        try {
+            con = dbManager.getConnection();
+            pstm = con.prepareStatement(GET_COUNT_OF_GOODS);
+            rs = pstm.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt("count(id)");
+            }
+            con.commit();
+        } catch (SQLException e) {
+            dbManager.rollback(con);
+            e.printStackTrace();
+            throw new AppException("Database in't response", e);
+        } finally {
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(con);
+        }
+        return count;
+    }
+
+    public Map<Integer, Object> getListOfSortedItems(String[] param, String sort, String dir, int start) throws AppException {
         StringBuilder expression = new StringBuilder();
         Map<Integer, Object> map = new HashMap<>();
+        Map<Integer, Object> returnedMap = new HashMap<>();
         int mapCounter = 1;
-        expression.append(GET_LIST_OF_GOODS_1);
+        expression.append(GET_LIST_OF_GOODS_2);
         if (param != null) {
             int i = 0;
             expression.append("WHERE ");
@@ -69,7 +96,7 @@ public class CatalogDAO {
                                 map.put(mapCounter++, Integer.parseInt(split[2]));
                             } catch (NumberFormatException e) {
                                 log.error("One of a value of a parameter price is not a integer number");
-                                return null;
+                                throw new AppException("One of a value of a parameter price is not a integer number", e);
                             }
                         }
                     } else {
@@ -89,24 +116,77 @@ public class CatalogDAO {
             }
         }
         if (Fields.SORT_MAP.containsKey(sort) && Fields.SORT_MAP.containsKey(dir)) {
-            expression.append(" ORDER BY ").append(Fields.SORT_MAP.get(sort))
+            expression.append(" ORDER BY CASE WHEN quantity = 0 THEN quantity END, ").append(Fields.SORT_MAP.get(sort))
                     .append(" ").append(Fields.SORT_MAP.get(dir));
         }
-        expression.append(" LIMIT ?,?;");
+
+        StringBuilder countSB_SQL = new StringBuilder();
+        countSB_SQL.append(COUNT_OF_GOODS).append(expression);
+        log.error("expression without first part");
+        map.put(0, countSB_SQL.toString());
+        Integer count = getCountOfItemsFromDB(map);
+        log.error("CatalogDAO -> count is: " + count);
+        if (start >= 0) {
+            expression.append(" LIMIT ?,?;");
+            map.put(mapCounter++, start);
+            map.put(mapCounter, COUNT_OF_ROWS);
+        }
+        expression.insert(0, GET_LIST_OF_GOODS_1);
         map.put(0, expression.toString());
-        map.put(mapCounter++, start);
-        map.put(mapCounter, COUNT_OF_ROWS);
-        return getItemsFromDB(map);
+        List<CatalogItem> catalogItemList = getItemsFromDB(map);
+        returnedMap.put(0, count);
+        returnedMap.put(1, catalogItemList);
+        return returnedMap;
     }
 
-    public List<CatalogItem> getItemsFromDB(Map<Integer, Object> stringMap) throws DBException {
+    public int getCountOfItemsFromDB(Map<Integer, Object> stringMap) throws AppException {
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
+        Connection connection = null;
+        try {
+            connection = dbManager.getConnection();
+            int count = 0;
+            pstm = connection.prepareStatement((String) stringMap.get(0));
+            for (Map.Entry<Integer, Object> entry : stringMap.entrySet()) {
+                if (entry.getKey() != 0) {
+                    if (entry.getValue().getClass().equals(Integer.class)) {
+                        pstm.setInt(entry.getKey(), (Integer) entry.getValue());
+                        log.trace("Key: " + entry.getKey() + " = " + entry.getValue());
+                    }
+                    if (entry.getValue().getClass().equals(String.class)) {
+                        pstm.setString(entry.getKey(), (String) entry.getValue());
+                        log.trace("Key: " + entry.getKey() + " = " + entry.getValue());
+                    }
+                }
+            }
+            rs = pstm.executeQuery();
+            while (rs.next()) {
+                count = rs.getInt(1);
+            }
+            connection.commit();
+            return count;
+        } catch (SQLException ex) {
+            log.error("cant get item list from DB count");
+            dbManager.rollback(connection);
+            throw new AppException("Can't get items from Database count", ex);
+        } finally {
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(connection);
+        }
+    }
+
+
+    public List<CatalogItem> getItemsFromDB(Map<Integer, Object> stringMap) throws AppException {
+        log.error("In getItemsFromDB");
         List<CatalogItem> catalogItemList = new ArrayList<>();
-        PreparedStatement pstm;
-        ResultSet rs;
+        List<CatalogItem> catalogItemListWithZeroQuantity = new ArrayList<>();
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         Connection con = null;
         try {
-            CatalogMapper cMap = new CatalogMapper();
             con = dbManager.getConnection();
+            CatalogItem catalogItem;
             pstm = con.prepareStatement((String) stringMap.get(0));
             for (Map.Entry<Integer, Object> entry : stringMap.entrySet()) {
                 if (entry.getKey() != 0) {
@@ -122,49 +202,54 @@ public class CatalogDAO {
             }
             rs = pstm.executeQuery();
             while (rs.next()) {
-                catalogItemList.add(cMap.mapRow(rs));
+                catalogItem = mapRow(rs);
+                if (catalogItem.getQuantity() == 0) {
+                    catalogItemListWithZeroQuantity.add(catalogItem);
+                } else {
+                    catalogItemList.add(catalogItem);
+                }
             }
-            rs.close();
-            pstm.close();
+            con.commit();
         } catch (SQLException ex) {
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Can't get items from Database", ex);
+            log.error("cant get item list from DB");
+            dbManager.rollback(con);
+            throw new AppException("Can't get items from Database", ex);
         } finally {
-            dbManager.commitAndClose(con);
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
 //        log.error("==> List of goods: " + catalogItemList);
+        catalogItemList.addAll(catalogItemListWithZeroQuantity);
         return catalogItemList;
     }
 
-    public CatalogItem getItemByGoodsId(long id) throws DBException {
+    public CatalogItem getItemByGoodsId(long id) throws AppException {
         CatalogItem cItem = new CatalogItem();
-        PreparedStatement pstm;
-        ResultSet rs;
+        PreparedStatement pstm = null;
+        ResultSet rs = null;
         Connection con = null;
         try {
-            CatalogMapper cMap = new CatalogMapper();
             con = dbManager.getConnection();
             pstm = con.prepareStatement(GET_ITEM_BY_GOODS_ID);
             pstm.setLong(1, id);
             rs = pstm.executeQuery();
             while (rs.next()) {
-                cItem = cMap.mapRow(rs);
+                cItem = mapRow(rs);
             }
-            rs.close();
-            pstm.close();
+            con.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Can't get items from Database", e);
+            dbManager.rollback(con);
+            throw new AppException("Can't get items from Database", e);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
         return cItem;
     }
 
-    public List<CatalogItem> getItemsByGoodsId(List<Long> list) throws DBException {
-        CatalogItem cItem;
+    public List<CatalogItem> getItemsByGoodsId(List<Long> list) throws AppException {
         List<CatalogItem> catalogList = new ArrayList<>();
         PreparedStatement pstm = null;
         ResultSet rs = null;
@@ -172,30 +257,27 @@ public class CatalogDAO {
         try {
             con = dbManager.getConnection();
             pstm = con.prepareStatement(GET_ITEM_BY_GOODS_ID);
-            CatalogMapper cMap = new CatalogMapper();
             for (long id : list) {
                 pstm.setLong(1, id);
                 rs = pstm.executeQuery();
                 while (rs.next()) {
-                    cItem = cMap.mapRow(rs);
-                    catalogList.add(cItem);
+                    catalogList.add(mapRow(rs));
                 }
             }
-            rs.close();
-            pstm.close();
+
+            con.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Can't get items from Database", e);
+            dbManager.rollback(con);
+            throw new AppException("Can't get items from Database", e);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
         return catalogList;
     }
 
-    public void updateCatalogItem(CatalogItem catalogItem) throws DBException {
-        DBManager dbManager = DBManager.getInstance();
+    public void updateCatalogItem(CatalogItem catalogItem) throws AppException {
         Connection connection = null;
         int i = 0;
         log.error("Catalog item is: " + catalogItem);
@@ -207,36 +289,32 @@ public class CatalogDAO {
                 pstm.setDate(++i, (Date) catalogItem.getAddDate());
                 pstm.setLong(++i, catalogItem.getGoodsParamId());
                 pstm.executeUpdate();
+                connection.commit();
             }
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(connection);
-            throw new DBException("Can't update catalog items in Database", e);
+            dbManager.rollback(connection);
+            throw new AppException("Can't update catalog items to Database", e);
         } finally {
-            if (connection != null) {
-                dbManager.commitAndClose(connection);
-            }
+            dbManager.close(connection);
         }
     }
 
-    private static class CatalogMapper implements EntityMapper<CatalogItem> {
-        @Override
-        public CatalogItem mapRow(ResultSet rs) {
-            try {
-                CatalogItem catalogItem = new CatalogItem();
-                catalogItem.setId(rs.getLong("id"));
-                long gpId = rs.getLong("goodsParamId");
-                catalogItem.setGoodsParamId(gpId);
-                catalogItem.setPrice(rs.getDouble("price"));
-                catalogItem.setQuantity(rs.getInt("quantity"));
-                catalogItem.setAddDate(rs.getDate("addDate"));
-                catalogItem.setGoodsParam(new GoodsParamDAO().getGoodsParamByID(gpId));
-                long goodsId = catalogItem.getGoodsParam().getGoodsId();
-                catalogItem.setGoods(new GoodsDAO().getGoodsById(goodsId));
-                return catalogItem;
-            } catch (SQLException | DBException e) {
-                e.printStackTrace();
-                return null;
-            }
+    private CatalogItem mapRow(ResultSet rs) {
+        try {
+            CatalogItem catalogItem = new CatalogItem();
+            catalogItem.setId(rs.getLong("id"));
+            long gpId = rs.getLong("goodsParamId");
+            catalogItem.setGoodsParamId(gpId);
+            catalogItem.setPrice(rs.getDouble("price"));
+            catalogItem.setQuantity(rs.getInt("quantity"));
+            catalogItem.setAddDate(rs.getDate("addDate"));
+            catalogItem.setGoodsParam(new GoodsParamDAO().getGoodsParamByID(gpId));
+            long goodsId = catalogItem.getGoodsParam().getGoodsId();
+            catalogItem.setGoods(new GoodsDAO().getGoodsById(goodsId));
+            return catalogItem;
+        } catch (SQLException | AppException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 }

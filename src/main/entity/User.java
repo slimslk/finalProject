@@ -7,6 +7,15 @@ public class User extends Entity {
     private int roleId;
     private int statusId;
     private UserInfo userInfo;
+    private String lang;
+
+    public String getLang() {
+        return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
+    }
 
     public String getUsername() {
         return username;
@@ -53,7 +62,7 @@ public class User extends Entity {
         return "User{" +"user id="+getId()+
                 "username='" + username + '\'' +
                 ", roleId=" + roleId +
-                ", userInfo=" + userInfo +
+                ", userInfo=" + userInfo + "lang= "+lang+
                 '}';
     }
 }

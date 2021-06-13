@@ -4,25 +4,25 @@
     <div class="container-fluid bg-dark pb-3 pt-3">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="${pageContext.request.contextPath}/index.jsp" class="nav-link px-2 text-secondary">Home</a>
+                <li><a href="${pageContext.request.contextPath}/index.jsp" class="nav-link px-2 text-secondary"><fmt:message key="header.jsp.button.about"/></a>
                 </li>
             </ul>
             <c:choose>
                 <c:when test="${not empty user}">
-                    <p class="my-1 text-white" style="padding-left: 1%">${sessionScope.user.username}</p>
+                    <p class="my-1 text-white" style="padding-right: 1%">${sessionScope.user.username}</p>
                     <div class="text-end">
                         <a href="${pageContext.request.contextPath}/controller?command=logout">
-                            <button type="button" class="btn btn-outline-light me-2">Logout</button>
+                            <button type="button" class="btn btn-outline-light me-2"><fmt:message key="header.jsp.button.logout"/></button>
                         </a>
                     </div>
                 </c:when>
                 <c:when test="${empty user}">
                     <div class="text-end">
                         <a href="${pageContext.request.contextPath}/login.jsp">
-                            <button type="button" class="btn btn-outline-light me-2">Sing-in</button>
+                            <button type="button" class="btn btn-outline-light me-2"><fmt:message key="header.jsp.button.sing.in"/></button>
                         </a>
                         <a href="${pageContext.request.contextPath}/sign-up.jsp">
-                            <button type="button" class="btn btn-warning">Sign-up</button>
+                            <button type="button" class="btn btn-warning"><fmt:message key="header.jsp.button.sing.up"/></button>
                         </a>
                     </div>
                 </c:when>
@@ -33,27 +33,25 @@
     <nav id="navbar_top" class="navbar navbar-expand-lg navbar-dark bg-primary w-100">
         <div class="container">
             <c:if test="${empty user}">
-                <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=catalog">Catalog</a>
+                <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=catalog"><fmt:message key="header.jsp.a.catalog"/></a>
             </c:if>
             <%--Orders--%>
             <c:if test="${not empty user}">
                 <c:choose>
                     <c:when test="${user.roleId<3}">
                         <a class="navbar-brand"
-                           href="${pageContext.request.contextPath}/controller?command=admincatalog">Catalog</a>
+                           href="${pageContext.request.contextPath}/controller?command=admincatalog"><fmt:message key="header.jsp.a.catalog"/></a>
                         <a class="navbar-brand"
-                           href="${pageContext.request.contextPath}/admin/admin-add-goods.jsp">Add goods</a>
+                           href="${pageContext.request.contextPath}/admin/admin-add-goods.jsp"><fmt:message key="header.jsp.a.add.goods"/></a>
                         <a class="navbar-brand"
-                           href="${pageContext.request.contextPath}/controller?command=orders&action=orders">All
-                            Orders</a>
+                           href="${pageContext.request.contextPath}/controller?command=orders&action=orders"><fmt:message key="header.jsp.a.all.orders"/></a>
                         <a class="navbar-brand"
-                           href="${pageContext.request.contextPath}/controller?command=users&action=users">Users</a>
+                           href="${pageContext.request.contextPath}/controller?command=users&action=users"><fmt:message key="header.jsp.a.users"/></a>
                     </c:when>
                     <c:when test="${user.roleId>2}">
-                        <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=catalog">Catalog</a>
+                        <a class="navbar-brand" href="${pageContext.request.contextPath}/controller?command=catalog"><fmt:message key="header.jsp.a.catalog"/></a>
                         <a class="navbar-brand"
-                           href="${pageContext.request.contextPath}/controller?command=orders&action=orders">My
-                            Orders</a>
+                           href="${pageContext.request.contextPath}/controller?command=orders&action=orders"><fmt:message key="header.jsp.a.my.orders"/></a>
                     </c:when>
                 </c:choose>
             </c:if>

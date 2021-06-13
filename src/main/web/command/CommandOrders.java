@@ -3,22 +3,20 @@ package main.web.command;
 import main.database.OrderListDAO;
 import main.entity.User;
 import main.entity.UserOrders;
-import main.exception.DBException;
+import main.exception.AppException;
 import main.web.Path;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 
 public class CommandOrders implements Command {
     private static final Logger log = LogManager.getLogger(CommandOrders.class);
 
     @Override
-    public String execute(HttpServletRequest request, HttpServletResponse response) throws DBException {
+    public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         HttpSession session = request.getSession();
         String path = Path.ERRORPAGE;
         String s = request.getParameter("action");
@@ -37,14 +35,14 @@ public class CommandOrders implements Command {
             int orderStatusId = Integer.parseInt(request.getParameter("status"));
             new OrderListDAO().changeOrderStatus(orderNumber, orderStatusId);
             return redirectToOrders(request.getSession());
-        } catch (NumberFormatException | DBException e) {
-            request.setAttribute("errorMessage", "Something wrong with parameter");
+        } catch (NumberFormatException | AppException e) {
+            request.getSession().setAttribute("errorMessage", "Something wrong with parameter");
             e.printStackTrace();
             return Path.ERRORPAGE;
         }
     }
 
-    public String redirectToOrders(HttpSession session) throws DBException {
+    public String redirectToOrders(HttpSession session) throws AppException {
         long userId = 0;
         String path = Path.ADMIN_ORDERS;
         User user = (User) session.getAttribute("user");

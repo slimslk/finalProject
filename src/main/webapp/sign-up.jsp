@@ -10,24 +10,24 @@
 <main class="form-signin">
     <form id="login_form" action="controller" method="post">
         <input type="hidden" name="command" value="signup">
-        <h1 class="h3 mb-3 fw-normal">Enter you data</h1>
+        <h1 class="h3 mb-3 fw-normal"><fmt:message key="sing-up.jsp.h1.Enter_your_data"/></h1>
         <div class="form-floating">
             <input type="email" name="username" class="form-control" id="floatingInput" placeholder="name@example.com">
-            <label for="floatingInput">Email address</label>
+            <label for="floatingInput"><fmt:message key="login_jsp.label.email"/></label>
         </div>
         <div class="form-floating">
             <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password">
-            <label for="floatingPassword">Password</label>
+            <label for="floatingPassword"><fmt:message key="login_jsp.label.password"/></label>
         </div>
         <div class="form-floating">
             <input type="text" name="name" class="form-control" placeholder="You name">
-            <label for="floatingPassword">Name</label>
+            <label for="floatingPassword"><fmt:message key="sing-up.jsp.label.name"/></label>
         </div>
         <div class="form-floating">
             <input type="text" name="surname" class="form-control" placeholder="Your surname">
-            <label for="floatingPassword">Surname</label>
+            <label for="floatingPassword"><fmt:message key="sing-up.jsp.label.surname"/></label>
         </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+        <button class="w-100 btn btn-lg btn-primary" type="submit"><fmt:message key="header.jsp.button.sing.up"/></button>
     </form>
 </main>
 </body>

@@ -49,26 +49,6 @@ $src/main/webapp/META-INF/context.xml,c/b/cbfb0d2e9b2b9fbf9d54374577c894a38643c
 ,.idea/inspectionProfiles/Project_Default.xml,4/9/496a238a6afa168dbaf6efd37bb459331589579c
 S
 #.idea/sonarlint/issuestore/index.pb,9/f/9fe84ebb15faf917b7def6236dba604453cc61e0
-K
-src/main/database/test.java,c/5/c51f8c4dcb6dd5c1879748e5bb777e2cdeb561b6
-_
-/target/classes/main/webapp/META-INF/context.xml,8/f/8f68637da835fe24914ccdf033ab549452c7fd7d
-[
-+target/classes/main/webapp/style/signin.css,e/5/e54e6c5e8577680b568de9ca8e1c70a13c2d436c
-a
-1target/classes/main/webapp/WEB-INF/jspf/head.jspf,c/5/c568283e1e24999404a709c3b3933677f9dc911c
-c
-3target/classes/main/webapp/WEB-INF/jspf/header.jspf,e/9/e933032c32907583503b192e8707cc3d98f68988
-a
-1target/classes/main/webapp/WEB-INF/jspf/page.jspf,a/3/a31c7a4252982bd897d56493e627a678d4a88f82
-c
-3target/classes/main/webapp/WEB-INF/jspf/taglib.jspf,9/b/9bad0ec40466c47997e438615ac6a6ac808a1ecc
-Z
-*target/classes/main/webapp/WEB-INF/web.xml,7/0/70bb1f3c234b8a12ba0a14fa857cc7445ad8d492
-T
-$target/classes/main/webapp/index.jsp,3/d/3d4a3b1614e6ddae7a63b86c1b5efaa69c9c72af
-T
-$target/classes/main/webapp/login.jsp,4/9/4994f6233a8a7f3cbbc46bcf43588c6b69da73f3
 X
 (target/finalProject/META-INF/MANIFEST.MF,1/1/1135eef93770658cccf89f837a6043a29020adfe
 @
@@ -79,8 +59,6 @@ M
 src/main/entity/UserInfo.java,d/3/d30e39010bc1f3318d09c9861be68b2eb966cde9
 R
 "src/main/database/UserInfoDAO.java,6/4/640628581cc90809fabd9b5a4f4746d7c384e965
-Y
-)src/main/webapp/WEB-INF/jsp/errorpage.jsp,8/e/8e228ec7cd2b3838caf9b1cdefe5cad9052a715d
 Q
 !src/main/database/CatalogDAO.java,1/f/1f3371736990fffe30e403c3ae228f162fae7df8
 J
@@ -154,10 +132,6 @@ O
 N
 src/main/entity/UserOrder.java,c/2/c236b2252603d4f75774198a5b37c1f258586623
 Z
-*src/main/resources/resources_en.properties,5/d/5d29831975e82fd03400e84753eff5ad65339351
-Z
-*src/main/resources/resources_ru.properties,d/1/d10eecca333cbec196e78314519148f9a8ded008
-Z
 *src/main/web/listener/ContextListener.java,5/a/5aa6e3370071684d7ae1e856f577abe5cf3da1af
 O
 src/main/webapp/changeLocal.jsp,0/9/092e4b80cdb32a9f43d0d4580253c3fbd812ab82
@@ -177,3 +151,13 @@ V
 &src/main/web/command/CommandUsers.java,7/0/70c2de57cc1694e196c811c6bab2e5943b1e2795
 U
 %src/main/webapp/admin/admin-users.jsp,c/6/c6688d62e3dfdea0183892f2ddd3b0ce1cc956e9
+[
++test/main/web/command/CommandLoginTest.java,2/6/263ec5c7d342b4041d6f5c4f8d8b248657deb652
+Q
+!test/main/web/ControllerTest.java,2/9/29cc3a381a42d17bc11d085617f352330755bba5
+S
+#test/main/database/RoleDAOTest.java,c/8/c83a768ced0ec8064af11cef5b32c2585bdfadc5
+U
+%src/main/database/ChangeGoodsDAO.java,c/c/cc38c56db8204650b21b309936193bbf6684c599
+N
+src/main/webapp/error-page.jsp,8/7/87626bf38903fcf7eaa689ed6dabe9b4f61054c6

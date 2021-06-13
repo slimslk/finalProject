@@ -17,26 +17,26 @@
                 <div class="row">
                     <div class="col my-1">
                         <aside class="blog-sidebar rounded shadow-sm">
-                            <form id="admin-catalog-form" action="${pageContext.request.contextPath}/controller" method="post">
+                            <form id="admin-catalog-form" action="${pageContext.request.contextPath}/controller" method="post" enctype="multipart/form-data">
                                 <input type="hidden" name="command" value="admincatalog">
                                 <input type="hidden" name="itemCatalogId" value="#" id="itemCatalogId">
                                 <input type="hidden" name="goodsParamId" value="#" id="goodsParamId">
                                 <input type="hidden" name="goodsId" value="#" id="goodsId">
                                 <div class="row g-3 align-items-center p-3">
                                     <div class="col-auto">
-                                        <label for="goods-name" class="col-form-label">Name</label>
+                                        <label for="goods-name" class="col-form-label"><fmt:message key="goods.parameters.name"/></label>
                                     </div>
                                     <div class="col-5">
                                         <input name="name" type="text" id="goods-name" class="form-control">
                                     </div>
                                     <div class="col-auto">
-                                        <label for="goods-price" class="col-form-label">Price</label>
+                                        <label for="goods-price" class="col-form-label"><fmt:message key="goods.parameters.price"/></label>
                                     </div>
                                     <div class="col-auto">
                                         <input name="price" type="text" id="goods-price" class="form-control" value="0">
                                     </div>
                                     <div class="col-auto">
-                                        <label for="goods-quantity" class="col-form-label">Quantity</label>
+                                        <label for="goods-quantity" class="col-form-label"><fmt:message key="goods.parameters.quantity"/></label>
                                     </div>
                                     <div class="col-auto">
                                         <input name="quantity" type="text" id="goods-quantity" class="form-control" value="0">
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="row g-3 align-items-center p-3">
                                     <div class="col-auto">
-                                        <label for="age" class="col-form-label">Age</label>
+                                        <label for="age" class="col-form-label"><fmt:message key="goods.parameters.age"/></label>
                                     </div>
                                     <div class="col-auto" id="age">
                                         <select name="age" class="form-select align-content-end" aria-label="lang" id="goods-age">
@@ -54,7 +54,7 @@
                                         </select>
                                     </div>
                                     <div class="col-auto">
-                                        <label for="category" class="col-form-label">Category</label>
+                                        <label for="category" class="col-form-label"><fmt:message key="goods.parameters.category"/></label>
                                     </div>
                                     <div class="col-auto" id="category">
                                         <select name="category" class="form-select align-content-end" aria-label="lang" id="goods-category">
@@ -64,7 +64,7 @@
                                         </select>
                                     </div>
                                     <div class="col-auto">
-                                        <label for="gender" class="col-form-label">Gender</label>
+                                        <label for="gender" class="col-form-label"><fmt:message key="goods.parameters.gender"/></label>
                                     </div>
                                     <div class="col-auto" id="gender">
                                         <select name="gender" class="form-select align-content-end" aria-label="lang" id="goods-gender">
@@ -74,7 +74,7 @@
                                         </select>
                                     </div>
                                     <div class="col-auto">
-                                        <label for="size" class="col-form-label">Gender</label>
+                                        <label for="size" class="col-form-label"><fmt:message key="goods.parameters.size"/></label>
                                     </div>
                                     <div class="col-auto" id="size">
                                         <select name="size" class="form-select align-content-end" aria-label="lang" id="goods-size">
@@ -84,7 +84,7 @@
                                         </select>
                                     </div>
                                     <div class="col-auto">
-                                        <label for="style" class="col-form-label">Gender</label>
+                                        <label for="style" class="col-form-label"><fmt:message key="goods.parameters.style"/></label>
                                     </div>
                                     <div class="col-auto" id="style">
                                         <select name="style" class="form-select align-content-end" aria-label="lang" id="goods-style">
@@ -102,7 +102,7 @@
                                         <input name="img" type="file" id="img" class="form-control">
                                     </div>
                                     <div class="col-auto">
-                                        <button name="action" class="btn btn-success" type="submit" value="create">Add</button>
+                                        <button name="action" class="btn btn-success" type="submit" value="create"><fmt:message key="admin-add-goods.jsp.add"/></button>
                                     </div>
                                 </div>
                             </form>

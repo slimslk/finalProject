@@ -1,7 +1,7 @@
 package main.database;
 
 import main.entity.CatalogItem;
-import main.exception.DBException;
+import main.exception.AppException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -25,7 +25,7 @@ public class ChangeGoodsDAO {
     private final String INSERD_GOODS_PARAM = "INSERT INTO goodsParam (goodsId, genderId, ageId, sizeId, categoryId, styleId) VALUES (LAST_INSERT_ID(),?,?,?,?,?);";
     private final String INSERT_ITEMCATALOG = "INSERT INTO itemsCatalog (goodsParamId, price, quantity, addDate) VALUES (LAST_INSERT_ID(),?,?,?);";
 
-    public void removeGoods(long id) throws DBException {
+    public void removeGoods(long id) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         Connection connection = null;
         PreparedStatement pstm = null;
@@ -34,21 +34,21 @@ public class ChangeGoodsDAO {
             pstm = connection.prepareStatement(REMOVE_GOODS_BY_ID);
             pstm.setLong(1, id);
             pstm.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(connection);
-            throw new DBException("Cant remove goods from Database, try later", e);
+            dbManager.rollback(connection);
+            throw new AppException("Cant remove goods from Database, try later", e);
         } finally {
-            if (connection != null) {
-                dbManager.commitAndClose(connection);
-            }
+            dbManager.close(pstm);
+            dbManager.close(connection);
         }
     }
 
-    public void updateGoods(CatalogItem catalogItem) throws DBException {
+    public void updateGoods(CatalogItem catalogItem) throws AppException {
         executeAction(catalogItem, UPDATE_GOODS_ITEM, UPDATE_GOODSPARAM_ITEM, UPDATE_CATALOG_ITEM);
     }
 
-    public void createGoods(CatalogItem catalogItem) throws DBException {
+    public void createGoods(CatalogItem catalogItem) throws AppException {
         long num = -999;
         catalogItem.getGoods().setId(num);
         catalogItem.getGoodsParam().setId(num);
@@ -56,10 +56,10 @@ public class ChangeGoodsDAO {
         executeAction(catalogItem, INSERT_GOODS, INSERD_GOODS_PARAM, INSERT_ITEMCATALOG);
     }
 
-    public void executeAction(CatalogItem catalogItem, String sqlGoods, String sqlGoodsParam, String sqlItemCatalog) throws DBException {
-        log.error("goods: "+sqlGoods);
-        log.error("goodsParam: "+sqlGoodsParam);
-        log.error("itemCatalog: "+sqlItemCatalog);
+    public void executeAction(CatalogItem catalogItem, String sqlGoods, String sqlGoodsParam, String sqlItemCatalog) throws AppException {
+        log.error("goods: " + sqlGoods);
+        log.error("goodsParam: " + sqlGoodsParam);
+        log.error("itemCatalog: " + sqlItemCatalog);
         Map<String, Integer> goodsParamNameMap = new HashMap<>();
         DBManager dbManager = DBManager.getInstance();
         Connection connection = null;
@@ -108,10 +108,10 @@ public class ChangeGoodsDAO {
             }
             pstm.executeUpdate();
             i = 0;
-            log.error("Map is: "+goodsParamNameMap);
+            log.error("Map is: " + goodsParamNameMap);
             pstm = connection.prepareStatement(sqlGoodsParam);
             if (goodsId > 0) {
-                log.error("GoodsId is: "+goodsId);
+                log.error("GoodsId is: " + goodsId);
                 pstm.setLong(++i, goodsId);
             }
             pstm.setInt(++i, goodsParamNameMap.get("gender"));
@@ -120,8 +120,8 @@ public class ChangeGoodsDAO {
             pstm.setInt(++i, goodsParamNameMap.get("category"));
             pstm.setInt(++i, goodsParamNameMap.get("style"));
             long goodsParamId = catalogItem.getGoodsParam().getId();
-            if(goodsParamId>0){
-                pstm.setLong(++i,goodsParamId );
+            if (goodsParamId > 0) {
+                pstm.setLong(++i, goodsParamId);
             }
             pstm.executeUpdate();
             i = 0;
@@ -132,19 +132,18 @@ public class ChangeGoodsDAO {
             pstm.setDouble(++i, catalogItem.getPrice());
             pstm.setInt(++i, catalogItem.getQuantity());
             pstm.setDate(++i, (Date) catalogItem.getAddDate());
-            if(catalogItem.getId()!=-999){
+            if (catalogItem.getId() != -999) {
                 pstm.setLong(++i, catalogItem.getId());
             }
             pstm.executeUpdate();
-            rs.close();
-            pstm.close();
+            connection.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(connection);
-            throw new DBException("Can't update/add goods to Database", e);
+            dbManager.rollback(connection);
+            throw new AppException("Can't update/add goods to Database", e);
         } finally {
-            if (connection != null) {
-                dbManager.commitAndClose(connection);
-            }
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(connection);
         }
     }
 }

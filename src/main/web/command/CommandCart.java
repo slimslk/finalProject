@@ -3,17 +3,14 @@ package main.web.command;
 import main.database.CatalogDAO;
 import main.entity.CatalogItem;
 import main.entity.UserCart;
-import main.exception.DBException;
+import main.exception.AppException;
 import main.web.Path;
-import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -22,7 +19,7 @@ public class CommandCart implements Command {
     private static final Logger log = LogManager.getLogger(CommandCart.class);
 
     @Override
-    public String execute(HttpServletRequest req, HttpServletResponse res) throws DBException {
+    public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {
         HttpSession session = req.getSession();
         UserCart userCart = (UserCart) session.getAttribute("userCart");
         log.error("user cart is in session: "+userCart);

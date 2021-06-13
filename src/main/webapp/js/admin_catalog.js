@@ -13,11 +13,12 @@ function filterParam(req) {
     let command = "command=ajax&do=filter" + req;
     let sort = sortBy();
     let price = setPrice();
-    command = command + "&sort=" + sort[0] + "&direction=" + sort[1] + price + "&start=0";
+    command = command + "&sort=" + sort[0] + "&direction=" + sort[1] + price + "&start=-1";
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
-            createGoods(parseJSON(this.responseText));
+            let stringArray=this.responseText.split("|");
+            createGoods(parseJSON(stringArray[1]));
         }
     }
     xhr.open('POST', "../controller");
@@ -34,6 +35,7 @@ function createGoods(json) {
             clone.querySelector("#goodsParamId").value = json[i]["goodsParam"]["id"]
             clone.querySelector("#goodsId").value = json[i]["goods"]["id"]
             clone.querySelector("#goods-price").value = json[i]["price"];
+            clone.querySelector("#file-name").value = json[i]["goods"]["img"];
             clone.querySelector("#goods-quantity").value = json[i]["quantity"];
             clone.querySelector("#goods-name").value = json[i]["goods"]["name"];
             clone.querySelector("#goods-img").innerHTML = json[i]["goods"]["img"];

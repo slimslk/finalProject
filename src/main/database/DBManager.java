@@ -1,5 +1,6 @@
 package main.database;
 
+import main.exception.AppException;
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +19,7 @@ import java.sql.SQLException;
 public class DBManager {
 
     private static DBManager instance;
-    private static final Logger log= LogManager.getLogger(DBManager.class);
+    private static final Logger log = LogManager.getLogger(DBManager.class);
 
     public static synchronized DBManager getInstance() {
         if (instance == null) {
@@ -27,7 +28,7 @@ public class DBManager {
         return instance;
     }
 
-    private DBManager(){
+    private DBManager() {
     }
 
     /**
@@ -39,30 +40,11 @@ public class DBManager {
         try {
             Context initContext = new InitialContext();
             DataSource ds = (DataSource) initContext.lookup("java:/comp/env/jdbc/finalProject");
-            try {
-                connection = ds.getConnection();
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-            }
+            connection = ds.getConnection();
         } catch (NamingException ex) {
             log.error("NamingException: " + ex.getExplanation());
         }
         return connection;
-    }
-
-    /**
-     * Commit and close connection
-     *
-     * @param con Connection to be committed and closed.
-     */
-
-    public void commitAndClose(Connection con) {
-        try {
-            con.commit();
-            con.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -71,12 +53,24 @@ public class DBManager {
      * @param con Connection to be rollback and closed.
      */
 
-    public void rollbackAndClose(Connection con) {
+    public void rollback(Connection con) throws AppException {
         try {
-            con.rollback();
-            con.close();
+            if (con != null) {
+                con.rollback();
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
+            throw new AppException("", e);
+        }
+    }
+
+    public void close(AutoCloseable autoCloseable) throws AppException {
+        if (autoCloseable != null) {
+            try {
+                autoCloseable.close();
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw new AppException("", e);
+            }
         }
     }
 }

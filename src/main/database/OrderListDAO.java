@@ -1,7 +1,7 @@
 package main.database;
 
 import main.entity.*;
-import main.exception.DBException;
+import main.exception.AppException;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -29,7 +29,7 @@ public class OrderListDAO {
             "         INNER JOIN style s2 on gP.styleId = s2.id\n" +
             "         INNER JOIN goods g ON g.id = gP.goodsId\n" +
             "WHERE userId = ?\n" +
-            "ORDER BY orderNumber DESC;";
+            "ORDER BY o.orderNumber DESC;";
     private static final String GET_ORDERS = "SELECT orderNumber,username, name,img,ageName,categoryName,genderName, sizeName,styleName, price, goodsQuantity, orderDate, orderStatus\n" +
             "FROM ordersList\n" +
             "         INNER JOIN orders o on ordersList.orderId = o.orderNumber\n" +
@@ -42,14 +42,14 @@ public class OrderListDAO {
             "         INNER JOIN size s on gP.sizeId = s.id\n" +
             "         INNER JOIN style s2 on gP.styleId = s2.id\n" +
             "         INNER JOIN goods g ON g.id = gP.goodsId\n" +
-            "ORDER BY orderStatus ASC;";
+            "ORDER BY orderDate DESC;";
     private final String INSERT_ORDER_IN_LIST = "INSERT INTO ordersList(orderId, goodsId, goodsQuantity) VALUES (?,?,?)";
     private final String CHANGE_ORDER_STATUS = "UPDATE orders SET orderStatus=? WHERE orderNumber=?";
 
-    public void changeOrderStatus(long orderNumber, int orderStatus) throws DBException {
+    public void changeOrderStatus(long orderNumber, int orderStatus) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
-        PreparedStatement pstm;
+        PreparedStatement pstm = null;
         try {
             con = dbManager.getConnection();
             pstm = con.prepareStatement(CHANGE_ORDER_STATUS);
@@ -58,18 +58,17 @@ public class OrderListDAO {
             pstm.setLong(1, orderStatus);
             pstm.setLong(2, orderNumber);
             pstm.executeUpdate();
-            pstm.close();
+            con.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Cant change Order status, try later", e);
+            dbManager.rollback(con);
+            throw new AppException("Cant change Order status, try later", e);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
     }
 
-    public void insertOrderInList(long orderId, Map<Long, Integer> goodsIdSet) throws DBException {
+    public void insertOrderInList(long orderId, Map<Long, Integer> goodsIdSet) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
         PreparedStatement pstm = null;
@@ -83,21 +82,20 @@ public class OrderListDAO {
                 pstm.setLong(3, entry.getValue());
                 pstm.executeUpdate();
             }
-            pstm.close();
+            con.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Cant inser order to Database, try later", e);
+            dbManager.rollback(con);
+            throw new AppException("Cant inser order to Database, try later", e);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
     }
 
-    public UserOrders getOrderListByUserId(long userId) throws DBException {
+    public UserOrders getOrderListByUserId(long userId) throws AppException {
         log.error("in getOrderListByUserId method");
         UserOrderMapper userOrderMapper = new UserOrderMapper();
-        UserOrders userOrders = new UserOrders();
+        UserOrders userOrders;
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
         PreparedStatement pstm = null;
@@ -116,15 +114,14 @@ public class OrderListDAO {
             }
             userOrders = userOrderMapper.getUserOrders();
             log.error("User orders is: " + userOrders);
-            rs.close();
-            pstm.close();
+            con.commit();
         } catch (SQLException e) {
-            dbManager.rollbackAndClose(con);
-            throw new DBException("Cant get order list, try later", e);
+            dbManager.rollback(con);
+            throw new AppException("Cant get order list, try later", e);
         } finally {
-            if (con != null) {
-                dbManager.commitAndClose(con);
-            }
+            dbManager.close(rs);
+            dbManager.close(pstm);
+            dbManager.close(con);
         }
         return userOrders;
     }
@@ -135,7 +132,7 @@ public class OrderListDAO {
         List<UserOrder> listOfUserOrder;
         Map<Long, List<UserOrder>> orderMap;
 
-        public void addUserOrderToList(ResultSet rs) {
+        private void addUserOrderToList(ResultSet rs) {
             log.error("In method");
             try {
                 if (userOrders == null) {
@@ -168,7 +165,7 @@ public class OrderListDAO {
                 log.error("user order added to list is: " + userOrder);
                 listOfUserOrder.add(userOrder);
                 orderMap.put(orderNumber, listOfUserOrder);
-            } catch (SQLException | DBException e) {
+            } catch (SQLException | AppException e) {
                 e.printStackTrace();
             }
         }
@@ -176,42 +173,6 @@ public class OrderListDAO {
         public UserOrders getUserOrders() {
             userOrders.setUserOrders(orderMap);
             return userOrders;
-        }
-    }
-
-    private static class OrderListMapper implements EntityMapper<OrderList> {
-        Map<Long, Integer> goodsMap;
-        long orderId;
-
-        public void addToGoodsList(ResultSet rs) {
-            long goodsId;
-            int goodsQuantity;
-            if (goodsMap == null) {
-                goodsMap = new HashMap<>();
-                try {
-                    orderId = rs.getLong(Fields.ORDER_ID);
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                goodsId = rs.getLong(Fields.GOODS_ID);
-                goodsQuantity = rs.getInt(Fields.GOODS_QUANTITY);
-                goodsMap.put(goodsId, goodsQuantity);
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        public OrderList addToList() {
-            OrderList orderList = new OrderList();
-            orderList.addToOrderList(orderId, goodsMap);
-            return orderList;
-        }
-
-        @Override
-        public OrderList mapRow(ResultSet rs) {
-            return null;
         }
     }
 }

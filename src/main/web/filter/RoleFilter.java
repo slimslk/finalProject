@@ -19,7 +19,7 @@ public class RoleFilter implements Filter {
         if(user!=null&&user.getRoleId()<3){
             filterChain.doFilter(request,response);
         }else {
-            req.setAttribute("errorMessage", "Access denied");
+            session.setAttribute("errorMessage", "Access denied");
             RequestDispatcher dispatcher = req.getRequestDispatcher(Path.ERRORPAGE);
             dispatcher.forward(request, response);
         }
