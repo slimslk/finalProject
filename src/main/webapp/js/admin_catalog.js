@@ -38,7 +38,6 @@ function createGoods(json) {
             clone.querySelector("#file-name").value = json[i]["goods"]["img"];
             clone.querySelector("#goods-quantity").value = json[i]["quantity"];
             clone.querySelector("#goods-name").value = json[i]["goods"]["name"];
-            clone.querySelector("#goods-img").innerHTML = json[i]["goods"]["img"];
             clone.querySelector("#goods-age").id = "goods-age" + i;
             clone.querySelector("#goods-category").id = "goods-category" + i;
             clone.querySelector("#goods-gender").id = "goods-gender" + i;

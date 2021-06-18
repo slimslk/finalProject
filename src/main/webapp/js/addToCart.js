@@ -1,6 +1,11 @@
 let myRow = document.getElementById("mainRow");
 let t = document.querySelector('#tempCard');
 let position = 0;
+let noGoods;
+
+function setNoGoodsText(text) {
+    noGoods=text;
+}
 
 function parseJSON(jsonText) {
     return JSON.parse(jsonText);
@@ -76,7 +81,7 @@ function createGoods(json) {
         }
     } else {
         myRow.innerHTML = '<div class="text-center pt-4">\n' +
-            '    <h3>Sorry, we have not goods in this category</h3>\n' +
+            '    <h3>'+noGoods+'</h3>\n' +
             '</div>';
     }
 }

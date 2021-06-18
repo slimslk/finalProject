@@ -13,25 +13,25 @@ public class UserStatusDAO {
     public int getStatusByName(String statusName) throws AppException {
         DBManager dbManager = DBManager.getInstance();
         int id = 0;
-        Connection con = null;
+        Connection connection = null;
         ResultSet rs = null;
         try {
-            con = dbManager.getConnection();
-            try (PreparedStatement pstm = con.prepareStatement(GET_STATUS_BY_NAME)) {
+            connection = dbManager.getConnection();
+            try (PreparedStatement pstm = connection.prepareStatement(GET_STATUS_BY_NAME)) {
                 pstm.setString(1, statusName);
                 rs = pstm.executeQuery();
                 while (rs.next()) {
                     id = rs.getInt(Fields.ENTITY_ID);
                 }
-                con.commit();
+                connection.commit();
             }
         } catch (SQLException e) {
             e.printStackTrace();
-            dbManager.rollback(con);
+            dbManager.rollback(connection);
             throw new AppException("Cant get user status from Database, try later", e);
         } finally {
             dbManager.close(rs);
-            dbManager.close(con);
+            dbManager.close(connection);
         }
         return id;
     }

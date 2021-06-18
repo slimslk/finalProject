@@ -16,26 +16,34 @@ import java.util.List;
 import java.util.Map;
 
 public class CommandCart implements Command {
+    CatalogDAO catalogDAO = new CatalogDAO();
     private static final Logger log = LogManager.getLogger(CommandCart.class);
+
+    public CommandCart(CatalogDAO catalogDAO) {
+        this.catalogDAO = catalogDAO;
+    }
+
+    public CommandCart() {
+    }
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {
         HttpSession session = req.getSession();
         UserCart userCart = (UserCart) session.getAttribute("userCart");
-        log.error("user cart is in session: "+userCart);
+        log.error("user cart is in session: " + userCart);
         Map<Long, Integer> map = userCart.getGoodsId();
         if (map.size() > 0) {
             List<Long> listId = new ArrayList<>();
-            for (Map.Entry<Long,Integer> entry: map.entrySet() ) {
-                log.error("k is:" +entry.getKey());
+            for (Map.Entry<Long, Integer> entry : map.entrySet()) {
+                log.error("k is:" + entry.getKey());
                 listId.add(entry.getKey());
-                log.error("user map: "+userCart.getGoodsId());
+                log.error("user map: " + userCart.getGoodsId());
                 log.error("list Id is: " + listId);
             }
-            List<CatalogItem> catalogItemList = new CatalogDAO().getItemsByGoodsId(listId);
+            List<CatalogItem> catalogItemList = catalogDAO.getItemsByGoodsId(listId);
             log.error("Items in cart: " + catalogItemList);
             log.error("In the cart!");
-            session.setAttribute("cartGoods",catalogItemList);
+            session.setAttribute("cartGoods", catalogItemList);
         } else {
             log.error("No items on the cart");
         }

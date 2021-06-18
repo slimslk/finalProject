@@ -13,34 +13,33 @@ public class OrderDAO {
     private final String SET_ORDER = "INSERT INTO orders (userId, orderNumber, orderStatus, orderDate) VALUES (?,?,?,?)";
     private final String GET_MAX_ID = "SELECT MAX(orderNumber) FROM orders";
 
-    public Order getOrderByNumber(int orderNumber) throws AppException {
-        DBManager dbManager = DBManager.getInstance();
-        Order order = new Order();
-        Connection con = null;
-        PreparedStatement pstm = null;
-        ResultSet rs = null;
-        try {
-            con = dbManager.getConnection();
-            pstm = con.prepareStatement(GET_ORDER_BY_ORDER_NUMBER);
-            pstm.setInt(1, orderNumber);
-            rs = pstm.executeQuery();
-            while (rs.next()) {
-                order = mapRow(rs);
-            }
-            con.commit();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            dbManager.rollback(con);
-        } finally {
-            dbManager.close(rs);
-            dbManager.close(pstm);
-            dbManager.close(con);
-        }
-        return order;
-    }
+//    public Order getOrderByNumber(int orderNumber) throws AppException {
+//        DBManager dbManager = DBManager.getInstance();
+//        Order order = new Order();
+//        Connection con = null;
+//        PreparedStatement pstm = null;
+//        ResultSet rs = null;
+//        try {
+//            con = dbManager.getConnection();
+//            pstm = con.prepareStatement(GET_ORDER_BY_ORDER_NUMBER);
+//            pstm.setInt(1, orderNumber);
+//            rs = pstm.executeQuery();
+//            while (rs.next()) {
+//                order = mapRow(rs);
+//            }
+//            con.commit();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            dbManager.rollback(con);
+//        } finally {
+//            dbManager.close(rs);
+//            dbManager.close(pstm);
+//            dbManager.close(con);
+//        }
+//        return order;
+//    }
 
     public long getMaxId() throws AppException {
-        log.error("Get max ID");
         long maxId = 0;
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
@@ -51,9 +50,7 @@ public class OrderDAO {
             st = con.createStatement();
             rs = st.executeQuery(GET_MAX_ID);
             while (rs.next()) {
-                log.error("has a rs");
                 maxId = rs.getLong(1);
-                log.error("max id" + maxId);
             }
             con.commit();
         } catch (SQLException e) {
@@ -93,18 +90,18 @@ public class OrderDAO {
         return order.getOrderNumber();
     }
 
-    private Order mapRow(ResultSet rs) {
-        Order order;
-        try {
-            order = new Order();
-            order.setOrderNumber(rs.getLong(Fields.ORDER_NUMBER));
-            order.setUserId(rs.getLong(Fields.USER_ID));
-            order.setOrderStatus(rs.getInt(Fields.ORDER_STATUS));
-            order.setOrderDate(rs.getTimestamp(Fields.ORDER_DATE));
-        } catch (SQLException e) {
-            e.printStackTrace();
-            return null;
-        }
-        return order;
-    }
+//    private Order mapRow(ResultSet rs) {
+//        Order order;
+//        try {
+//            order = new Order();
+//            order.setOrderNumber(rs.getLong(Fields.ORDER_NUMBER));
+//            order.setUserId(rs.getLong(Fields.USER_ID));
+//            order.setOrderStatus(rs.getInt(Fields.ORDER_STATUS));
+//            order.setOrderDate(rs.getTimestamp(Fields.ORDER_DATE));
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
+//        return order;
+//    }
 }

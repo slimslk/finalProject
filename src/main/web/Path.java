@@ -8,6 +8,7 @@ import static main.web.listener.ContextListener.getContextPath;
 public final class Path {
     public static final String STARTPAGE = getContextPath() + "/index.jsp";
     public static final String LOGINPAGE = getContextPath() + "/login.jsp";
+    public static final String SINGUP = getContextPath() + "/sign-up.jsp";
     public static final String ERRORPAGE = "/error-page.jsp";
     public static final String CATALOG = getContextPath() + "/user/catalog.jsp";
     public static final String ADMIN_CATALOG = getContextPath() + "/admin/admin-catalog.jsp";

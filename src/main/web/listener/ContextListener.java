@@ -41,7 +41,6 @@ public class ContextListener implements ServletContextListener {
         ServletContext context = event.getServletContext();
         String localesFileName = context.getInitParameter("locales");
         setContextPath(context.getContextPath());
-        // obtain reale path on server
         String localesFileRealPath = context.getRealPath(localesFileName);
 
         // load descriptions
@@ -52,7 +51,6 @@ public class ContextListener implements ServletContextListener {
             log.error("Can't load file");
             e.printStackTrace();
         }
-
         // save descriptions to servlet context
         context.setAttribute("locales", locales);
         context.setAttribute("orderStatuses", orderStatuses);

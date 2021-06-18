@@ -7,8 +7,7 @@
 ${param.locale}
 <%-- set current locale to session --%>
 <c:set var="currentLocale" value="${param.locale}" scope="session"/>
-
-<%-- goto back to the settings--%>
+<jsp:forward page="index.jsp"/>
 <c:if test="${empty user||user.roleId>2}">
     <jsp:forward page="user/catalog.jsp"/>
 </c:if>

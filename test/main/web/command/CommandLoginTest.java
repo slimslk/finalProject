@@ -38,7 +38,6 @@ public class CommandLoginTest {
         when(sessionMock.getAttribute(any(String.class))).thenReturn(userCart);
         String result = commandLoginMock.execute(requestMock, responseMock);
         System.out.println("RESULT: " + result);
-        assertEquals("null/user/catalog.jsp", result);
+        assertEquals("null/controller?command=orders&action=orders", result);
     }
-
 }

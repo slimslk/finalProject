@@ -19,6 +19,16 @@ import java.util.Map;
 
 public class CommandAddOrder implements Command {
     private static final Logger log = LogManager.getLogger(CommandAddOrder.class);
+    OrderDAO orderDAO=new OrderDAO();
+    OrderListDAO orderListDAO=new OrderListDAO();
+
+    public CommandAddOrder() {
+    }
+
+    public CommandAddOrder(OrderDAO orderDAO, OrderListDAO orderListDAO) {
+        this.orderDAO = orderDAO;
+        this.orderListDAO=orderListDAO;
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -30,6 +40,7 @@ public class CommandAddOrder implements Command {
         long userId;
         goodsIdAsStringArray = request.getParameterValues("goodsId");
         goodsQuantityAsStringArray = request.getParameterValues("quantity");
+        log.error("GID: "+goodsIdAsStringArray+" GQ: "+goodsQuantityAsStringArray);
         if (goodsIdAsStringArray.length != goodsQuantityAsStringArray.length) {
             session.setAttribute("errorMessage", "Something wrong with creating order");
             return Path.ERRORPAGE;
@@ -49,14 +60,13 @@ public class CommandAddOrder implements Command {
         }
         log.error("Goods map: " + goodsMap);
         Order order = new Order();
-        OrderDAO orderDAO = new OrderDAO();
         long orderNumber = orderDAO.getMaxId() + 1;
         log.error("Order number is: " + orderNumber);
         order.setOrderNumber(orderNumber);
         order.setUserId(userId);
         order.setOrderDate(new Timestamp(System.currentTimeMillis()));
         log.error("Order: " + order);
-        new OrderListDAO().insertOrderInList(orderDAO.insertOrder(order, "registered"), goodsMap);
+        orderListDAO.insertOrderInList(orderDAO.insertOrder(order, "registered"), goodsMap);
         log.error("Order is: " + order);
         UserCart userCart = new UserCart();
         userCart.setUserId(userId);

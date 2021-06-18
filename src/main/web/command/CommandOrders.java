@@ -14,6 +14,14 @@ import javax.servlet.http.HttpSession;
 
 public class CommandOrders implements Command {
     private static final Logger log = LogManager.getLogger(CommandOrders.class);
+    private OrderListDAO orderListDAO=new OrderListDAO();
+
+    public CommandOrders(OrderListDAO orderListDAO) {
+        this.orderListDAO = orderListDAO;
+    }
+
+    public CommandOrders() {
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -24,16 +32,16 @@ public class CommandOrders implements Command {
             return redirectToOrders(session);
         }
         if (s.equals("update")) {
-            changeOrderStatus(request);
+           return changeOrderStatus(request);
         }
         return path;
     }
 
-    public String changeOrderStatus(HttpServletRequest request) {
+    private String changeOrderStatus(HttpServletRequest request) {
         try {
             long orderNumber = Long.parseLong(request.getParameter("param"));
             int orderStatusId = Integer.parseInt(request.getParameter("status"));
-            new OrderListDAO().changeOrderStatus(orderNumber, orderStatusId);
+            orderListDAO.changeOrderStatus(orderNumber, orderStatusId);
             return redirectToOrders(request.getSession());
         } catch (NumberFormatException | AppException e) {
             request.getSession().setAttribute("errorMessage", "Something wrong with parameter");
@@ -42,7 +50,7 @@ public class CommandOrders implements Command {
         }
     }
 
-    public String redirectToOrders(HttpSession session) throws AppException {
+    private String redirectToOrders(HttpSession session) throws AppException {
         long userId = 0;
         String path = Path.ADMIN_ORDERS;
         User user = (User) session.getAttribute("user");
@@ -50,7 +58,7 @@ public class CommandOrders implements Command {
             userId = user.getId();
             path = Path.USER_ORDERS;
         }
-        UserOrders userOrders = new OrderListDAO().getOrderListByUserId(userId);
+        UserOrders userOrders = orderListDAO.getOrderListByUserId(userId);
         log.error("userOrders putted to session is: " + userOrders);
         session.setAttribute("userOrders", userOrders);
         return path;

@@ -161,7 +161,7 @@ public class UserDAO {
             user.setPassword(rs.getString(Fields.PASSWORD));
             user.setRoleId(rs.getInt(Fields.ROLE_ID));
             user.setStatusId(rs.getInt(Fields.USER_STATUS_ID));
-            user.setLang(Fields.LOCALE);
+            user.setLang(rs.getString(Fields.LOCALE));
             user.setUserInfo(new UserInfoDAO().getUserInfoById(user.getId()));
             return user;
         } catch (SQLException | AppException e) {

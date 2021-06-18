@@ -20,6 +20,14 @@ import java.util.Map;
 
 public class CommandAJAX implements Command {
     private static final Logger log = LogManager.getLogger(CommandAJAX.class);
+    private CatalogDAO catalogDAO=new CatalogDAO();
+
+    public CommandAJAX(CatalogDAO catalogDAO) {
+        this.catalogDAO = catalogDAO;
+    }
+
+    public CommandAJAX() {
+    }
 
     private String filterGoods(HttpServletRequest req) throws AppException {
         HttpSession session = req.getSession();
@@ -44,7 +52,7 @@ public class CommandAJAX implements Command {
         }
         log.error(s + " || " + "Sort parameter: " + sort + " || Direction: " + dir + " || Start index: " + start + " || Count of columns: ");
         Map<Integer, Object> map;
-        map = new CatalogDAO().getListOfSortedItems(params, sort, dir, start);
+        map = catalogDAO.getListOfSortedItems(params, sort, dir, start);
         count = (Integer) map.get(0);
         log.error("Count in Map: " + count);
         catalog = (List<CatalogItem>) map.get(1);
@@ -64,7 +72,6 @@ public class CommandAJAX implements Command {
     }
 
     private String addToCart(HttpServletRequest request, boolean isAdd) throws AppException {
-        CatalogDAO catalogDAO = new CatalogDAO();
         HttpSession session = request.getSession();
         int inCartCount = 0;
         if (session.getAttribute("inCartCount") != null) {

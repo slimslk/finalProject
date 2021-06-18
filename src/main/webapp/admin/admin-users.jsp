@@ -6,7 +6,6 @@
 <%@include file="../WEB-INF/jspf/head.jspf" %>
 <body>
 <%@include file="../WEB-INF/jspf/header.jspf" %>
-<h1>ADMIN USERS</h1>
 <c:forEach var="a_user" items="${userList}">
     <c:if test="${a_user.roleId>2}">
         <div class="container-fluid">

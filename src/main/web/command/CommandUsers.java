@@ -19,6 +19,14 @@ public class CommandUsers implements Command {
     private static final String ERROR = "errorMessage";
     private static final Logger log = LogManager.getLogger(CommandUsers.class);
     private static final Map<Integer, String> userStatusesMap;
+    private UserDAO userDAO = new UserDAO();
+
+    public CommandUsers(UserDAO userDAO) {
+        this.userDAO = userDAO;
+    }
+
+    public CommandUsers() {
+    }
     //To enable displaying user role in admin-user.jsp uncomment userRole map
 //    private static final Map<Integer,String> userRoles;
 
@@ -42,26 +50,27 @@ public class CommandUsers implements Command {
             return redirectToUsers(request);
         }
         if (s.equals("update")) {
-            changeUserStatus(request);
+            return changeUserStatus(request);
         }
         return path;
     }
 
-    public String redirectToUsers(HttpServletRequest request) throws AppException {
+    private String redirectToUsers(HttpServletRequest request) throws AppException {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("user");
         if (user.getRoleId() > 2) {
             request.setAttribute(ERROR, "Access denied");
             return Path.ERRORPAGE;
         }
-        List<User> userList = new UserDAO().getUsers();
+        List<User> userList = userDAO.getUsers();
         session.setAttribute("userList", userList);
         session.setAttribute("userStatuses", userStatusesMap);
+        log.error("HERE");
 //        session.setAttribute("userRoles", userRoles);
         return Path.ADMIN_USERS;
     }
 
-    public String changeUserStatus(HttpServletRequest request) throws AppException {
+    private String changeUserStatus(HttpServletRequest request) throws AppException {
         String usernameToChange = request.getParameter("param");
         int status;
         try {
@@ -73,7 +82,7 @@ public class CommandUsers implements Command {
             return Path.ERRORPAGE;
         }
         log.log(Level.ERROR, "Change status");
-        new UserDAO().updateUserStatus(usernameToChange, status);
+        userDAO.updateUserStatus(usernameToChange, status);
         return redirectToUsers(request);
     }
 }

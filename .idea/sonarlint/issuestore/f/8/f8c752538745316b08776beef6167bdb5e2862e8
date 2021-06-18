@@ -1,6 +1,8 @@
 
+q
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¸õ¥¹şÿÿÿÿ8ÏÕ˜Ÿ/
 >
 java:S1170"!Make this final field static too.(Èúê™8¹ñø¶—/
-k
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¶–Ä"8ÏÕ˜Ÿ/
+u
+java:S1450"XRemove the "dbManager" field and declare it as a local variable in the relevant methods.(ã€°8äñÛ¥ /
 t	java:S116"XRename this field "GET_ROLE_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Èúê™8¹ñø¶—/

@@ -66,37 +66,41 @@ public class ChangeGoodsDAO {
         PreparedStatement pstm = null;
         ResultSet rs = null;
         int i = 0;
-        log.error("Catalog item is: " + catalogItem);
         try {
             connection = dbManager.getConnection();
             pstm = connection.prepareStatement(SELECT_AGEID_BY_NAME);
             pstm.setString(1, catalogItem.getGoodsParam().getAgeName());
             rs = pstm.executeQuery();
             while (rs.next()) {
+                log.error("AGE");
                 goodsParamNameMap.put("age", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_CATEGORYID_BY_NAME);
             pstm.setString(1, catalogItem.getGoodsParam().getCategoryName());
             rs = pstm.executeQuery();
             while (rs.next()) {
+                log.error("CATEGORY");
                 goodsParamNameMap.put("category", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_GENDERID_BY_NAME);
             pstm.setString(1, catalogItem.getGoodsParam().getGenderName());
             rs = pstm.executeQuery();
             while (rs.next()) {
+                log.error("GENDER");
                 goodsParamNameMap.put("gender", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_SIZEID_BY_NAME);
             pstm.setString(1, catalogItem.getGoodsParam().getSizeName());
             rs = pstm.executeQuery();
             while (rs.next()) {
+                log.error("SIZE");
                 goodsParamNameMap.put("size", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_STYLEID_BY_NAME);
             pstm.setString(1, catalogItem.getGoodsParam().getStyleName());
             rs = pstm.executeQuery();
             while (rs.next()) {
+                log.error("STYLE");
                 goodsParamNameMap.put("style", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(sqlGoods);
@@ -111,7 +115,6 @@ public class ChangeGoodsDAO {
             log.error("Map is: " + goodsParamNameMap);
             pstm = connection.prepareStatement(sqlGoodsParam);
             if (goodsId > 0) {
-                log.error("GoodsId is: " + goodsId);
                 pstm.setLong(++i, goodsId);
             }
             pstm.setInt(++i, goodsParamNameMap.get("gender"));
@@ -144,6 +147,7 @@ public class ChangeGoodsDAO {
             dbManager.close(rs);
             dbManager.close(pstm);
             dbManager.close(connection);
+            log.error("End of method");
         }
     }
 }

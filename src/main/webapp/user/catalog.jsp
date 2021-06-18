@@ -7,8 +7,6 @@
 <body>
 <%@include file="../WEB-INF/jspf/header.jspf" %>
 <link href="${pageContext.request.contextPath}/style/sidebars.css" rel="stylesheet">
-<hr/>
-<hr/>
 <template id="tempCard">
     <div class="col-4 my-3">
         <div class="card" style="width: 18rem;">
@@ -16,11 +14,11 @@
                  id="goods-img">
             <div class="card-body">
                 <p class="border-top"></p>
-                <h5 class="card-title" id="goods-price">$166.00</h5>
+                <h5 class="card-title" id="goods-price">$166</h5>
                 <p id="goods-name">2-Piece Floral Tank & Bike Short Set</p>
                 <div class="d-grid gap-2 justify-content-md-end">
-                    <button class="btn btn-primary" value="#" id="goods-addToCart" onclick="addToCart(this.value)">Add
-                        to cart
+                    <button class="btn btn-primary" value="#" id="goods-addToCart" onclick="addToCart(this.value)">
+                        <fmt:message key="user.catalog.add_to_cart"/>
                     </button>
                 </div>
             </div>
@@ -30,15 +28,15 @@
 <div class="container-fluid pb-3">
     <div class="row justify-content-end shadow-sm">
         <div class="col-2 text-end my-1">
-            <span class="align-middle my-1">Sort by |</span>
+            <span class="align-middle my-1"><fmt:message key="catalog.jsp.sort_by"/> |</span>
         </div>
         <div class="col-2">
             <select class="form-select" style="width: 200px" aria-label="sort-by" id="sort-by" onchange="doIt()">
-                <option selected value="newest">Newest</option>
-                <option value="name_asc">Name ascending</option>
-                <option value="name_desc">Name descending</option>
-                <option value="price_ltoh">Price Low to High</option>
-                <option value="price_htol">Price High to Low</option>
+                <option selected value="newest"><fmt:message key="sort.by.newest"/></option>
+                <option value="name_asc"><fmt:message key="sort.by.name.asc"/></option>
+                <option value="name_desc"><fmt:message key="sort.by.name.desc"/></option>
+                <option value="price_ltoh"><fmt:message key="sort.by.price.asc"/></option>
+                <option value="price_htol"><fmt:message key="sort.by.price.desc"/></option>
             </select>
         </div>
     </div>
@@ -50,7 +48,7 @@
                         <li class="mb-1">
                             <button class="btn btn-toggle align-items-center rounded collapsed"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#price-collapse" aria-expanded="false">Price
+                                    data-bs-target="#price-collapse" aria-expanded="false"><fmt:message key="goods.parameters.price"/>
                             </button>
                             <aside class="collapse show my-2" id="price-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
@@ -70,23 +68,23 @@
                         <li class="mb-1">
                             <button class="btn btn-toggle align-items-center rounded collapsed"
                                     data-bs-toggle="collapse"
-                                    data-bs-target="#age-collapse" aria-expanded="false">Age
+                                    data-bs-target="#age-collapse" aria-expanded="false"><fmt:message key="goods.parameters.age"/>
                             </button>
                             <aside class="collapse my-1" id="age-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckBaby"
                                                value=":baby">
-                                        <label class="form-check-label" for="flexCheckBaby">Baby</label>
+                                        <label class="form-check-label" for="flexCheckBaby"><fmt:message key="goods.parameters.age.baby"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckToddler"
                                                value=":toddler">
-                                        <label class="form-check-label" for="flexCheckToddler">Toddler</label>
+                                        <label class="form-check-label" for="flexCheckToddler"><fmt:message key="goods.parameters.age.toddler"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckKid" value=":kid">
-                                        <label class="form-check-label" for="flexCheckKid">Kid</label>
+                                        <label class="form-check-label" for="flexCheckKid"><fmt:message key="goods.parameters.age.kid"/></label>
                                     </div>
                                 </ul>
                             </aside>
@@ -95,44 +93,44 @@
                             <button class="btn btn-toggle align-items-center rounded collapsed"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#category-collapse" aria-expanded="false">
-                                Category
+                                <fmt:message key="goods.parameters.category"/>
                             </button>
                             <aside class="collapse hide my-1" id="category-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckBottoms"
                                                value=":bottoms">
-                                        <label class="form-check-label" for="flexCheckBottoms">Bottoms</label>
+                                        <label class="form-check-label" for="flexCheckBottoms"><fmt:message key="goods.parameters.category.bottoms"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckTops"
                                                value=":tops">
-                                        <label class="form-check-label" for="flexCheckTops">Tops</label>
+                                        <label class="form-check-label" for="flexCheckTops"><fmt:message key="goods.parameters.category.tops"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckPajamas"
                                                value=":pajamas">
-                                        <label class="form-check-label" for="flexCheckPajamas">Pajamas</label>
+                                        <label class="form-check-label" for="flexCheckPajamas"><fmt:message key="goods.parameters.category.pajamas"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckSets"
                                                value=":sets">
-                                        <label class="form-check-label" for="flexCheckSets">Sets</label>
+                                        <label class="form-check-label" for="flexCheckSets"><fmt:message key="goods.parameters.category.sets"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckShoes"
                                                value=":shoes">
-                                        <label class="form-check-label" for="flexCheckShoes">Shoes</label>
+                                        <label class="form-check-label" for="flexCheckShoes"><fmt:message key="goods.parameters.category.shoes"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckDresses-cat"
                                                value=":dresses">
-                                        <label class="form-check-label" for="flexCheckDresses-cat">Dresses</label>
+                                        <label class="form-check-label" for="flexCheckDresses-cat"><fmt:message key="goods.parameters.category.dresses"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckRompers-cat"
                                                value=":rompers">
-                                        <label class="form-check-label" for="flexCheckRompers-cat">Rompers</label>
+                                        <label class="form-check-label" for="flexCheckRompers-cat"><fmt:message key="goods.parameters.category.rompers"/></label>
                                     </div>
                                 </ul>
                             </aside>
@@ -141,18 +139,18 @@
                             <button class="btn btn-toggle align-items-center rounded collapsed"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#gender-collapse" aria-expanded="false">
-                                Gender
+                                <fmt:message key="goods.parameters.gender"/>
                             </button>
                             <aside class="collapse hide my-1" id="gender-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckBoy" value=":boy">
-                                        <label class="form-check-label" for="flexCheckBoy">Boy</label>
+                                        <label class="form-check-label" for="flexCheckBoy"><fmt:message key="goods.parameters.gender.boy"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckGirl"
                                                value=":girl">
-                                        <label class="form-check-label" for="flexCheckGirl">Girl</label>
+                                        <label class="form-check-label" for="flexCheckGirl"><fmt:message key="goods.parameters.gender.girl"/></label>
                                     </div>
                                 </ul>
                             </aside>
@@ -161,7 +159,7 @@
                             <button class="btn btn-toggle align-items-center rounded collapsed"
                                     data-bs-toggle="collapse"
                                     data-bs-target="#size-collapse" aria-expanded="false">
-                                Size
+                                <fmt:message key="goods.parameters.size"/>
                             </button>
                             <aside class="collapse hide my-1" id="size-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
@@ -197,44 +195,44 @@
                                     data-bs-toggle="collapse"
                                     data-bs-target="#style-collapse" aria-expanded="false" id="styleButton"
                                     value="style">
-                                Style
+                                <fmt:message key="goods.parameters.style"/>
                             </button>
                             <aside class="collapse hide my-1" id="style-collapse">
                                 <ul class="btn-toggle-nav list-unstyled fw-normal pb-1">
                                     <div class="form-switch form-check">
                                         <input class="form-check-input" type="checkbox" id="flexCheckGraphics"
                                                value=":graphics">
-                                        <label class="form-check-label" for="flexCheckGraphics">Graphics</label>
+                                        <label class="form-check-label" for="flexCheckGraphics"><fmt:message key="goods.parameters.style.graphics"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckCasual"
                                                value=":casual">
-                                        <label class="form-check-label" for="flexCheckCasual">Casual</label>
+                                        <label class="form-check-label" for="flexCheckCasual"><fmt:message key="goods.parameters.style.casual"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckDresses"
                                                value=":dresses">
-                                        <label class="form-check-label" for="flexCheckDresses">Dresses</label>
+                                        <label class="form-check-label" for="flexCheckDresses"><fmt:message key="goods.parameters.style.dresses"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckShorts"
                                                value=":shorts">
-                                        <label class="form-check-label" for="flexCheckToddler">Shorts</label>
+                                        <label class="form-check-label" for="flexCheckToddler"><fmt:message key="goods.parameters.style.shorts"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckTopTees"
                                                value=":top_tees">
-                                        <label class="form-check-label" for="flexCheckTopTees">Top&Tees</label>
+                                        <label class="form-check-label" for="flexCheckTopTees"><fmt:message key="goods.parameters.style.top_tees"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckSleepPlay"
                                                value=":sleep_play">
-                                        <label class="form-check-label" for="flexCheckSleepPlay">Sleep&Play</label>
+                                        <label class="form-check-label" for="flexCheckSleepPlay"><fmt:message key="goods.parameters.style.sleep_play"/></label>
                                     </div>
                                     <div class="form-switch form-check ">
                                         <input class="form-check-input" type="checkbox" id="flexCheckRomper"
                                                value=":romper">
-                                        <label class="form-check-label" for="flexCheckRomper">Romper</label>
+                                        <label class="form-check-label" for="flexCheckRomper"><fmt:message key="goods.parameters.style.romper"/></label>
                                     </div>
                                 </ul>
                             </aside>
@@ -256,7 +254,7 @@
 <script>
     window.onload = function () {
         doIt(0);
-        createPaginationNumbers(${sessionScope.itemsCount});
+        setNoGoodsText('<fmt:message key="catalog.jsp.no_goods"/>');
     }
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/addToCart.js"></script>

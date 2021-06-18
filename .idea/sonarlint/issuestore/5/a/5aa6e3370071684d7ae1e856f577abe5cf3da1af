@@ -1,7 +1,9 @@
 
-N
-java:S1481".Remove this unused "dbManager" local variable.(µό«νωÿÿÿÿ8‡ε‹ώ/
-N
-java:S2209"5Change this instance-reference to a static reference.(ώ‹ή°ψÿÿÿÿ
-O
-java:S2696"6Make the enclosing method "static" or remove this set.(ώ‹ή°ψÿÿÿÿ
+Q
+java:S2696"6Make the enclosing method "static" or remove this set.(ώ‹ή°ψÿÿÿÿ
+P
+java:S2209"5Change this instance-reference to a static reference.(ώ‹ή°ψÿÿÿÿ
+\
+java:S1161$":Add the "@Override" annotation above this method signature(πΦ€ψÿÿÿÿ8—έ†Σ/
+P
+java:S1481&".Remove this unused "dbManager" local variable.(µό«νωÿÿÿÿ8‡ε‹ώ/

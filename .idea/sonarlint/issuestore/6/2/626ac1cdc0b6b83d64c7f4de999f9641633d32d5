@@ -1,4 +1,4 @@
 
-w	java:S116"]Rename this field "GET_STATUS_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•žã¾ùÿÿÿÿ
 <
 java:S1170"!Make this final field static too.(•žã¾ùÿÿÿÿ
+w	java:S116"]Rename this field "GET_STATUS_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•žã¾ùÿÿÿÿ

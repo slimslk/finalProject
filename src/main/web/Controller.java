@@ -52,7 +52,6 @@ public class Controller extends HttpServlet {
         } catch (AppException ex) {
             log.error("Catch exception " + ex);
             request.getSession().setAttribute("errorMessage", ex);
-            //request.setAttribute("errorMessage", ex);
         }
         log.error("Execute command and forward to address: " + forward);
         System.out.println("Execute command and forward to address: " + forward);

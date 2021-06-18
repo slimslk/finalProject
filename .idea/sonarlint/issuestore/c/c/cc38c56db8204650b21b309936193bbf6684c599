@@ -1,79 +1,69 @@
 
-e
-java:S2095T"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í°ƒ
-j
-java:S2095N"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(×Ûš†ûÿÿÿÿ
+c
+java:S3457>"AFormat specifiers should be used instead of string concatenation.(‚ÄŠÿÿÿÿÿ8«ºœÚŸ/
+<
+java:S1170"!Make this final field static too.(ÇÕ¨ˆøÿÿÿÿ
+l
+java:S2095c"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ì›ÿ²8ò£ÏŠ¡/
 k
-java:S2095€"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªÀ‘Çûÿÿÿÿ
-e
-java:S2095`"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ì›ÿ²
-j
-java:S2095f"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ü·ˆİúÿÿÿÿ
-e
-java:S2095p"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¯Äìè
-d
-java:S2095H"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(­˜§
-j
-java:S2095""OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÖÒîƒÿÿÿÿÿ
-e
-java:S2095Z"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ğ¥ñ—
-R
-java:S2629<"7Use the built-in formatting to construct this argument.(¡©áôûÿÿÿÿ
-L
-java:S2629="7Use the built-in formatting to construct this argument.(Ê¾G
-R
-java:S2629>"7Use the built-in formatting to construct this argument.(‚ÄŠÿÿÿÿÿ
-R
-java:S2629E"7Use the built-in formatting to construct this argument.(Åş˜Ïûÿÿÿÿ
-M
-java:S2629o"7Use the built-in formatting to construct this argument.(–ƒù
-R
-java:S2629r"7Use the built-in formatting to construct this argument.(À‰àûÿÿÿÿ
-v	java:S116"\Rename this field "UPDATE_GOODS_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…â›øÿÿÿÿ
-{	java:S116"aRename this field "UPDATE_GOODSPARAM_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹¼‘ûÿÿÿÿ
-s	java:S116"^Rename this field "UPDATE_CATALOG_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à§¶‹
-y	java:S116"_Rename this field "SELECT_AGEID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶˜‰Áşÿÿÿÿ
-y	java:S116"dRename this field "SELECT_CATEGORYID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ÷Á€
+java:S2095G"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(­˜§8ò£ÏŠ¡/
 |	java:S116"bRename this field "SELECT_GENDERID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ò¨şÏøÿÿÿÿ
-z	java:S116"`Rename this field "SELECT_SIZEID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇÕ¨ˆøÿÿÿÿ
+y	java:S116"dRename this field "SELECT_CATEGORYID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñ÷Á€
+y	java:S116"_Rename this field "SELECT_AGEID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¶˜‰Áşÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(¶˜‰Áşÿÿÿÿ
+{	java:S116"aRename this field "UPDATE_GOODSPARAM_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(‹¼‘ûÿÿÿÿ
 {	java:S116"aRename this field "SELECT_STYLEID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(úÌƒ‡ıÿÿÿÿ
-r	java:S116"]Rename this field "REMOVE_GOODS_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤«Ğû
-q	java:S116"WRename this field "INSERT_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñª˜ùÿÿÿÿ
+v	java:S116"\Rename this field "UPDATE_GOODS_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…â›øÿÿÿÿ
 r	java:S116"]Rename this field "INSERD_GOODS_PARAM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•éôı
 w	java:S116"]Rename this field "INSERT_ITEMCATALOG" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µšî¶ûÿÿÿÿ
-<
-java:S1170"!Make this final field static too.(…â›øÿÿÿÿ
-<
-java:S1170"!Make this final field static too.(‹¼‘ûÿÿÿÿ
 7
 java:S1170"!Make this final field static too.(à§¶‹
 <
-java:S1170"!Make this final field static too.(¶˜‰Áşÿÿÿÿ
-7
-java:S1170"!Make this final field static too.(ñ÷Á€
-<
-java:S1170"!Make this final field static too.(ò¨şÏøÿÿÿÿ
-<
-java:S1170"!Make this final field static too.(ÇÕ¨ˆøÿÿÿÿ
-<
-java:S1170"!Make this final field static too.(úÌƒ‡ıÿÿÿÿ
-7
-java:S1170"!Make this final field static too.(¤«Ğû
-<
 java:S1170"!Make this final field static too.(ñª˜ùÿÿÿÿ
-7
-java:S1170"!Make this final field static too.(•éôı
-<
-java:S1170"!Make this final field static too.(µšî¶ûÿÿÿÿ
-\
-java:S3457<"AFormat specifiers should be used instead of string concatenation.(¡©áôûÿÿÿÿ
 V
 java:S3457="AFormat specifiers should be used instead of string concatenation.(Ê¾G
-\
-java:S3457>"AFormat specifiers should be used instead of string concatenation.(‚ÄŠÿÿÿÿÿ
-\
-java:S3457E"AFormat specifiers should be used instead of string concatenation.(Åş˜Ïûÿÿÿÿ
-W
-java:S3457o"AFormat specifiers should be used instead of string concatenation.(–ƒù
-\
-java:S3457r"AFormat specifiers should be used instead of string concatenation.(À‰àûÿÿÿÿ
+Y
+java:S2629>"7Use the built-in formatting to construct this argument.(‚ÄŠÿÿÿÿÿ8«ºœÚŸ/
+<
+java:S1170"!Make this final field static too.(úÌƒ‡ıÿÿÿÿ
+<
+java:S1170"!Make this final field static too.(ò¨şÏøÿÿÿÿ
+q
+java:S2095N"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(×Ûš†ûÿÿÿÿ8ò£ÏŠ¡/
+c
+java:S3457<"AFormat specifiers should be used instead of string concatenation.(¡©áôûÿÿÿÿ8Šíåˆ¡/
+T
+java:S2629s"7Use the built-in formatting to construct this argument.(–ƒù8ÉÏŠ¡/
+<
+java:S1170"!Make this final field static too.(µšî¶ûÿÿÿÿ
+Y
+java:S2629<"7Use the built-in formatting to construct this argument.(¡©áôûÿÿÿÿ8Šíåˆ¡/
+r	java:S116"]Rename this field "REMOVE_GOODS_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤«Ğû
+s	java:S116"^Rename this field "UPDATE_CATALOG_ITEM" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(à§¶‹
+l
+java:S2095t"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¯Äìè8ÉÏŠ¡/
+7
+java:S1170"!Make this final field static too.(¤«Ğû
+l
+java:S2095U"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Í°ƒ8ò£ÏŠ¡/
+<
+java:S1170"!Make this final field static too.(…â›øÿÿÿÿ
+^
+java:S3457s"AFormat specifiers should be used instead of string concatenation.(–ƒù8ÉÏŠ¡/
+<
+java:S1170"!Make this final field static too.(‹¼‘ûÿÿÿÿ
+7
+java:S1170"!Make this final field static too.(ñ÷Á€
+7
+java:S1170"!Make this final field static too.(•éôı
+L
+java:S2629="7Use the built-in formatting to construct this argument.(Ê¾G
+z	java:S116"`Rename this field "SELECT_SIZEID_BY_NAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇÕ¨ˆøÿÿÿÿ
+q	java:S116"WRename this field "INSERT_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ñª˜ùÿÿÿÿ
+l
+java:S2095\"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ğ¥ñ—8ò£ÏŠ¡/
+q
+java:S2095j"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ü·ˆİúÿÿÿÿ8ò£ÏŠ¡/
+r
+java:S2095ƒ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ªÀ‘Çûÿÿÿÿ8§àÏŠ¡/

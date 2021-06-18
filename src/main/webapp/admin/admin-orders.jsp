@@ -6,7 +6,6 @@
 <%@include file="../WEB-INF/jspf/head.jspf" %>
 <body>
 <%@include file="../WEB-INF/jspf/header.jspf" %>
-<h1>ADMIN ORDER</h1>
 <c:forEach var="userOrder" items="${userOrders.userOrders}">
     <%--Order--%>
     <div class="container-fluid">

@@ -10,6 +10,7 @@ public class User extends Entity {
     private String lang;
 
     public String getLang() {
+        System.out.println("Lang is:"+lang);
         return lang;
     }
 
@@ -59,10 +60,10 @@ public class User extends Entity {
 
     @Override
     public String toString() {
-        return "User{" +"user id="+getId()+
+        return "User{" + "user id=" + getId() +
                 "username='" + username + '\'' +
-                ", roleId=" + roleId +
-                ", userInfo=" + userInfo + "lang= "+lang+
+                ", roleId=" + roleId + ", lang=" + lang +
+                ", userInfo=" + userInfo +
                 '}';
     }
 }

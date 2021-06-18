@@ -16,7 +16,7 @@ public class UserInfoDAO {
     private final String GET_USER_BY_ID = "SELECT * FROM usersInfo  WHERE id=?";
     private final String INSERT_USER_INFO = "INSERT INTO usersInfo(userId,name,surname) VALUES (?,?,?)";
 
-    public UserInfo getUserInfoById(long id) throws AppException, SQLException {
+    public UserInfo getUserInfoById(long id) throws AppException {
         UserInfo userInfo = new UserInfo();
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;

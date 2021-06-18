@@ -7,6 +7,7 @@ import main.web.Path;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +20,14 @@ import java.time.LocalDate;
 
 public class CommandAdminCatalog implements Command {
     private static final Logger log = LogManager.getLogger(CommandAdminCatalog.class);
+    private ChangeGoodsDAO changeGoodsDAO = new ChangeGoodsDAO();
 
+    public CommandAdminCatalog(ChangeGoodsDAO changeGoodsDAO) {
+        this.changeGoodsDAO = changeGoodsDAO;
+    }
+
+    public CommandAdminCatalog() {
+    }
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -46,10 +54,10 @@ public class CommandAdminCatalog implements Command {
         return path;
     }
 
-    public String removeItem(HttpServletRequest request) {
+    private String removeItem(HttpServletRequest request) {
         try {
             long goodsParamId = Long.parseLong(request.getParameter("goodsParamId"));
-            new ChangeGoodsDAO().removeGoods(goodsParamId);
+            changeGoodsDAO.removeGoods(goodsParamId);
         } catch (NumberFormatException | AppException e) {
             e.printStackTrace();
             request.getSession().setAttribute("errorMessage", "Wrong number parameters");
@@ -64,7 +72,7 @@ public class CommandAdminCatalog implements Command {
      * @param action parameter set what kind of the action need to do: create new or update exist goods item
      * @return path to the admin catalog
      */
-    public String changeItem(HttpServletRequest request, String action) throws AppException {
+    private String changeItem(HttpServletRequest request, String action) throws AppException {
         try {
             CatalogItem catalogItem = new CatalogItem();
             GoodsParam goodsParam = new GoodsParam();
@@ -83,7 +91,8 @@ public class CommandAdminCatalog implements Command {
                 System.out.println("File is: " + file);
                 fileName = file.getSubmittedFileName();
                 System.err.println("SIZE OF FILE: " + file.getSize());
-                String path = request.getServletContext().getRealPath("/") + "img/";
+                ServletContext servletContext = request.getServletContext();
+                String path = servletContext.getRealPath("/") + "img/";
                 file.write(path + fileName);
                 if (new File(javaPath).exists()) {
                     file.write(javaPath + fileName);
@@ -119,11 +128,11 @@ public class CommandAdminCatalog implements Command {
             catalogItem.setQuantity(quantity);
             catalogItem.setAddDate(java.sql.Date.valueOf(LocalDate.now()));
             if (action.equals("create")) {
-                new ChangeGoodsDAO().createGoods(catalogItem);
+                changeGoodsDAO.createGoods(catalogItem);
                 return Path.ADMIN_CATALOG;
             }
             log.error("Catalog item is: " + catalogItem);
-            new ChangeGoodsDAO().updateGoods(catalogItem);
+            changeGoodsDAO.updateGoods(catalogItem);
             return Path.ADMIN_CATALOG;
         } catch (NumberFormatException | AppException | IOException | ServletException e) {
             e.printStackTrace();

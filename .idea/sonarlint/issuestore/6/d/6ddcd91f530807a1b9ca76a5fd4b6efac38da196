@@ -1,6 +1,15 @@
 
-Z	java:S106"9Replace this use of System.out or System.err by a logger.(£åƒùşÿÿÿÿ8Ÿ‘ÿ/
-T
-java:S26290"7Use the built-in formatting to construct this argument.(›ƒƒ8 ÿáË›/
+S
+java:S2629/"7Use the built-in formatting to construct this argument.(÷ª¢8Ğø˜Ò /
 ^
-java:S34570"AFormat specifiers should be used instead of string concatenation.(›ƒƒ8 ÿáË›/
+java:S3457>"AFormat specifiers should be used instead of string concatenation.(›ƒƒ8 ÿáË›/
+^
+java:S34570"AFormat specifiers should be used instead of string concatenation.(øìû¬8‘ÄÒ /
+G
+java:S34572"%String contains no format specifiers.(£´×üÿÿÿÿ8šµÈÒ /
+T
+java:S2629>"7Use the built-in formatting to construct this argument.(›ƒƒ8 ÿáË›/
+]
+java:S3457/"AFormat specifiers should be used instead of string concatenation.(÷ª¢8Ğø˜Ò /
+O
+java:S1128"-Remove this unused import 'java.util.Locale'.(åğ×±ûÿÿÿÿ8ˆ÷€¤ /

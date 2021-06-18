@@ -32,12 +32,12 @@
                                             <div class="d-flex justify-content-between">
                                                 <div>
                                                     <h5>${cartItem.goods.name}</h5>
-                                                    <p class="mb-2 text-muted text-uppercase small">Size
+                                                    <p class="mb-2 text-muted text-uppercase small"><fmt:message key="goods.parameters.size"/>
                                                         : ${cartItem.goodsParam.sizeName}</p>
                                                     <p class="mb-2 text-muted text-uppercase small">
-                                                        Price: ${cartItem.price}</p>
+                                                        <fmt:message key="goods.parameters.price"/>: ${cartItem.price}</p>
                                                     <p class="text-muted text-uppercase small">
-                                                        Quantity: ${userCart.getQuantity(cartItem.goodsParamId)}</p>
+                                                        <fmt:message key="goods.parameters.quantity"/>: ${userCart.getQuantity(cartItem.goodsParamId)}</p>
                                                 </div>
                                                 <button class="btn btn-outline-danger rounded-3 h-25"
                                                         onclick="removeItem(${cartItem.goodsParamId},${userCart.getQuantity(cartItem.goodsParamId)})">
@@ -52,7 +52,7 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-md-10">
-                                                <h4>Total price:</h4>
+                                                <h4><fmt:message key="admin-orders.jsp.total_price"/>:</h4>
                                             </div>
                                             <div class="col-1">
                                                 <h4>$<span id="${cartItem.goodsParamId}-total">
@@ -78,11 +78,11 @@
                 <div class="col-4">
                     <div class="pt-4">
                         <div class="row shadow-lg rounded p-3">
-                            <h3>Order summary</h3>
+                            <h3><fmt:message key="cart.jsp.order_summary"/></h3>
                             <hr>
                             <div class="row pb-2">
                                 <div class="col">
-                                    Subtotal
+                                    <fmt:message key="cart.jsp.subtotal"/>
                                 </div>
                                 <div class="col-4">
                                     $<span id="subtotal">
@@ -92,15 +92,15 @@
                             </div>
                             <div class="row pb-2">
                                 <div class="col">
-                                    Shipping
+                                    <fmt:message key="cart.jsp.shipping"/>
                                 </div>
                                 <div class="col-4">
-                                    Free
+                                    <fmt:message key="cart.jsp.free"/>
                                 </div>
                             </div>
                             <div class="row pb-2">
                                 <div class="col">
-                                    <h4>Order total</h4>
+                                    <h4><fmt:message key="cart.jsp.order_total"/></h4>
                                 </div>
                                 <div class="col-4">
                                     $<span id="order-total">
@@ -117,11 +117,11 @@
                                             <input type="hidden" name="goodsId" value="${cartItem.goodsParamId}" id="id-form-${cartItem.goodsParamId}">
                                             <input type="hidden" name="quantity" value="${userCart.getQuantity(cartItem.goodsParamId)}" id="quantity-form-${cartItem.goodsParamId}">
                                         </c:forEach>
-                                        <button type="submit" class="btn btn-primary btn-block" onclick="makeZero()">Checkout</button>
+                                        <button type="submit" class="btn btn-primary btn-block" onclick="makeZero()"><fmt:message key="cart.jsp.checkout"/></button>
                                     </form>
                                 </c:when>
                                 <c:when test="${empty user}">
-                                    <button type="button" class="btn btn-outline-primary btn-block" onclick="location.href='${pageContext.request.contextPath}/login.jsp'">Sing in for checkout
+                                    <button type="button" class="btn btn-outline-primary btn-block" onclick="location.href='${pageContext.request.contextPath}/login.jsp'"><fmt:message key="cart.jsp.sing_in_checkout"/>
                                     </button>
                                 </c:when>
                             </c:choose>
@@ -135,7 +135,7 @@
             <!-- Grid row -->
         </c:when>
         <c:when test="${userCart.size<1}">
-            <div><h3 class="text-center mt-4">Your shopping cart is empty</h3></div>
+            <div><h3 class="text-center mt-4"><fmt:message key="cart.jsp.cart_empty"/></h3></div>
         </c:when>
     </c:choose>
 </div>

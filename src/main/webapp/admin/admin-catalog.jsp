@@ -8,7 +8,6 @@
 <%@include file="../WEB-INF/jspf/header.jspf" %>
 <link href="${pageContext.request.contextPath}/style/sidebars.css" rel="stylesheet">
 <jsp:useBean id="gpm" class="main.entity.GoodsParameters"/>
-<h1>ADMIN CATALOG</h1>
 <template id="tempCard">
     <div class="container-fluid">
         <div class="row">
