@@ -122,7 +122,6 @@ public class CatalogDAO {
 
         StringBuilder countSB_SQL = new StringBuilder();
         countSB_SQL.append(COUNT_OF_GOODS).append(expression);
-        log.error("expression without first part");
         map.put(0, countSB_SQL.toString());
         Integer count = getCountOfItemsFromDB(map);
         log.error("CatalogDAO -> count is: " + count);
@@ -166,9 +165,9 @@ public class CatalogDAO {
             connection.commit();
             return count;
         } catch (SQLException ex) {
-            log.error("cant get item list from DB count");
+            log.error("cant get count of items from DB");
             dbManager.rollback(connection);
-            throw new AppException("Can't get items from Database count", ex);
+            throw new AppException("Database not available now. Try later.", ex);
         } finally {
             dbManager.close(rs);
             dbManager.close(pstm);
@@ -264,7 +263,6 @@ public class CatalogDAO {
                     catalogList.add(mapRow(rs));
                 }
             }
-
             con.commit();
         } catch (SQLException e) {
             dbManager.rollback(con);

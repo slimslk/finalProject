@@ -60,7 +60,8 @@ public class CommandAJAX implements Command {
             session.setAttribute("itemCatalogList", catalog);
         }
         if (catalog == null) {
-            session.setAttribute("errorMessage", "Something wrong whit query to DB, try again in few a minutes");
+            log.error("Error with DB");
+            session.setAttribute("errorMessage", "Something wrong whit query to DB, try again later");
             return "errorMessage";
         }
         session.setAttribute("itemsCount", count);

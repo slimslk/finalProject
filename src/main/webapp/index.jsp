@@ -10,22 +10,13 @@
 </c:if>
 <%@include file="WEB-INF/jspf/header.jspf" %>
 <br>
-<h1>HelloWorld</h1>
-<sz:total value="15.55555"/>
-<c:if test="${not empty user}">
-    <a href="${pageContext.request.contextPath}/controller?command=orders">User orders</a>
-</c:if>
-<%--ASC and DESC --%>
-<form id="catalogItem" action="controller">
-    <a href="${pageContext.request.contextPath}/controller?command=catalog">Catalog</a>
-</form>
-<fmt:message key="login_jsp.button.login"></fmt:message>
-${header['referer']}
-${sessionScope.currentLocale}
+<%--<h1>HelloWorld</h1>--%>
+<%--<sz:total value="15.55555"/>--%>
+<%--<c:if test="${not empty user}">--%>
+<%--    <a href="${pageContext.request.contextPath}/controller?command=orders">User orders</a>--%>
+<%--</c:if>--%>
+<%--&lt;%&ndash;ASC and DESC &ndash;%&gt;--%>
+<%--    <a href="${pageContext.request.contextPath}/controller?command=catalog">Catalog</a>--%>
+<c:redirect url="user/catalog.jsp"/>
 </body>
-<%--<script>--%>
-<%--    window.onload=function (){--%>
-<%--        location.href='${pageContext.request.contextPath}/controller?command=catalog';--%>
-<%--    }--%>
-<%--</script>--%>
 </html>

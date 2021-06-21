@@ -17,15 +17,11 @@ public class UserStatusFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("user");
-
         if (user != null && user.getStatusId() == 2) {
             session.setAttribute("errorMessage", "Your account was blocked!");
-            System.err.println("ERROR FILTER PATH: " + Path.ERRORPAGE);
             RequestDispatcher dispatcher = req.getRequestDispatcher(Path.ERRORPAGE);
-            System.err.println("ERROR FILTER PATH2: " + Path.ERRORPAGE);
             dispatcher.forward(request, response);
         }
-        System.err.println("ERROR FILTER PATH3: " + Path.ERRORPAGE);
         filterChain.doFilter(request, response);
     }
 }

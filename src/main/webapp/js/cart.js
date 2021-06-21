@@ -3,9 +3,9 @@ function removeItem(id, qnt) {
     let itemPrice = parseFloat(document.getElementById(id + "-total").innerText);
     let subtotal = document.getElementById("subtotal");
     let total = document.getElementById("order-total");
-    let idForm=document.getElementById(("id-form-"+id));
-    let quantityForm=document.getElementById(("quantity-form-"+id));
-    if(idForm!==null&&quantityForm!==null){
+    let idForm = document.getElementById(("id-form-" + id));
+    let quantityForm = document.getElementById(("quantity-form-" + id));
+    if (idForm !== null && quantityForm !== null) {
         idForm.remove();
         quantityForm.remove();
     }
@@ -23,11 +23,9 @@ function removeItem(id, qnt) {
         deleteDiv.remove();
         document.getElementById("main-container").appendChild(newDiv);
     }
-// <div><h3 class="text-center mt-4">Your shopping cart is empty</h3></div>
 }
 
 function makeZero() {
-    alert("Make ZERO");
     let inCartCount = document.querySelector("#countInCart");
     inCartCount.textContent = '0'.toString();
 }
@@ -36,14 +34,23 @@ function removeFromCart(goodsParamID, quantity) {
     let reqBody = "command=ajax&do=remove&goodsId=" + goodsParamID + "&quantity=" + quantity;
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resText = this.responseText;
-            if (resText === "1") {
-                let inCartCount = document.querySelector("#countInCart");
-                inCartCount.textContent = (parseInt(inCartCount.textContent) - quantity).toString();
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                let resText = this.responseText;
+                if (resText === "1" || resText === "0") {
+                    if (resText === "1") {
+                        let inCartCount = document.querySelector("#countInCart");
+                        inCartCount.textContent = (parseInt(inCartCount.textContent) - quantity).toString();
+                    }
+                    if (resText === "0") {
+                        alert("No goods in the stock");
+                    }
+                } else {
+                    location.assign("../error-page.jsp");
+                }
             }
-            if (resText === "0") {
-                alert("No goods in the stock");
+            if (this.status >= 400 && this.status <= 500) {
+                location.assign("../error-page.jsp")
             }
         }
     }

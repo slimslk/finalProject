@@ -1,58 +1,58 @@
 
-
-java:S1192Ø"^Define a constant instead of duplicating this literal "Can't get items from Database" 3 times.(É÷¸–ûÿÿÿÿ8­úÂÿŸ/
-C
-java:S1170"!Make this final field static too.(ÉÅëòıÿÿÿÿ8ÿ—¥ÿ/
-^
-java:S3457Ã"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8­úÂÿŸ/
-z	java:S116"^Rename this field "GET_LIST_OF_GOODS_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Í£Ÿ8ƒ‹µ½Ÿ/
-l
-java:S2259Î"IA "NullPointerException" could be thrown; "catalogItem" is nullable here.(‚¸Œùÿÿÿÿ8­úÂÿŸ/
-t
-java:S3776K"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(¡Î™ıÿÿÿÿ8Ô÷ôÏŸ/
->
-java:S1170"!Make this final field static too.(·ÓØğ8ÿ—¥ÿ/
-d
-java:S3457›"AFormat specifiers should be used instead of string concatenation.(Åş˜Ïûÿÿÿÿ8­úÂÿŸ/
-^
-java:S3457"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8‹ó¼ÒŸ/
-c
-java:S1192š"FDefine a constant instead of duplicating this literal "Key: " 4 times.(‘ŸŒ8‹ó¼ÒŸ/
-U
-java:S2629€"7Use the built-in formatting to construct this argument.(£û¬„8Ô÷ôÏŸ/
-r	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÙ‹½şÿÿÿÿ8Ô÷ôÏŸ/
-€	java:S116"_Rename this field "GET_ITEM_BY_GOODS_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÅëòıÿÿÿÿ8ÿ—¥ÿ/
-ƒ	java:S116"bRename this field "UPDATE_ITEM_BY_GOODS_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùœ¸æıÿÿÿÿ8ÿ—¥ÿ/
-r
-java:S2095•"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(«ˆÆìøÿÿÿÿ8‹ó¼ÒŸ/
-l
-java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹•ƒL8­úÂÿŸ/
-y	java:S116"]Rename this field "GET_COUNT_OF_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¨÷Í8‘”à¼Ÿ/
-l
-java:S20959"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(”·İ½8‰¿¸½Ÿ/
-u	java:S116"YRename this field "COUNT_OF_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†¾ÿİ8Â‘´½Ÿ/
-z	java:S116#"^Rename this field "GET_LIST_OF_GOODS_2" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÜÇ8‰¿¸½Ÿ/
-m
-java:S2095¾"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‰±ØÛ8­úÂÿŸ/
-C
-java:S1170"!Make this final field static too.(ùœ¸æıÿÿÿÿ8ÿ—¥ÿ/
->
-java:S1170"!Make this final field static too.(¾Í£Ÿ8ƒ‹µ½Ÿ/
-^	java:S125Ş"<This block of commented-out lines of code should be removed.(×Òúæùÿÿÿÿ8­úÂÿŸ/
-Z
-java:S2629›"7Use the built-in formatting to construct this argument.(Åş˜Ïûÿÿÿÿ8­úÂÿŸ/
-t	java:S116"XRename this field "COUNT_OF_ROWS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ÓØğ8ÿ—¥ÿ/
->
-java:S1170"!Make this final field static too.(Š¨÷Í8‘”à¼Ÿ/
->
-java:S1170"!Make this final field static too.(†¾ÿİ8Â‘´½Ÿ/
-l
-java:S2095ƒ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹•ƒL8­úÂÿŸ/
-^
-java:S3457Ç"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8­úÂÿŸ/
 _
 java:S3457€"AFormat specifiers should be used instead of string concatenation.(£û¬„8Ô÷ôÏŸ/
->
-java:S1170#"!Make this final field static too.(éÜÇ8‰¿¸½Ÿ/
 ^
 java:S3457š"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8‹ó¼ÒŸ/
+l
+java:S20959"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(”·İ½8‰¿¸½Ÿ/
+l
+java:S2259Î"IA "NullPointerException" could be thrown; "catalogItem" is nullable here.(‚¸Œùÿÿÿÿ8­úÂÿŸ/
+C
+java:S1170"!Make this final field static too.(ÉÅëòıÿÿÿÿ8ÿ—¥ÿ/
+t
+java:S3776K"RRefactor this method to reduce its Cognitive Complexity from 40 to the 15 allowed.(¡Î™ıÿÿÿÿ8Ô÷ôÏŸ/
+^	java:S125Ş"<This block of commented-out lines of code should be removed.(×Òúæùÿÿÿÿ8­úÂÿŸ/
+l
+java:S2095ƒ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹•ƒL8­úÂÿŸ/
+>
+java:S1170"!Make this final field static too.(·ÓØğ8ÿ—¥ÿ/
+
+java:S1192Ø"^Define a constant instead of duplicating this literal "Can't get items from Database" 3 times.(É÷¸–ûÿÿÿÿ8­úÂÿŸ/
+d
+java:S3457›"AFormat specifiers should be used instead of string concatenation.(Åş˜Ïûÿÿÿÿ8­úÂÿŸ/
+t	java:S116"XRename this field "COUNT_OF_ROWS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·ÓØğ8ÿ—¥ÿ/
+€	java:S116"_Rename this field "GET_ITEM_BY_GOODS_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÉÅëòıÿÿÿÿ8ÿ—¥ÿ/
+m
+java:S2095¾"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‰±ØÛ8­úÂÿŸ/
+^
+java:S3457Ã"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8­úÂÿŸ/
+c
+java:S1192š"FDefine a constant instead of duplicating this literal "Key: " 4 times.(‘ŸŒ8‹ó¼ÒŸ/
+z	java:S116#"^Rename this field "GET_LIST_OF_GOODS_2" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(éÜÇ8‰¿¸½Ÿ/
+>
+java:S1170"!Make this final field static too.(¾Í£Ÿ8ƒ‹µ½Ÿ/
+l
+java:S2095ê"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹•ƒL8­úÂÿŸ/
+>
+java:S1170"!Make this final field static too.(Š¨÷Í8‘”à¼Ÿ/
+z	java:S116"^Rename this field "GET_LIST_OF_GOODS_1" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¾Í£Ÿ8ƒ‹µ½Ÿ/
+u	java:S116"YRename this field "COUNT_OF_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(†¾ÿİ8Â‘´½Ÿ/
+>
+java:S1170#"!Make this final field static too.(éÜÇ8‰¿¸½Ÿ/
+y	java:S116"]Rename this field "GET_COUNT_OF_GOODS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Š¨÷Í8‘”à¼Ÿ/
+C
+java:S1170"!Make this final field static too.(ùœ¸æıÿÿÿÿ8ÿ—¥ÿ/
+^
+java:S3457Ç"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8­úÂÿŸ/
+U
+java:S2629€"7Use the built-in formatting to construct this argument.(£û¬„8Ô÷ôÏŸ/
+r
+java:S2095•"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(«ˆÆìøÿÿÿÿ8‹ó¼ÒŸ/
+>
+java:S1170"!Make this final field static too.(†¾ÿİ8Â‘´½Ÿ/
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(‘ŸŒ8‹ó¼ÒŸ/
+Z
+java:S2629›"7Use the built-in formatting to construct this argument.(Åş˜Ïûÿÿÿÿ8­úÂÿŸ/
+r	java:S117{"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(µÙ‹½şÿÿÿÿ8Ô÷ôÏŸ/
+ƒ	java:S116"bRename this field "UPDATE_ITEM_BY_GOODS_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ùœ¸æıÿÿÿÿ8ÿ—¥ÿ/

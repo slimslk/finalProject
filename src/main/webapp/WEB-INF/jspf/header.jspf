@@ -4,8 +4,8 @@
     <div class="container-fluid bg-dark pb-3 pt-3">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="${pageContext.request.contextPath}/index.jsp" class="nav-link px-2 text-secondary"><fmt:message key="header.jsp.button.about"/></a>
-                </li>
+<%--                <li><a href="${pageContext.request.contextPath}/index.jsp" class="nav-link px-2 text-secondary"><fmt:message key="header.jsp.button.about"/></a>--%>
+<%--                </li>--%>
             </ul>
             <c:choose>
                 <c:when test="${not empty user}">

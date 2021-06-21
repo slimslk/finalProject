@@ -16,9 +16,19 @@ function filterParam(req) {
     command = command + "&sort=" + sort[0] + "&direction=" + sort[1] + price + "&start=-1";
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let stringArray=this.responseText.split("|");
-            createGoods(parseJSON(stringArray[1]));
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                let stringArray = this.responseText.split("|");
+                if (stringArray.length !== 1) {
+                    let parseJson = parseJSON(stringArray[1]);
+                    createGoods(parseJson);
+                } else {
+                    location.assign("../error-page.jsp");
+                }
+            }
+            if (this.status >= 400 && this.status <= 500) {
+                location.assign("../error-page.jsp")
+            }
         }
     }
     xhr.open('POST', "../controller");

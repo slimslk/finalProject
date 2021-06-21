@@ -17,5 +17,5 @@ public final class Path {
     public static final String USER_ORDERS = getContextPath() + "/user/user-orders.jsp";
     public static final String ADMIN_ORDERS = getContextPath() + "/admin/admin-orders.jsp";
     public static final String ADMIN_USERS = getContextPath() + "/admin/admin-users.jsp";
-    public static final String CHANGE_LOCALE = getContextPath()+"/changeLocal.jsp";
+    public static final String CHANGE_LOCALE = getContextPath() + "/changeLocal.jsp";
 }

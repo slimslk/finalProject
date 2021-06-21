@@ -1,7 +1,5 @@
 CREATE DATABASE IF NOT EXISTS eshop CHARACTER SET UTF8 COLLATE utf8_bin;
 
-
-
 SET FOREIGN_KEY_CHECKS = 0;
 
 DROP TABLE IF EXISTS age;
@@ -112,7 +110,7 @@ CREATE TABLE IF NOT EXISTS goodsParam
     categoryId INT                NOT NULL,
     styleId    INT                NOT NULL,
     UNIQUE (id),
-    FOREIGN KEY (goodsId) REFERENCES goods(id) ON DELETE CASCADE,
+    FOREIGN KEY (goodsId) REFERENCES goods (id) ON DELETE CASCADE,
     FOREIGN KEY (genderId) REFERENCES gender (id) ON DELETE CASCADE,
     FOREIGN KEY (ageId) REFERENCES age (id) ON DELETE CASCADE,
     FOREIGN KEY (sizeId) REFERENCES size (id) ON DELETE CASCADE,
@@ -184,11 +182,11 @@ VALUES ('registered'),
        ('paid'),
        ('canceled');
 
-INSERT INTO users(username, password, roleId, status)
-VALUES ('slim.slk@gmail.com', '777', 1, 1);
+INSERT INTO users(username, password, roleId, status, locale)
+VALUES ('admin@admin.com', '111', 2, 1, 'en');
 
 INSERT INTO usersInfo(userId, name, surname)
-VALUES (1, 'Dimm', 'K');
+VALUES (1, 'Admin', 'Rule');
 
 INSERT INTO gender(genderName)
 VALUES ('girl'),
@@ -226,30 +224,28 @@ VALUES ('graphics'),
        ('romper');
 
 INSERT INTO goods (name, img)
-VALUES ('Pants', 'img1.jpg'),
-       ('Top', 'img2.jpg'),
-       ('Romper', 'img3.jpg'),
-       ('Dress', 'img4.jpg'),
-       ('T-shirt', 'img5.jpg'),
-       ('Socks', 'img6.jpg'),
-       ('Red Shoes', 'img7.jpg'),
-       ('Body', 'img8.jpg'),
-       ('Tulip', 'img9.jpg');
+VALUES ('2-Piece Bodysuit Dress & Cardigan Set', 'img1.jpg'),
+       ('Shark Snap-Up Romper', 'img2.jpg'),
+       ('Active Mesh Shorts', 'img3.jpg'),
+       ('Shark 100% Snug Fit Cotton Footie PJs', 'img4.jpg'),
+       ('Originals Graphic Tee', 'img5.jpg'),
+       ('3-Pack Ruffle Diaper Cover', 'img6.jpg'),
+       ('2-Pack Pull-On Pants', 'img7.jpg');
 
 INSERT INTO goodsParam(goodsId, genderId, ageId, sizeId, categoryId, styleId)
-VALUES (1, 1, 1, 1, 1, 1),
-       (1, 2, 1, 1, 1, 1),
-       (2, 1, 3, 2, 3, 4),
-       (3, 1, 2, 2, 4, 1),
-       (2, 2, 1, 2, 1, 1),
-       (4, 1, 2, 5, 2, 4),
-       (5, 2, 3, 4, 4, 3),
-       (4, 2, 3, 5, 3, 2),
-       (4, 1, 1, 4, 4, 1),
-       (6, 2, 2, 3, 2, 1),
-       (7, 2, 3, 4, 1, 2),
-       (8, 1, 1, 1, 2, 3),
-       (9, 2, 1, 3, 2, 4);
+VALUES (1, 1, 1, 1, 4, 3),
+       (2, 1, 1, 3, 7, 7),
+       (3, 2, 2, 6, 1, 4),
+       (1, 1, 1, 3, 4, 2),
+       (2, 1, 1, 4, 7, 7),
+       (3, 2, 2, 5, 1, 4),
+       (4, 2, 2, 6, 3, 6),
+       (5, 1, 1, 3, 2, 5),
+       (6, 1, 1, 1, 1, 1),
+       (6, 1, 3, 1, 1, 1),
+       (7, 1, 1, 4, 1, 1),
+       (7, 2, 1, 2, 1, 1),
+       (7, 2, 1, 3, 1, 1);
 
 
 
@@ -267,5 +263,3 @@ VALUES (1, 10.5, 3, CURRENT_DATE),
        (11, 15.0, 12, CURRENT_DATE),
        (12, 15.0, 12, CURRENT_DATE),
        (13, 15.0, 12, CURRENT_DATE);
-
-ALTER TABLE users ADD locale VARCHAR(20) NOT NULL AFTER status;

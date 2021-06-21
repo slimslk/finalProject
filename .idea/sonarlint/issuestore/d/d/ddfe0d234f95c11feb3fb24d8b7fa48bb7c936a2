@@ -1,5 +1,5 @@
 
 W
-java:S34576"AFormat specifiers should be used instead of string concatenation.(НаЎК
+java:S3457>"AFormat specifiers should be used instead of string concatenation.(НаЎК
 M
-java:S26296"7Use the built-in formatting to construct this argument.(НаЎК
+java:S2629>"7Use the built-in formatting to construct this argument.(НаЎК

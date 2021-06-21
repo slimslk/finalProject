@@ -16,6 +16,7 @@
                 <p class="border-top"></p>
                 <h5 class="card-title" id="goods-price">$166</h5>
                 <p id="goods-name">2-Piece Floral Tank & Bike Short Set</p>
+                <p id="goods-size">Size</p>
                 <div class="d-grid gap-2 justify-content-md-end">
                     <button class="btn btn-primary" value="#" id="goods-addToCart" onclick="addToCart(this.value)">
                         <fmt:message key="user.catalog.add_to_cart"/>

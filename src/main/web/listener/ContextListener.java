@@ -34,9 +34,6 @@ public class ContextListener implements ServletContextListener {
     }
 
     public void contextInitialized(ServletContextEvent event) {
-        //creating instance of DBManager
-        DBManager dbManager = DBManager.getInstance();
-
         // obtain file name with locales descriptions
         ServletContext context = event.getServletContext();
         String localesFileName = context.getInitParameter("locales");

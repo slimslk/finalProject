@@ -1,18 +1,18 @@
 
-<
-java:S1170"!Make this final field static too.(·“¸áÿÿÿÿÿ
+j	java:S116"URename this field "GET_MAX_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·âŒ 
+n	java:S116"TRename this field "SET_ORDER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·“¸áÿÿÿÿÿ
 7
 java:S1170"!Make this final field static too.(·âŒ 
 ~	java:S116"dRename this field "GET_ORDER_BY_ORDER_NUMBER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¨¸àžúÿÿÿÿ
-n	java:S116"TRename this field "SET_ORDER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·“¸áÿÿÿÿÿ
-_
-java:S1068"=Remove this unused "GET_ORDER_BY_ORDER_NUMBER" private field.(¨¸àžúÿÿÿÿ8ÄªíŠ¡/
-W	java:S125"<This block of commented-out lines of code should be removed.(Øš¬^8ÄªíŠ¡/
 b
 java:S20952"GUse try-with-resources or close this "Statement" in a "finally" clause.(í…³þÿÿÿÿ
-j	java:S116"URename this field "GET_MAX_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(·âŒ 
 <
-java:S1170"!Make this final field static too.(¨¸àžúÿÿÿÿ
+java:S1170"!Make this final field static too.(·“¸áÿÿÿÿÿ
 \
 java:S3457Y"AFormat specifiers should be used instead of string concatenation.(àò˜öÿÿÿÿÿ
+_
+java:S1068"=Remove this unused "GET_ORDER_BY_ORDER_NUMBER" private field.(¨¸àžúÿÿÿÿ8ÄªíŠ¡/
+<
+java:S1170"!Make this final field static too.(¨¸àžúÿÿÿÿ
+W	java:S125"<This block of commented-out lines of code should be removed.(Øš¬^8ÄªíŠ¡/
 ]	java:S125]"<This block of commented-out lines of code should be removed.(Ö¼ñçüÿÿÿÿ8›Ý€¦¡/

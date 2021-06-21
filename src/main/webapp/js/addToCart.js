@@ -4,7 +4,7 @@ let position = 0;
 let noGoods;
 
 function setNoGoodsText(text) {
-    noGoods=text;
+    noGoods = text;
 }
 
 function parseJSON(jsonText) {
@@ -43,7 +43,7 @@ function filterParam(req, pagination) {
             if (this.status === 200) {
                 let jsonToParse = this.responseText;
                 let stringArray = jsonToParse.split("|");
-                if (stringArray[1] !== "") {
+                if (stringArray.length !== 1) {
                     let parseJson = parseJSON(stringArray[1]);
                     createGoods(parseJson);
                     createPaginationNumbers(parseInt(stringArray[0]));
@@ -73,6 +73,7 @@ function createGoods(json) {
             clone.querySelector("#goods-img").setAttribute("alt", json[i]["goods"]["name"]);
             clone.querySelector("#goods-price").innerText = "$" + json[i]["price"];
             clone.querySelector("#goods-name").innerText = json[i]["goods"]["name"];
+            clone.querySelector("#goods-size").innerText = "Size: "+json[i]["goodsParam"]["sizeName"];
             btnAttr.setAttribute('value', json[i]["goodsParamId"]);
             if (quantity === 0) {
                 btnAttr.setAttribute('class', btnAttr.getAttribute("class") + " disabled");
@@ -81,7 +82,7 @@ function createGoods(json) {
         }
     } else {
         myRow.innerHTML = '<div class="text-center pt-4">\n' +
-            '    <h3>'+noGoods+'</h3>\n' +
+            '    <h3>' + noGoods + '</h3>\n' +
             '</div>';
     }
 }
@@ -90,17 +91,27 @@ function addToCart(clickedValue) {
     let reqBody = "command=ajax&do=add&goodsId=" + clickedValue + "&quantity=1";
     const xhr = new XMLHttpRequest();
     xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            let resText = this.responseText;
-            if (resText === "1") {
-                let inCartCount = document.querySelector("#countInCart");
-                inCartCount.textContent = (parseInt(inCartCount.textContent) + 1).toString();
-                doIt(0);
+        if (this.readyState === 4) {
+            if (this.status === 200) {
+                let resText = this.responseText;
+                if (resText === "1" || resText === "0") {
+                    if (resText === "1") {
+                        let inCartCount = document.querySelector("#countInCart");
+                        inCartCount.textContent = (parseInt(inCartCount.textContent) + 1).toString();
+                        doIt(0);
+                    }
+                    if (resText === "0") {
+                        alert("No goods in the stock");
+                    }
+                }else {
+                    location.assign("../error-page.jsp");
+                }
             }
-            if (resText === "0") {
-                alert("No goods in the stock");
+            if (this.status >= 400 && this.status <= 500) {
+                location.assign("../error-page.jsp");
             }
         }
+
     }
     xhr.open('POST', "../controller");
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
