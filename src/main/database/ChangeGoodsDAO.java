@@ -65,39 +65,40 @@ public class ChangeGoodsDAO {
         Connection connection = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
+        log.error("execute action catalog item: "+catalogItem);
         int i = 0;
         try {
             connection = dbManager.getConnection();
             pstm = connection.prepareStatement(SELECT_AGEID_BY_NAME);
-            pstm.setString(1, catalogItem.getGoodsParam().getAgeName());
+            pstm.setString(1, catalogItem.getGoodsParam().getAgeName().toLowerCase());
             rs = pstm.executeQuery();
             while (rs.next()) {
                 log.error("AGE");
                 goodsParamNameMap.put("age", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_CATEGORYID_BY_NAME);
-            pstm.setString(1, catalogItem.getGoodsParam().getCategoryName());
+            pstm.setString(1, catalogItem.getGoodsParam().getCategoryName().toLowerCase());
             rs = pstm.executeQuery();
             while (rs.next()) {
                 log.error("CATEGORY");
                 goodsParamNameMap.put("category", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_GENDERID_BY_NAME);
-            pstm.setString(1, catalogItem.getGoodsParam().getGenderName());
+            pstm.setString(1, catalogItem.getGoodsParam().getGenderName().toLowerCase());
             rs = pstm.executeQuery();
             while (rs.next()) {
                 log.error("GENDER");
                 goodsParamNameMap.put("gender", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_SIZEID_BY_NAME);
-            pstm.setString(1, catalogItem.getGoodsParam().getSizeName());
+            pstm.setString(1, catalogItem.getGoodsParam().getSizeName().toLowerCase());
             rs = pstm.executeQuery();
             while (rs.next()) {
                 log.error("SIZE");
                 goodsParamNameMap.put("size", rs.getInt(Fields.ENTITY_ID));
             }
             pstm = connection.prepareStatement(SELECT_STYLEID_BY_NAME);
-            pstm.setString(1, catalogItem.getGoodsParam().getStyleName());
+            pstm.setString(1, catalogItem.getGoodsParam().getStyleName().toLowerCase());
             rs = pstm.executeQuery();
             while (rs.next()) {
                 log.error("STYLE");
