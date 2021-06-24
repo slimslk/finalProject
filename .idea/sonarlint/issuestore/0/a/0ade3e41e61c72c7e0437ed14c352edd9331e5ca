@@ -1,37 +1,37 @@
 
-w	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ»‚çúÿÿÿÿ8ï¦éƒ˜/
+c
+java:S3457U"AFormat specifiers should be used instead of string concatenation.(Û¼ûÿÿÿÿ8³ì™â/
 |	java:S116"`Rename this field "FIND_USER_BY_USERNAME" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ì²¶8ï¦éƒ˜/
-~	java:S116"]Rename this field "UPDATE_USER_LOCALE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½µ†½ùÿÿÿÿ8´ÊŸÿ/
 l
 java:S2095L"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¥Ó¼8Œß±ÿ/
-v	java:S116"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8ï¦éƒ˜/
 Y
 java:S2629U"7Use the built-in formatting to construct this argument.(Û¼ûÿÿÿÿ8³ì™â/
+v	java:S116"ZRename this field "FIND_USER_BY_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¼ÛËº8ï¦éƒ˜/
 y	java:S116"]Rename this field "UPDATE_USER_STATUS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(õíûë8ÙÚÈâ/
-C
-java:S1170"!Make this final field static too.(–‹ê­øÿÿÿÿ8ï¦éƒ˜/
->
-java:S1170"!Make this final field static too.(¼ÛËº8ï¦éƒ˜/
 >
 java:S1170"!Make this final field static too.(ì²¶8ï¦éƒ˜/
 Y
 java:S26292"7Use the built-in formatting to construct this argument.(åÓîúşÿÿÿÿ8´ÊŸÿ/
-C
-java:S1170"!Make this final field static too.(½µ†½ùÿÿÿÿ8´ÊŸÿ/
-c
-java:S34572"AFormat specifiers should be used instead of string concatenation.(åÓîúşÿÿÿÿ8´ÊŸÿ/
-u	java:S116"TRename this field "GET_USERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‹ê­øÿÿÿÿ8—ûöá/
->
-java:S1170"!Make this final field static too.(õíûë8´ÊŸÿ/
-T
-java:S2629"7Use the built-in formatting to construct this argument.(Ù Îş8ç¾Ûí/
-c
-java:S3457U"AFormat specifiers should be used instead of string concatenation.(Û¼ûÿÿÿÿ8³ì™â/
 q
 java:S2095j"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ë®Öİşÿÿÿÿ8Œß±ÿ/
-C
-java:S1170"!Make this final field static too.(œ»‚çúÿÿÿÿ8ÙÚÈâ/
-^
-java:S3457"AFormat specifiers should be used instead of string concatenation.(Ù Îş8ç¾Ûí/
 P
 java:S1068"3Remove this unused "FIND_USER_BY_ID" private field.(¼ÛËº8¨®ÄÚŸ/
+~	java:S116"]Rename this field "UPDATE_USER_LOCALE" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(½µ†½ùÿÿÿÿ8´ÊŸÿ/
+>
+java:S1170"!Make this final field static too.(¼ÛËº8ï¦éƒ˜/
+w	java:S116"VRename this field "INSERT_USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(œ»‚çúÿÿÿÿ8ï¦éƒ˜/
+^
+java:S3457"AFormat specifiers should be used instead of string concatenation.(Ù Îş8ç¾Ûí/
+>
+java:S1170"!Make this final field static too.(õíûë8´ÊŸÿ/
+C
+java:S1170"!Make this final field static too.(–‹ê­øÿÿÿÿ8ï¦éƒ˜/
+C
+java:S1170"!Make this final field static too.(½µ†½ùÿÿÿÿ8´ÊŸÿ/
+u	java:S116"TRename this field "GET_USERS" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(–‹ê­øÿÿÿÿ8—ûöá/
+C
+java:S1170"!Make this final field static too.(œ»‚çúÿÿÿÿ8ÙÚÈâ/
+c
+java:S34572"AFormat specifiers should be used instead of string concatenation.(åÓîúşÿÿÿÿ8´ÊŸÿ/
+T
+java:S2629"7Use the built-in formatting to construct this argument.(Ù Îş8ç¾Ûí/

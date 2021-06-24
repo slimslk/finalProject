@@ -245,12 +245,6 @@ W
 'test/main/database/UserInfoDAOTest.java,e/a/eadf0fed7080c753b817da238a3b1ee6a6fe771e
 S
 #test/main/database/UserDAOTest.java,c/3/c3cebce7a1a386f35c426fd58249801fe386a0ad
-W
-'src/main/resources/resources.properties,8/e/8e08a09b69df893cdc0f98783b3b6b063b3deefc
-Z
-*src/main/resources/resources_en.properties,5/d/5d29831975e82fd03400e84753eff5ad65339351
-Z
-*src/main/resources/resources_ru.properties,d/1/d10eecca333cbec196e78314519148f9a8ded008
 ^
 .test/main/web/command/CommandAddOrderTest.java,6/1/612c7517a1b86131012b03e0a557ca1c5d86c34c
 b

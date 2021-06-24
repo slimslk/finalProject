@@ -1,3 +1,9 @@
+let cartEmptyText;
+
+function setCartEmpty(text) {
+    cartEmptyText = text;
+}
+
 function removeItem(id, qnt) {
     let ele = document.getElementById(id);
     let itemPrice = parseFloat(document.getElementById(id + "-total").innerText);
@@ -19,7 +25,7 @@ function removeItem(id, qnt) {
     } else {
         let deleteDiv = document.getElementById("cart-main-div");
         let newDiv = document.createElement("div");
-        newDiv.innerHTML = "<h3 class=\"text-center mt-4\">Your shopping cart is empty</h3>";
+        newDiv.innerHTML = "<h3 class=\"text-center mt-4\">"+cartEmptyText+"</h3>";
         deleteDiv.remove();
         document.getElementById("main-container").appendChild(newDiv);
     }

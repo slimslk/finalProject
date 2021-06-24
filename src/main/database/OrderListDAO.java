@@ -112,6 +112,7 @@ public class OrderListDAO {
             while (rs.next()) {
                 userOrderMapper.addUserOrderToList(rs);
             }
+            log.error("Usermapper: "+userOrderMapper.getUserOrders());
             userOrders = userOrderMapper.getUserOrders();
             log.error("User orders is: " + userOrders);
             con.commit();
@@ -171,6 +172,9 @@ public class OrderListDAO {
         }
 
         public UserOrders getUserOrders() {
+            if(orderMap==null){
+                return null;
+            }
             userOrders.setUserOrders(orderMap);
             return userOrders;
         }

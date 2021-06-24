@@ -16,7 +16,7 @@
                 <p class="border-top"></p>
                 <h5 class="card-title" id="goods-price">$166</h5>
                 <p id="goods-name">2-Piece Floral Tank & Bike Short Set</p>
-                <p id="goods-size">Size</p>
+                <p id="goods-size"><fmt:message key="goods.parameters.size"/></p>
                 <div class="d-grid gap-2 justify-content-md-end">
                     <button class="btn btn-primary" value="#" id="goods-addToCart" onclick="addToCart(this.value)">
                         <fmt:message key="user.catalog.add_to_cart"/>
@@ -252,10 +252,12 @@
         </div>
     </div>
 </div>
+
 <script>
     window.onload = function () {
         doIt(0);
         setNoGoodsText('<fmt:message key="catalog.jsp.no_goods"/>');
+        setSizeText('<fmt:message key="goods.parameters.size"/>');
     }
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/addToCart.js"></script>

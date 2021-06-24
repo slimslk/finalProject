@@ -32,12 +32,15 @@
                                             <div class="d-flex justify-content-between">
                                                 <div>
                                                     <h5>${cartItem.goods.name}</h5>
-                                                    <p class="mb-2 text-muted text-uppercase small"><fmt:message key="goods.parameters.size"/>
+                                                    <p class="mb-2 text-muted text-uppercase small"><fmt:message
+                                                            key="goods.parameters.size"/>
                                                         : ${cartItem.goodsParam.sizeName}</p>
                                                     <p class="mb-2 text-muted text-uppercase small">
-                                                        <fmt:message key="goods.parameters.price"/>: ${cartItem.price}</p>
+                                                        <fmt:message
+                                                                key="goods.parameters.price"/>: ${cartItem.price}</p>
                                                     <p class="text-muted text-uppercase small">
-                                                        <fmt:message key="goods.parameters.quantity"/>: ${userCart.getQuantity(cartItem.goodsParamId)}</p>
+                                                        <fmt:message
+                                                                key="goods.parameters.quantity"/>: ${userCart.getQuantity(cartItem.goodsParamId)}</p>
                                                 </div>
                                                 <button class="btn btn-outline-danger rounded-3 h-25"
                                                         onclick="removeItem(${cartItem.goodsParamId},${userCart.getQuantity(cartItem.goodsParamId)})">
@@ -111,17 +114,24 @@
                             <hr>
                             <c:choose>
                                 <c:when test="${not empty user}">
-                                    <form name="checkout" action="${pageContext.request.contextPath}/controller" method="GET">
+                                    <form name="checkout" action="${pageContext.request.contextPath}/controller"
+                                          method="GET">
                                         <input type="hidden" name="command" value="addorder">
                                         <c:forEach var="cartItem" items="${cartGoods}">
-                                            <input type="hidden" name="goodsId" value="${cartItem.goodsParamId}" id="id-form-${cartItem.goodsParamId}">
-                                            <input type="hidden" name="quantity" value="${userCart.getQuantity(cartItem.goodsParamId)}" id="quantity-form-${cartItem.goodsParamId}">
+                                            <input type="hidden" name="goodsId" value="${cartItem.goodsParamId}"
+                                                   id="id-form-${cartItem.goodsParamId}">
+                                            <input type="hidden" name="quantity"
+                                                   value="${userCart.getQuantity(cartItem.goodsParamId)}"
+                                                   id="quantity-form-${cartItem.goodsParamId}">
                                         </c:forEach>
-                                        <button type="submit" class="btn btn-primary btn-block" onclick="makeZero()"><fmt:message key="cart.jsp.checkout"/></button>
+                                        <button type="submit" class="btn btn-primary btn-block" onclick="makeZero()">
+                                            <fmt:message key="cart.jsp.checkout"/></button>
                                     </form>
                                 </c:when>
                                 <c:when test="${empty user}">
-                                    <button type="button" class="btn btn-outline-primary btn-block" onclick="location.href='${pageContext.request.contextPath}/login.jsp'"><fmt:message key="cart.jsp.sing_in_checkout"/>
+                                    <button type="button" class="btn btn-outline-primary btn-block"
+                                            onclick="location.href='${pageContext.request.contextPath}/login.jsp'">
+                                        <fmt:message key="cart.jsp.sing_in_checkout"/>
                                     </button>
                                 </c:when>
                             </c:choose>
@@ -139,7 +149,11 @@
         </c:when>
     </c:choose>
 </div>
+<script>
+    window.onload = function () {
+        setCartEmpty('<fmt:message key="cart.jsp.cart_empty"/>');
+    }
+</script>
 <script src="${pageContext.request.contextPath}/js/cart.js"></script>
 </body>
-
 </html>

@@ -2,9 +2,14 @@ let myRow = document.getElementById("mainRow");
 let t = document.querySelector('#tempCard');
 let position = 0;
 let noGoods;
+let sizeText;
 
 function setNoGoodsText(text) {
     noGoods = text;
+}
+
+function setSizeText(text) {
+    sizeText = text;
 }
 
 function parseJSON(jsonText) {
@@ -73,7 +78,7 @@ function createGoods(json) {
             clone.querySelector("#goods-img").setAttribute("alt", json[i]["goods"]["name"]);
             clone.querySelector("#goods-price").innerText = "$" + json[i]["price"];
             clone.querySelector("#goods-name").innerText = json[i]["goods"]["name"];
-            clone.querySelector("#goods-size").innerText = "Size: "+json[i]["goodsParam"]["sizeName"];
+            clone.querySelector("#goods-size").innerText = sizeText + ": " + json[i]["goodsParam"]["sizeName"];
             btnAttr.setAttribute('value', json[i]["goodsParamId"]);
             if (quantity === 0) {
                 btnAttr.setAttribute('class', btnAttr.getAttribute("class") + " disabled");
@@ -103,7 +108,7 @@ function addToCart(clickedValue) {
                     if (resText === "0") {
                         alert("No goods in the stock");
                     }
-                }else {
+                } else {
                     location.assign("../error-page.jsp");
                 }
             }
