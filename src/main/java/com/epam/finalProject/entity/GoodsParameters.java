@@ -44,8 +44,8 @@ public class GoodsParameters {
         styleParameter.put(2,"Casual");
         styleParameter.put(3,"Dresses");
         styleParameter.put(4,"Shorts");
-        styleParameter.put(5,"Top and Tess");
-        styleParameter.put(6,"Sleep and Play");
+        styleParameter.put(5,"Top and tess");
+        styleParameter.put(6,"Sleep and play");
         styleParameter.put(7,"Romper");
 
         goodsParametersMap.put("age", ageParameter);

@@ -219,8 +219,8 @@ VALUES ('graphics'),
        ('casual'),
        ('dresses'),
        ('shorts'),
-       ('tops&tees'),
-       ('sleep&play'),
+       ('top and tess'),
+       ('sleep and play'),
        ('romper');
 
 INSERT INTO goods (name, img)
