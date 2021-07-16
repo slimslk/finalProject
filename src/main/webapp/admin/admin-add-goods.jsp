@@ -7,7 +7,7 @@
 <body>
 <%@include file="../WEB-INF/jspf/header.jspf" %>
 <link href="${pageContext.request.contextPath}/style/sidebars.css" rel="stylesheet">
-<jsp:useBean id="gpm" class="main.entity.GoodsParameters"/>
+<jsp:useBean id="gpm" class="com.epam.finalProject.entity.GoodsParameters"/>
 <div class="container-fluid">
     <div class="row">
         <div class="col-1">

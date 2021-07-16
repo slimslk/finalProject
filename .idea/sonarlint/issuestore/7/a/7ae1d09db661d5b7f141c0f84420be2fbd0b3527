@@ -1,23 +1,0 @@
-
-x
-java:S4144!"VUpdate this method so that its implementation is not identical to "doPost" on line 27.(Ïû©Öûÿÿÿÿ8ù¥ÿ/
-Y
-java:S2629/"7Use the built-in formatting to construct this argument.(î³§ªÿÿÿÿÿ8ù¥ÿ/
-T
-java:S26298"7Use the built-in formatting to construct this argument.(å«ƒ‹8ù¥ÿ/
-U	java:S1069"9Replace this use of System.out or System.err by a logger.(‘§²Í8ù¥ÿ/
-ƒ
-java:S1989"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8ù¥ÿ/
-c
-java:S34575"AFormat specifiers should be used instead of string concatenation.(í¡—“úÿÿÿÿ8æ¦ˆŸ/
-^
-java:S34578"AFormat specifiers should be used instead of string concatenation.(å«ƒ‹8ù¥ÿ/
-Z	java:S106-"9Replace this use of System.out or System.err by a logger.(§€È—üÿÿÿÿ8ù¥ÿ/
-c
-java:S3457/"AFormat specifiers should be used instead of string concatenation.(î³§ªÿÿÿÿÿ8ù¥ÿ/
-
-java:S1989""lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8ù¥ÿ/
-
-java:S1989"lHandle the following exception that could be thrown by "setCharacterEncoding": UnsupportedEncodingException.(áò‰øÿÿÿÿ8ù¥ÿ/
-ƒ
-java:S1989#"aHandle the following exceptions that could be thrown by "process": IOException, ServletException.(¡âÊ–ıÿÿÿÿ8ù¥ÿ/

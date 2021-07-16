@@ -7,7 +7,7 @@
     <uri>http://finalProject.main.tag</uri>
     <tag>
         <name>total</name>
-        <tag-class>main.tag.CartTag</tag-class>
+        <tag-class>com.epam.finalProject.tag.CartTag</tag-class>
         <body-content>empty</body-content>
         <attribute>
             <name>value</name>

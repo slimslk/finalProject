@@ -6,7 +6,7 @@
 <%@include file="WEB-INF/jspf/head.jspf" %>
 <body>
 <c:if test="${empty userCart}">
-    <jsp:useBean id="userCart" class="main.entity.UserCart" scope="session"/>
+    <jsp:useBean id="userCart" class="com.epam.finalProject.entity.UserCart" scope="session"/>
 </c:if>
 <%@include file="WEB-INF/jspf/header.jspf" %>
 <br>
