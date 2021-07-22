@@ -3,6 +3,7 @@ package com.epam.finalProject.web.command;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.entity.UserCart;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.LoginService;
 import com.epam.finalProject.service.defaultImpl.LoginServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.LogManager;
@@ -15,7 +16,7 @@ import javax.servlet.jsp.jstl.core.Config;
 
 public class CommandLogin implements Command {
     private static final Logger log = LogManager.getLogger(CommandLogin.class);
-    private LoginServiceImpl loginService = new LoginServiceImpl();
+    private LoginService loginService = new LoginServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -50,7 +51,7 @@ public class CommandLogin implements Command {
         return Path.REDIRECT_TO_USER_ORDERS;
     }
 
-    public void setLoginService(LoginServiceImpl loginService) {
+    public void setLoginService(LoginService loginService) {
         this.loginService = loginService;
     }
 }

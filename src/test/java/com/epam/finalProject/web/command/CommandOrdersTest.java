@@ -1,6 +1,5 @@
 package com.epam.finalProject.web.command;
 
-import com.epam.finalProject.database.OrderListDAO;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.entity.UserOrders;
 import com.epam.finalProject.exception.AppException;

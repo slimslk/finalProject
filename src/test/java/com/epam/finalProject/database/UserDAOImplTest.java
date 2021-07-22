@@ -1,5 +1,6 @@
 package com.epam.finalProject.database;
 
+import com.epam.finalProject.database.impl.UserDAOImpl;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.exception.AppException;
 import org.junit.Assert;
@@ -20,7 +21,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class UserDAOTest {
+class UserDAOImplTest {
 
     static MockedStatic<DBManager> dbManagerMockedStatic;
 
@@ -44,7 +45,7 @@ class UserDAOTest {
         when(dbManager.getConnection()).thenReturn(con);
         when(con.prepareStatement(any(String.class))).thenReturn(pstm);
         when(pstm.executeUpdate()).thenReturn(1);
-        new UserDAO().updateUserStatus("lili@gmail.com",3);
+        new UserDAOImpl().updateUserStatus("lili@gmail.com",3);
     }
 
     @Test
@@ -57,7 +58,7 @@ class UserDAOTest {
         when(dbManager.getConnection()).thenReturn(con);
         when(con.prepareStatement(any(String.class))).thenReturn(pstm);
         when(pstm.executeUpdate()).thenReturn(1);
-        new UserDAO().updateUserLocale("lili@gmail.com","ru");
+        new UserDAOImpl().updateUserLocale("lili@gmail.com","ru");
     }
 
     @Test
@@ -73,7 +74,7 @@ class UserDAOTest {
         when(rs.next()).thenReturn(true).thenReturn(false);
         when(rs.getInt(any(String.class))).thenReturn(1);
         List<User> expected=new ArrayList<>();
-        List<User> result = new UserDAO().getUsers();
+        List<User> result = new UserDAOImpl().getUsers();
         Assert.assertEquals(expected.getClass(), result.getClass());
     }
 
@@ -89,7 +90,7 @@ class UserDAOTest {
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
         when(rs.getInt(any(String.class))).thenReturn(1);
-        User result = new UserDAO().getUserByUsername("lili@gmail.com");
+        User result = new UserDAOImpl().getUserByUsername("lili@gmail.com");
         Assert.assertEquals(User.class, result.getClass());
     }
 
@@ -107,7 +108,7 @@ class UserDAOTest {
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
         when(rs.getInt(any(String.class))).thenReturn(1);
-        new UserDAO().insertUser(user,"user","active");
+        new UserDAOImpl().insertUser(user,"user","active");
     }
 
 }

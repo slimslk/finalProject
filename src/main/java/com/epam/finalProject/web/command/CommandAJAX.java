@@ -1,6 +1,6 @@
 package com.epam.finalProject.web.command;
 
-import com.epam.finalProject.database.CatalogDAO;
+import com.epam.finalProject.database.impl.CatalogDAOImpl;
 import com.epam.finalProject.entity.CatalogItem;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.entity.UserCart;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class CommandAJAX implements Command {
     private static final Logger log = LogManager.getLogger(CommandAJAX.class);
-    private CatalogDAO catalogDAO = new CatalogDAO();
+    private CatalogDAOImpl catalogDAOImpl = new CatalogDAOImpl();
 
     private String filterGoods(HttpServletRequest req) throws AppException {
         HttpSession session = req.getSession();
@@ -44,7 +44,7 @@ public class CommandAJAX implements Command {
         }
         log.error(s + " || " + "Sort parameter: " + sort + " || Direction: " + dir + " || Start index: " + start + " || Count of columns: ");
         Map<Integer, Object> map;
-        map = catalogDAO.getListOfSortedItems(params, sort, dir, start);
+        map = catalogDAOImpl.getListOfSortedItems(params, sort, dir, start);
         count = (Integer) map.get(0);
         log.error("Count in Map: " + count);
         catalog = (List<CatalogItem>) map.get(1);
@@ -80,7 +80,7 @@ public class CommandAJAX implements Command {
         }
         log.debug("Goods ID parameter is: " + id);
         log.debug("Quantity parameter is: " + q);
-        CatalogItem cItem = catalogDAO.getItemByGoodsId(id);
+        CatalogItem cItem = catalogDAOImpl.getItemByGoodsId(id);
         int quantity = cItem.getQuantity();
         log.error("Quantity of goods in the stock: " + quantity);
         log.error("Catalog item before update if: " + cItem);
@@ -100,7 +100,7 @@ public class CommandAJAX implements Command {
             log.error("Goods removed from cart: " + userCart.getGoodsId());
             cItem.setQuantity(quantity + q);
         }
-        catalogDAO.updateCatalogItem(cItem);
+        catalogDAOImpl.updateCatalogItem(cItem);
         session.setAttribute("inCartCount", inCartCount);
         return "1";
     }
@@ -140,7 +140,7 @@ public class CommandAJAX implements Command {
         return null;
     }
 
-    public void setCatalogDAO(CatalogDAO catalogDAO) {
-        this.catalogDAO = catalogDAO;
+    public void setCatalogDAOImpl(CatalogDAOImpl catalogDAOImpl) {
+        this.catalogDAOImpl = catalogDAOImpl;
     }
 }

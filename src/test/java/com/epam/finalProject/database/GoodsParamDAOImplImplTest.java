@@ -1,10 +1,12 @@
 package com.epam.finalProject.database;
 
+import com.epam.finalProject.database.impl.GoodsParamDAOImpl;
+import com.epam.finalProject.entity.GoodsParam;
 import com.epam.finalProject.exception.AppException;
 import org.junit.Assert;
-
-import org.junit.Test;
-import org.mockito.*;
+import org.junit.jupiter.api.Test;
+import org.mockito.MockedStatic;
+import org.mockito.Mockito;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,10 +17,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class RoleDAOTest {
+class GoodsParamDAOImplImplTest {
 
     @Test
-    public void testGetRoleByName() throws AppException, SQLException {
+    void getGoodsParamByID() throws SQLException, AppException {
         DBManager dbManager = mock(DBManager.class);
         MockedStatic<DBManager> dbManagerMockedStatic = Mockito.mockStatic(DBManager.class);
         dbManagerMockedStatic.when(DBManager::getInstance).thenReturn(dbManager);
@@ -29,10 +31,9 @@ public class RoleDAOTest {
         when(con.prepareStatement(any(String.class))).thenReturn(pstm);
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
-        when(rs.getInt(any(String.class))).thenReturn(1);
-        RoleDAO roleDAO = new RoleDAO();
-        int result = roleDAO.getRoleByName("slim.slk@gmail.com");
-        Assert.assertEquals(1, result);
+        GoodsParamDAOImpl goodsParamDAOImpl = new GoodsParamDAOImpl();
+        GoodsParam result = goodsParamDAOImpl.getGoodsParamByID(1L);
+        Assert.assertEquals(GoodsParam.class, result.getClass());
         dbManagerMockedStatic.close();
     }
 }

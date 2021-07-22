@@ -1,11 +1,9 @@
 package com.epam.finalProject.web.command;
 
-import com.epam.finalProject.database.UserDAO;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.exception.AppException;
 import com.epam.finalProject.service.defaultImpl.UserServiceImpl;
 import com.epam.finalProject.web.Path;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -15,9 +13,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;

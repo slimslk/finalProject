@@ -1,6 +1,6 @@
 package com.epam.finalProject.database;
 
-import com.epam.finalProject.entity.GoodsParam;
+import com.epam.finalProject.database.impl.UserStatusDAOImpl;
 import com.epam.finalProject.exception.AppException;
 import org.junit.Assert;
 import org.junit.jupiter.api.Test;
@@ -16,10 +16,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GoodsParamDAOTest {
+class UserStatusDAOImplTest {
 
     @Test
-    void getGoodsParamByID() throws SQLException, AppException {
+    void getStatusByNameTest() throws SQLException, AppException {
         DBManager dbManager = mock(DBManager.class);
         MockedStatic<DBManager> dbManagerMockedStatic = Mockito.mockStatic(DBManager.class);
         dbManagerMockedStatic.when(DBManager::getInstance).thenReturn(dbManager);
@@ -30,9 +30,10 @@ class GoodsParamDAOTest {
         when(con.prepareStatement(any(String.class))).thenReturn(pstm);
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
-        GoodsParamDAO goodsParamDAO = new GoodsParamDAO();
-        GoodsParam result = goodsParamDAO.getGoodsParamByID(1L);
-        Assert.assertEquals(GoodsParam.class, result.getClass());
+        when(rs.getInt(any(String.class))).thenReturn(1);
+        UserStatusDAOImpl userStatusDAOImpl = new UserStatusDAOImpl();
+        int result = userStatusDAOImpl.getStatusByName("lili@gmali.com");
+        Assert.assertEquals(1, result);
         dbManagerMockedStatic.close();
     }
 }

@@ -60,6 +60,9 @@
             <select class="form-select align-content-end" style="width: 7%" aria-label="lang" id="lang"
                     onchange="changeLocal('${pageContext.request.contextPath}')">
                 <c:forEach items="${applicationScope.locales}" var="local">
+                    <c:if test="${empty currentLocale}">
+                        ${currentLocale="en"}
+                    </c:if>
                     <c:set var="selected" value="${local.key == currentLocale ? 'selected' : '' }"/>
                     <option value="${local.key}" ${selected}>${local.value}</option>
                 </c:forEach>

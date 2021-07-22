@@ -1,10 +1,11 @@
 package com.epam.finalProject.database;
 
+import com.epam.finalProject.database.impl.RoleDAOImpl;
 import com.epam.finalProject.exception.AppException;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
-import org.mockito.Mockito;
+
+import org.junit.Test;
+import org.mockito.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -15,10 +16,10 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class UserStatusDAOTest {
+public class RoleDAOImplTest {
 
     @Test
-    void getStatusByNameTest() throws SQLException, AppException {
+    public void testGetRoleByName() throws AppException, SQLException {
         DBManager dbManager = mock(DBManager.class);
         MockedStatic<DBManager> dbManagerMockedStatic = Mockito.mockStatic(DBManager.class);
         dbManagerMockedStatic.when(DBManager::getInstance).thenReturn(dbManager);
@@ -30,8 +31,8 @@ class UserStatusDAOTest {
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
         when(rs.getInt(any(String.class))).thenReturn(1);
-        UserStatusDAO userStatusDAO = new UserStatusDAO();
-        int result = userStatusDAO.getStatusByName("lili@gmali.com");
+        RoleDAOImpl roleDAOImpl = new RoleDAOImpl();
+        int result = roleDAOImpl.getRoleByName("slim.slk@gmail.com");
         Assert.assertEquals(1, result);
         dbManagerMockedStatic.close();
     }

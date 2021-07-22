@@ -24,22 +24,16 @@ public class Controller extends HttpServlet {
     private static final long serialVersionUID = -2865377066620126318L;
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        process(request, response);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("UTF-8");
-        process(request, response);
+    protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setCharacterEncoding("UTF-8");
+        process(req,resp);
     }
 
     /**
      * Main method of this controller
      */
 
-    private void process(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    private void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String forward = Path.ERRORPAGE;
         log.debug("Controller starts");
         System.out.println("Controller");

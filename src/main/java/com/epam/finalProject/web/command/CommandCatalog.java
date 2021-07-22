@@ -1,6 +1,7 @@
 package com.epam.finalProject.web.command;
 
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.CatalogService;
 import com.epam.finalProject.service.defaultImpl.CatalogServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.LogManager;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 public class CommandCatalog implements Command {
     private static final Logger log = LogManager.getLogger(CommandCatalog.class);
-    private CatalogServiceImpl catalogService = new CatalogServiceImpl();
+    private CatalogService catalogService = new CatalogServiceImpl();
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {
@@ -23,7 +24,7 @@ public class CommandCatalog implements Command {
         return Path.CATALOG;
     }
 
-    public void setCatalogService(CatalogServiceImpl catalogService) {
+    public void setCatalogService(CatalogService catalogService) {
         this.catalogService = catalogService;
     }
 }

@@ -1,5 +1,6 @@
 package com.epam.finalProject.database;
 
+import com.epam.finalProject.database.impl.GoodsDAOImpl;
 import com.epam.finalProject.entity.Goods;
 import com.epam.finalProject.exception.AppException;
 import org.junit.Assert;
@@ -16,7 +17,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-class GoodsDAOTest {
+class GoodsDAOImplTest {
 
     @Test
     void getGoodsById() throws SQLException, AppException {
@@ -30,8 +31,8 @@ class GoodsDAOTest {
         when(con.prepareStatement(any(String.class))).thenReturn(pstm);
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
-        GoodsDAO goodsDAO = new GoodsDAO();
-        Goods result = goodsDAO.getGoodsById(1);
+        GoodsDAOImpl goodsDAOImpl = new GoodsDAOImpl();
+        Goods result = goodsDAOImpl.getGoodsById(1);
         Assert.assertEquals(Goods.class, result.getClass());
         dbManagerMockedStatic.close();
     }

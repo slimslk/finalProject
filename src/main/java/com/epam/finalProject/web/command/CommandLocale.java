@@ -2,6 +2,7 @@ package com.epam.finalProject.web.command;
 
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.UserService;
 import com.epam.finalProject.service.defaultImpl.UserServiceImpl;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,7 +14,7 @@ import javax.servlet.jsp.jstl.core.Config;
 
 public class CommandLocale implements Command {
     private static final Logger log = LogManager.getLogger(CommandLocale.class);
-    private UserServiceImpl userService = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -31,7 +32,7 @@ public class CommandLocale implements Command {
         return null;
     }
 
-    public void setUserService(UserServiceImpl userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 }

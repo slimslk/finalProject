@@ -5,6 +5,7 @@ import com.epam.finalProject.entity.Goods;
 import com.epam.finalProject.entity.GoodsParam;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.AdminService;
 import com.epam.finalProject.service.defaultImpl.AdminServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.LogManager;
@@ -22,7 +23,7 @@ import java.time.LocalDate;
 
 public class CommandAdminCatalog implements Command {
     private static final Logger log = LogManager.getLogger(CommandAdminCatalog.class);
-    private AdminServiceImpl adminService = new AdminServiceImpl();
+    private AdminService adminService = new AdminServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -135,7 +136,7 @@ public class CommandAdminCatalog implements Command {
         }
     }
 
-    public void setAdminService(AdminServiceImpl adminService) {
+    public void setAdminService(AdminService adminService) {
         this.adminService = adminService;
     }
 

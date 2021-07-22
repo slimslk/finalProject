@@ -3,6 +3,7 @@ package com.epam.finalProject.web.command;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.entity.UserCart;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.SingUpService;
 import com.epam.finalProject.service.defaultImpl.SingUpServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +15,7 @@ import javax.servlet.http.HttpSession;
 
 public class CommandSingUp implements Command {
     private static final Logger log = LogManager.getLogger(CommandSingUp.class);
-    private SingUpServiceImpl singUpService = new SingUpServiceImpl();
+    private SingUpService singUpService = new SingUpServiceImpl();
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {
@@ -52,7 +53,7 @@ public class CommandSingUp implements Command {
         return "controller?command=catalog";
     }
 
-    public void setSingUpService(SingUpServiceImpl singUpService) {
+    public void setSingUpService(SingUpService singUpService) {
         this.singUpService = singUpService;
     }
 }

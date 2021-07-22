@@ -3,6 +3,7 @@ package com.epam.finalProject.web.command;
 import com.epam.finalProject.entity.CatalogItem;
 import com.epam.finalProject.entity.UserCart;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.CatalogService;
 import com.epam.finalProject.service.defaultImpl.CatalogServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.LogManager;
@@ -17,7 +18,7 @@ import java.util.Map;
 
 public class CommandCart implements Command {
     private static final Logger log = LogManager.getLogger(CommandCart.class);
-    private CatalogServiceImpl catalogService = new CatalogServiceImpl();
+    private CatalogService catalogService = new CatalogServiceImpl();
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {
@@ -42,7 +43,7 @@ public class CommandCart implements Command {
         return Path.CART;
     }
 
-    public void setCatalogService(CatalogServiceImpl catalogService) {
+    public void setCatalogService(CatalogService catalogService) {
         this.catalogService = catalogService;
     }
 }

@@ -3,6 +3,7 @@ package com.epam.finalProject.web.command;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.entity.UserCart;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.OrderService;
 import com.epam.finalProject.service.defaultImpl.OrderServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.Logger;
@@ -14,10 +15,7 @@ import javax.servlet.http.HttpSession;
 
 public class CommandAddOrder implements Command {
     private static final Logger log = LogManager.getLogger(CommandAddOrder.class);
-    private OrderServiceImpl orderService = new OrderServiceImpl();
-
-    public CommandAddOrder() {
-    }
+    private OrderService orderService = new OrderServiceImpl();
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
@@ -45,7 +43,7 @@ public class CommandAddOrder implements Command {
         return Path.REDIRECT_TO_USER_ORDERS;
     }
 
-    public void setOrderService(OrderServiceImpl orderService) {
+    public void setOrderService(OrderService orderService) {
         this.orderService = orderService;
     }
 }

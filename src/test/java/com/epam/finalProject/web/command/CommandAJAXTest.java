@@ -1,6 +1,6 @@
 package com.epam.finalProject.web.command;
 
-import com.epam.finalProject.database.CatalogDAO;
+import com.epam.finalProject.database.impl.CatalogDAOImpl;
 import com.epam.finalProject.entity.CatalogItem;
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.entity.UserCart;
@@ -23,10 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.any;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -45,7 +43,7 @@ class CommandAJAXTest {
     HttpSession sessionMock;
 
     @Mock
-    CatalogDAO catalogDAOMock;
+    CatalogDAOImpl catalogDAOImplMock;
 
     @InjectMocks
     private CommandAJAX commandAJAXMock;
@@ -73,7 +71,7 @@ class CommandAJAXTest {
         when(requestMock.getParameter("sort")).thenReturn("addDate");
         when(requestMock.getParameter("direction")).thenReturn("asc");
         when(requestMock.getParameter("start")).thenReturn("0");
-        when(catalogDAOMock.getListOfSortedItems(new String[]{"size", "age"}, "adddate", "asc", 0)).thenReturn(map);
+        when(catalogDAOImplMock.getListOfSortedItems(new String[]{"size", "age"}, "adddate", "asc", 0)).thenReturn(map);
         String result = commandAJAXMock.execute(requestMock, responseMock);
         assertNull(result);
     }
@@ -88,7 +86,7 @@ class CommandAJAXTest {
         when(requestMock.getParameter("goodsId")).thenReturn("2");
         when(requestMock.getParameter("quantity")).thenReturn("2");
         when(sessionMock.getAttribute("userCart")).thenReturn(userCart);
-        when(catalogDAOMock.getItemByGoodsId(2L)).thenReturn(catalogItem);
+        when(catalogDAOImplMock.getItemByGoodsId(2L)).thenReturn(catalogItem);
         String result = commandAJAXMock.execute(requestMock, responseMock);
         assertNull(result);
     }

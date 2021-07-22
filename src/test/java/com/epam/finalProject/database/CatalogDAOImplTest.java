@@ -1,5 +1,6 @@
 package com.epam.finalProject.database;
 
+import com.epam.finalProject.database.impl.CatalogDAOImpl;
 import com.epam.finalProject.entity.CatalogItem;
 import com.epam.finalProject.exception.AppException;
 import org.junit.Assert;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-class CatalogDAOTest {
+class CatalogDAOImplTest {
 
     static MockedStatic<DBManager> dbManagerMockedStatic;
 
@@ -45,8 +46,8 @@ class CatalogDAOTest {
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
         when(rs.getInt(any(String.class))).thenReturn(1);
-        CatalogDAO catalogDAO = new CatalogDAO();
-        int result = catalogDAO.getCountOfGoods();
+        CatalogDAOImpl catalogDAOImpl = new CatalogDAOImpl();
+        int result = catalogDAOImpl.getCountOfGoods();
         Assert.assertEquals(1, result);
     }
 
@@ -62,8 +63,8 @@ class CatalogDAOTest {
         when(pstm.executeQuery()).thenReturn(rs);
         when(rs.next()).thenReturn(true).thenReturn(false);
         when(rs.getInt(any(String.class))).thenReturn(1);
-        CatalogDAO catalogDAO = new CatalogDAO();
-        Map<Integer, Object> result = catalogDAO.getListOfSortedItems(new String[]{"size:3M"}, "price", "asc", 0);
+        CatalogDAOImpl catalogDAOImpl = new CatalogDAOImpl();
+        Map<Integer, Object> result = catalogDAOImpl.getListOfSortedItems(new String[]{"size:3M"}, "price", "asc", 0);
         Map<Integer, Object> expected = new HashMap<>();
         assertEquals(expected.getClass(), result.getClass());
     }
@@ -87,9 +88,9 @@ class CatalogDAOTest {
         when(rs.getString(any(String.class))).thenReturn("goods");
         when(rs.getDate(any())).thenReturn(null);
         List<CatalogItem> expected = new ArrayList<>();
-        CatalogDAO catalogDAO = new CatalogDAO();
+        CatalogDAOImpl catalogDAOImpl = new CatalogDAOImpl();
         List<Long> list = new ArrayList<>();
-        List<CatalogItem> result = catalogDAO.getItemsByGoodsId(list);
+        List<CatalogItem> result = catalogDAOImpl.getItemsByGoodsId(list);
         assertEquals(expected.getClass(), result.getClass());
     }
 
@@ -110,7 +111,7 @@ class CatalogDAOTest {
         when(rs.getDouble(any(String.class))).thenReturn(1.0);
         when(rs.getString(any(String.class))).thenReturn("goods");
         when(rs.getDate(any())).thenReturn(null);
-        CatalogItem catalogItem = new CatalogDAO().getItemByGoodsId(1L);
+        CatalogItem catalogItem = new CatalogDAOImpl().getItemByGoodsId(1L);
         CatalogItem expected = new CatalogItem();
         assertEquals(expected.getClass(), catalogItem.getClass());
     }
@@ -126,6 +127,6 @@ class CatalogDAOTest {
         when(con.prepareStatement(any(String.class))).thenReturn(pstm);
         when(pstm.executeUpdate()).thenReturn(0);
         CatalogItem catalogItem = new CatalogItem();
-        new CatalogDAO().updateCatalogItem(catalogItem);
+        new CatalogDAOImpl().updateCatalogItem(catalogItem);
     }
 }

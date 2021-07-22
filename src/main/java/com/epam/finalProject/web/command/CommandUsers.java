@@ -2,6 +2,7 @@ package com.epam.finalProject.web.command;
 
 import com.epam.finalProject.entity.User;
 import com.epam.finalProject.exception.AppException;
+import com.epam.finalProject.service.UserService;
 import com.epam.finalProject.service.defaultImpl.UserServiceImpl;
 import com.epam.finalProject.web.Path;
 import org.apache.logging.log4j.Level;
@@ -19,7 +20,7 @@ public class CommandUsers implements Command {
     private static final String ERROR = "errorMessage";
     private static final Logger log = LogManager.getLogger(CommandUsers.class);
     private static final Map<Integer, String> userStatusesMap;
-    private UserServiceImpl userService = new UserServiceImpl();
+    private UserService userService = new UserServiceImpl();
 
     //To enable displaying user role in admin-user.jsp uncomment userRole map
 //    private static final Map<Integer,String> userRoles;
@@ -79,7 +80,7 @@ public class CommandUsers implements Command {
         return redirectToUsers(request);
     }
 
-    public void setUserService(UserServiceImpl userService) {
+    public void setUserService(UserService userService) {
         this.userService = userService;
     }
 }

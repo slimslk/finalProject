@@ -1,10 +1,8 @@
 package com.epam.finalProject.web.command;
 
-import com.epam.finalProject.database.CatalogDAO;
 import com.epam.finalProject.exception.AppException;
 import com.epam.finalProject.service.defaultImpl.CatalogServiceImpl;
 import com.epam.finalProject.web.Path;
-import com.epam.finalProject.web.command.CommandCatalog;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
