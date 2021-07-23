@@ -1,5 +1,6 @@
 package com.epam.finalProject.web.command;
 
+import com.epam.finalProject.database.impl.CatalogDAOImpl;
 import com.epam.finalProject.exception.AppException;
 import com.epam.finalProject.service.CatalogService;
 import com.epam.finalProject.service.defaultImpl.CatalogServiceImpl;
@@ -13,7 +14,7 @@ import javax.servlet.http.HttpSession;
 
 public class CommandCatalog implements Command {
     private static final Logger log = LogManager.getLogger(CommandCatalog.class);
-    private CatalogService catalogService = new CatalogServiceImpl();
+    private CatalogService catalogService = new CatalogServiceImpl(new CatalogDAOImpl());
 
     @Override
     public String execute(HttpServletRequest req, HttpServletResponse res) throws AppException {

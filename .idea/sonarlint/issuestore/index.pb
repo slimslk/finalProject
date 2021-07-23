@@ -301,3 +301,15 @@ x
 Hsrc/main/java/com/epam/finalProject/database/impl/UserStatusDAOImpl.java,1/e/1e2f22ba62dcde6895581954e593d22a644c6e78
 v
 Fsrc/main/java/com/epam/finalProject/database/impl/UserInfoDAOImpl.java,8/5/85f26a4e7d00512829cb7cfb4670d6bab366518f
+t
+Dsrc/test/java/com/epam/finalProject/database/CatalogDAOImplTest.java,8/2/825156266f8c0d2eec150ab647c0cb1fdc36c1f9
+r
+Bsrc/test/java/com/epam/finalProject/database/GoodsDAOImplTest.java,d/f/dfabe57f7d660ec9d5c31b96e64e443d9445ca6f
+r
+Bsrc/test/java/com/epam/finalProject/database/OrderDAOImplTest.java,2/6/2681ccb4a8070e694d48289323c2c696c3caf76e
+q
+Asrc/test/java/com/epam/finalProject/database/RoleDAOImplTest.java,7/1/7191d37270e722bf5900eb67e1eef3012052cfd1
+q
+Asrc/test/java/com/epam/finalProject/database/UserDAOImplTest.java,d/9/d9fd2af9afadd09f174b8a059dd720ea1e8c82cc
+w
+Gsrc/test/java/com/epam/finalProject/database/UserStatusDAOImplTest.java,e/1/e151dac68cba95ad2293cb6092c76bee844aaedd

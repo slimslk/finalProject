@@ -1,5 +1,6 @@
 package com.epam.finalProject.service.defaultImpl;
 
+import com.epam.finalProject.database.CatalogDAO;
 import com.epam.finalProject.database.impl.CatalogDAOImpl;
 import com.epam.finalProject.entity.CatalogItem;
 import com.epam.finalProject.exception.AppException;
@@ -11,8 +12,11 @@ import java.util.List;
 
 public class CatalogServiceImpl implements CatalogService {
     private static final Logger log = LogManager.getLogger(CatalogServiceImpl.class);
-    private CatalogDAOImpl catalogDAOImpl = new CatalogDAOImpl();
+    private CatalogDAO catalogDAOImpl = new CatalogDAOImpl();
 
+    public CatalogServiceImpl(CatalogDAO catalogDAO){
+        this.catalogDAOImpl=catalogDAO;
+    }
     @Override
     public int getCountOfGoods() throws AppException {
         return catalogDAOImpl.getCountOfGoods();

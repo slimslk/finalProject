@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebServlet(value = "/controller")
-@MultipartConfig(fileSizeThreshold = 1024 * 1024 * 1,
+@MultipartConfig(fileSizeThreshold = 1024 * 1024,
         maxFileSize = 1024 * 1024 * 10,
         maxRequestSize = 1024 * 1024 * 100)
 public class Controller extends HttpServlet {
@@ -40,7 +40,7 @@ public class Controller extends HttpServlet {
         String commandName = request.getParameter("command");
         log.error("Get command from request: " + commandName);
         Command command = CommandContainer.getCommand(commandName);
-        log.error("Obtain command");
+        log.error("Obtain command"+command);
         try {
             forward = command.execute(request, response);
         } catch (AppException ex) {

@@ -23,6 +23,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public UserOrders getUserOrdersFilter(long userId, int status,String sDate,String eDate) throws AppException {
+        return orderListDAOImpl.getOrderListByUserIdFilter(userId,status,sDate,eDate);
+    }
+
+    @Override
     public boolean changeOrder(long orderNumber, int orderStatusId) throws AppException{
         orderListDAOImpl.changeOrderStatus(orderNumber, orderStatusId);
         return true;

@@ -24,15 +24,18 @@
                                                 <div class="col">
                                                     <div class="row">
                                                         <div class="col">
-                                                            <fmt:message key="admin-orders.jsp.username"/>: <b>${a_user.username}</b>
+                                                            <fmt:message key="admin-orders.jsp.username"/>:
+                                                            <b>${a_user.username}</b>
                                                         </div>
                                                     </div>
                                                     <span class="row">
                                                 <span class="col">
-                                                    <fmt:message key="sing-up.jsp.label.name"/>: <b>${a_user.userInfo.name}</b>
+                                                    <fmt:message
+                                                            key="sing-up.jsp.label.name"/>: <b>${a_user.userInfo.name}</b>
                                                 </span>
                                                 <span class="col">
-                                                    <fmt:message key="sing-up.jsp.label.surname"/>: <b>${a_user.userInfo.surname}</b>
+                                                    <fmt:message
+                                                            key="sing-up.jsp.label.surname"/>: <b>${a_user.userInfo.surname}</b>
                                                 </span>
 <%--To display user role uncomment below and in the CommandUser class--%>
 <%--                                                <span class="col">--%>
@@ -49,9 +52,14 @@
                                                         <option value="${status.key}" ${selected}>${status.value}</option>
                                                     </c:forEach>
                                                     </select>
+                                                    <span>
+                                                    <a href="${pageContext.request.contextPath}/controller?command=getalluserorders&sDate=2021-07-21&eDate=2021-07-25&status=all&userid=${a_user.id}"
+                                                       >User orders</a>
+                                                    </span>
                                                    <span>
                                                       <button class="btn btn-success"
-                                                              onclick="changeStatus('${a_user.username}','users')"><fmt:message key="admin-orders.jsp.confirm"/>
+                                                              onclick="changeStatus('${a_user.username}','users')"><fmt:message
+                                                              key="admin-orders.jsp.confirm"/>
                                                 </button>
                                                    </span>
                                                 </span>

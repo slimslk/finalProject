@@ -19,7 +19,7 @@ public class ChangeGoodsDAOImpl implements ChangeGoodsDAO {
     private final String UPDATE_GOODSPARAM_ITEM = "UPDATE goodsParam SET goodsId=?,genderId=?,ageId=?,sizeId=?,categoryId=?,styleId=? WHERE id=?";
     private final String UPDATE_CATALOG_ITEM = "UPDATE itemsCatalog SET goodsParamId=?, price=?,quantity=?,addDate=? WHERE id=?";
     private final String SELECT_AGEID_BY_NAME = "SELECT id FROM age WHERE ageName=?;";
-    private final String SELECT_CATEGORYID_BY_NAME = "SELECT id FROM category WHERE categoryName=?;";
+    private static final String SELECT_CATEGORYID_BY_NAME = "SELECT id FROM category WHERE categoryName=?;";
     private final String SELECT_GENDERID_BY_NAME = "SELECT id FROM gender WHERE genderName=?;";
     private final String SELECT_SIZEID_BY_NAME = "SELECT id FROM size WHERE sizeName=?;";
     private final String SELECT_STYLEID_BY_NAME = "SELECT id FROM style WHERE styleName=?;";
