@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class UserStatusDAOImpl implements UserStatusDAO {
-    private final String GET_STATUS_BY_NAME = "select id from userStatuses where statusName=?";
+    private static final String GET_STATUS_BY_NAME = "select id from userStatuses where statusName=?";
 
     public int getStatusByName(String statusName) throws AppException {
         DBManager dbManager = DBManager.getInstance();

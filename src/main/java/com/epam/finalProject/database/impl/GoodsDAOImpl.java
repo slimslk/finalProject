@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 public class GoodsDAOImpl implements GoodsDAO {
     private final DBManager dbManager = DBManager.getInstance();
-    private final String GET_ITEM_BY_ID = "SELECT * FROM goods WHERE id=?";
+    private static final String GET_ITEM_BY_ID = "SELECT * FROM goods WHERE id=?";
 
     public Goods getGoodsById(long id) throws AppException {
         PreparedStatement pstm = null;

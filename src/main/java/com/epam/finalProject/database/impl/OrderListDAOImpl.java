@@ -19,7 +19,6 @@ import java.util.*;
 
 public class OrderListDAOImpl implements OrderListDAO {
     private static final Logger log = LogManager.getLogger(OrderListDAOImpl.class);
-    private static final String GET_ORDERS_BY_USER_ID_AND_STATUS = "SELECT SELECT * from orders WHERE userId=? AND orderStatus=?";
     private static final String GET_ORDERS_BY_USER_ID = "SELECT orderNumber,username, name,img,ageName,categoryName,genderName, sizeName,styleName, price, goodsQuantity, orderDate, orderStatus\n" +
             "FROM ordersList\n" +
             "         INNER JOIN orders o on ordersList.orderId = o.orderNumber\n" +
@@ -58,34 +57,7 @@ public class OrderListDAOImpl implements OrderListDAO {
             "         INNER JOIN size s on gP.sizeId = s.id\n" +
             "         INNER JOIN style s2 on gP.styleId = s2.id\n" +
             "         INNER JOIN goods g ON g.id = gP.goodsId\n" +
-            "WHERE userId = ?\n" +
-            "  AND o.orderStatus = ? AND DATE (orderDate) BETWEEN ? AND ?";
-    private static final String GET_ORDERS_BY_USER_FILTER2 = "SELECT orderNumber,\n" +
-            "       username,\n" +
-            "       name,\n" +
-            "       img,\n" +
-            "       ageName,\n" +
-            "       categoryName,\n" +
-            "       genderName,\n" +
-            "       sizeName,\n" +
-            "       styleName,\n" +
-            "       price,\n" +
-            "       goodsQuantity,\n" +
-            "       orderDate,\n" +
-            "       orderStatus\n" +
-            "FROM ordersList\n" +
-            "         INNER JOIN orders o on ordersList.orderId = o.orderNumber\n" +
-            "         INNER JOIN users us ON us.id = o.userId\n" +
-            "         INNER JOIN itemsCatalog iC on goodsId = iC.goodsParamId\n" +
-            "         INNER JOIN goodsParam gP on iC.goodsParamId = gP.id\n" +
-            "         INNER JOIN age a on gP.ageId = a.id\n" +
-            "         INNER JOIN category c on gP.categoryId = c.id\n" +
-            "         INNER JOIN gender g2 on gP.genderId = g2.id\n" +
-            "         INNER JOIN size s on gP.sizeId = s.id\n" +
-            "         INNER JOIN style s2 on gP.styleId = s2.id\n" +
-            "         INNER JOIN goods g ON g.id = gP.goodsId\n" +
             "WHERE userId = ? AND DATE (orderDate) BETWEEN ? AND ?";
-
     private static final String GET_ORDERS = "SELECT orderNumber,username, name,img,ageName,categoryName,genderName, sizeName,styleName, price, goodsQuantity, orderDate, orderStatus\n" +
             "FROM ordersList\n" +
             "         INNER JOIN orders o on ordersList.orderId = o.orderNumber\n" +
@@ -99,8 +71,8 @@ public class OrderListDAOImpl implements OrderListDAO {
             "         INNER JOIN style s2 on gP.styleId = s2.id\n" +
             "         INNER JOIN goods g ON g.id = gP.goodsId\n" +
             "ORDER BY orderDate DESC;";
-    private final String INSERT_ORDER_IN_LIST = "INSERT INTO ordersList(orderId, goodsId, goodsQuantity) VALUES (?,?,?)";
-    private final String CHANGE_ORDER_STATUS = "UPDATE orders SET orderStatus=? WHERE orderNumber=?";
+    private static final String INSERT_ORDER_IN_LIST = "INSERT INTO ordersList(orderId, goodsId, goodsQuantity) VALUES (?,?,?)";
+    private static final String CHANGE_ORDER_STATUS = "UPDATE orders SET orderStatus=? WHERE orderNumber=?";
 
     public void changeOrderStatus(long orderNumber, int orderStatus) throws AppException {
         DBManager dbManager = DBManager.getInstance();
@@ -180,31 +152,26 @@ public class OrderListDAOImpl implements OrderListDAO {
         return userOrders;
     }
 
-    public UserOrders getOrderListByUserIdFilter(long userId, int status,String sDate, String eDate) throws AppException {
+    public UserOrders getOrderListByUserIdFilter(long userId, int status, String sDate, String eDate) throws AppException {
         UserOrderMapper userOrderMapper = new UserOrderMapper();
         UserOrders userOrders;
         DBManager dbManager = DBManager.getInstance();
         Connection con = null;
         PreparedStatement pstm = null;
         ResultSet rs = null;
-        log.error("Status: " + status + " id: " + userId);
         try {
             con = dbManager.getConnection();
-            String statment = GET_ORDERS_BY_USER_FILTER2;
-            if (userId > 0) {
-                if (status > 0) {
-                    statment = statment + " AND o.orderStatus = ?";
-                }
-                statment=statment+" ORDER BY orderDate DESC";
-                        pstm = con.prepareStatement(statment);
-                pstm.setLong(1, userId);
-                pstm.setString(2, sDate);
-                pstm.setString(3, eDate);
-                if(status>0){
-                    pstm.setInt(4, status);
-                }
-            } else {
-                pstm = con.prepareStatement(GET_ORDERS);
+            String statment = GET_ORDERS_BY_USER_FILTER;
+            if (status > 0) {
+                statment = statment + " AND o.orderStatus = ?";
+            }
+            statment = statment + " ORDER BY orderDate DESC";
+            pstm = con.prepareStatement(statment);
+            pstm.setLong(1, userId);
+            pstm.setString(2, sDate);
+            pstm.setString(3, eDate);
+            if (status > 0) {
+                pstm.setInt(4, status);
             }
             rs = pstm.executeQuery();
             while (rs.next()) {
@@ -224,7 +191,6 @@ public class OrderListDAOImpl implements OrderListDAO {
         log.error(userOrders);
         return userOrders;
     }
-
 
     private static class UserOrderMapper {
         UserOrders userOrders = null;

@@ -11,9 +11,9 @@ import java.sql.*;
 
 public class OrderDAOImpl implements OrderDAO {
     private static final Logger log = LogManager.getLogger(OrderDAOImpl.class);
-    private final String GET_ORDER_BY_ORDER_NUMBER = "SELECT * FROM orders WHERE orderNumber=?";
-    private final String SET_ORDER = "INSERT INTO orders (userId, orderNumber, orderStatus, orderDate) VALUES (?,?,?,?)";
-    private final String GET_MAX_ID = "SELECT MAX(orderNumber) FROM orders";
+    private static final String GET_ORDER_BY_ORDER_NUMBER = "SELECT * FROM orders WHERE orderNumber=?";
+    private static final String SET_ORDER = "INSERT INTO orders (userId, orderNumber, orderStatus, orderDate) VALUES (?,?,?,?)";
+    private static final String GET_MAX_ID = "SELECT MAX(orderNumber) FROM orders";
 
     public long getMaxId() throws AppException {
         long maxId = 0;

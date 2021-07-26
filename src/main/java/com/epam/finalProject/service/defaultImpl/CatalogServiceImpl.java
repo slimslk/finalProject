@@ -12,7 +12,7 @@ import java.util.List;
 
 public class CatalogServiceImpl implements CatalogService {
     private static final Logger log = LogManager.getLogger(CatalogServiceImpl.class);
-    private CatalogDAO catalogDAOImpl = new CatalogDAOImpl();
+    private CatalogDAO catalogDAOImpl;
 
     public CatalogServiceImpl(CatalogDAO catalogDAO){
         this.catalogDAOImpl=catalogDAO;

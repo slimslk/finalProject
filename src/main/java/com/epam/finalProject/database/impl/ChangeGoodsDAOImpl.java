@@ -15,18 +15,18 @@ import java.util.Map;
 public class ChangeGoodsDAOImpl implements ChangeGoodsDAO {
     private static final Logger log = LogManager.getLogger(ChangeGoodsDAOImpl.class);
 
-    private final String UPDATE_GOODS_ITEM = "UPDATE goods SET name=?, img=? WHERE id=?";
-    private final String UPDATE_GOODSPARAM_ITEM = "UPDATE goodsParam SET goodsId=?,genderId=?,ageId=?,sizeId=?,categoryId=?,styleId=? WHERE id=?";
-    private final String UPDATE_CATALOG_ITEM = "UPDATE itemsCatalog SET goodsParamId=?, price=?,quantity=?,addDate=? WHERE id=?";
-    private final String SELECT_AGEID_BY_NAME = "SELECT id FROM age WHERE ageName=?;";
+    private static final String UPDATE_GOODS_ITEM = "UPDATE goods SET name=?, img=? WHERE id=?";
+    private static final String UPDATE_GOODSPARAM_ITEM = "UPDATE goodsParam SET goodsId=?,genderId=?,ageId=?,sizeId=?,categoryId=?,styleId=? WHERE id=?";
+    private static final String UPDATE_CATALOG_ITEM = "UPDATE itemsCatalog SET goodsParamId=?, price=?,quantity=?,addDate=? WHERE id=?";
+    private static final String SELECT_AGEID_BY_NAME = "SELECT id FROM age WHERE ageName=?;";
     private static final String SELECT_CATEGORYID_BY_NAME = "SELECT id FROM category WHERE categoryName=?;";
-    private final String SELECT_GENDERID_BY_NAME = "SELECT id FROM gender WHERE genderName=?;";
-    private final String SELECT_SIZEID_BY_NAME = "SELECT id FROM size WHERE sizeName=?;";
-    private final String SELECT_STYLEID_BY_NAME = "SELECT id FROM style WHERE styleName=?;";
-    private final String REMOVE_GOODS_BY_ID = "DELETE FROM goodsParam WHERE id=?";
-    private final String INSERT_GOODS = "INSERT INTO goods (name, img) VALUES (?,?);";
-    private final String INSERD_GOODS_PARAM = "INSERT INTO goodsParam (goodsId, genderId, ageId, sizeId, categoryId, styleId) VALUES (LAST_INSERT_ID(),?,?,?,?,?);";
-    private final String INSERT_ITEMCATALOG = "INSERT INTO itemsCatalog (goodsParamId, price, quantity, addDate) VALUES (LAST_INSERT_ID(),?,?,?);";
+    private static final String SELECT_GENDERID_BY_NAME = "SELECT id FROM gender WHERE genderName=?;";
+    private static final String SELECT_SIZEID_BY_NAME = "SELECT id FROM size WHERE sizeName=?;";
+    private static final String SELECT_STYLEID_BY_NAME = "SELECT id FROM style WHERE styleName=?;";
+    private static final String REMOVE_GOODS_BY_ID = "DELETE FROM goodsParam WHERE id=?";
+    private static final String INSERT_GOODS = "INSERT INTO goods (name, img) VALUES (?,?);";
+    private static final String INSERD_GOODS_PARAM = "INSERT INTO goodsParam (goodsId, genderId, ageId, sizeId, categoryId, styleId) VALUES (LAST_INSERT_ID(),?,?,?,?,?);";
+    private static final String INSERT_ITEMCATALOG = "INSERT INTO itemsCatalog (goodsParamId, price, quantity, addDate) VALUES (LAST_INSERT_ID(),?,?,?);";
 
     public void removeGoods(long id) throws AppException {
         DBManager dbManager = DBManager.getInstance();

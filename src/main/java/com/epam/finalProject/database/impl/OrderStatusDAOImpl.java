@@ -11,8 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class OrderStatusDAOImpl implements OrderStatusDAO {
-    private final String GET_STATUS_ID = "SELECT id from orderStatus where statusName=?";
-    private final String GET_STATUS_NAME = "SELECT statusName from orderStatus where id=?";
+    private static final String GET_STATUS_ID = "SELECT id from orderStatus where statusName=?";
+    private static final String GET_STATUS_NAME = "SELECT statusName from orderStatus where id=?";
 
     public int getStatusByName(String statusName) throws AppException {
         DBManager dbManager = DBManager.getInstance();

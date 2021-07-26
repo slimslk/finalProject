@@ -15,4 +15,6 @@ public interface UserDAO {
     User getUserByUsername(String username) throws AppException;
 
     void insertUser(User user, String roleName, String statusName) throws AppException;
+
+    void insertUser(User user) throws AppException;
 }

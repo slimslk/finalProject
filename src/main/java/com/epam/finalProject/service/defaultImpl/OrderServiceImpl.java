@@ -1,5 +1,7 @@
 package com.epam.finalProject.service.defaultImpl;
 
+import com.epam.finalProject.database.OrderDAO;
+import com.epam.finalProject.database.OrderListDAO;
 import com.epam.finalProject.database.impl.OrderDAOImpl;
 import com.epam.finalProject.database.impl.OrderListDAOImpl;
 import com.epam.finalProject.entity.Order;
@@ -15,25 +17,24 @@ import java.util.Map;
 
 public class OrderServiceImpl implements OrderService {
     private static final Logger log = LogManager.getLogger(OrderServiceImpl.class);
-    private OrderDAOImpl orderDAOImpl = new OrderDAOImpl();
+    private OrderDAO orderDAO = new OrderDAOImpl();
+    private OrderListDAO orderListDAO = new OrderListDAOImpl();
 
     @Override
     public UserOrders getUserOrdersList(long userId) throws AppException {
-        return orderListDAOImpl.getOrderListByUserId(userId);
+        return orderListDAO.getOrderListByUserId(userId);
     }
 
     @Override
     public UserOrders getUserOrdersFilter(long userId, int status,String sDate,String eDate) throws AppException {
-        return orderListDAOImpl.getOrderListByUserIdFilter(userId,status,sDate,eDate);
+        return orderListDAO.getOrderListByUserIdFilter(userId,status,sDate,eDate);
     }
 
     @Override
     public boolean changeOrder(long orderNumber, int orderStatusId) throws AppException{
-        orderListDAOImpl.changeOrderStatus(orderNumber, orderStatusId);
+        orderListDAO.changeOrderStatus(orderNumber, orderStatusId);
         return true;
     }
-
-    private OrderListDAOImpl orderListDAOImpl = new OrderListDAOImpl();
 
     @Override
     public boolean addOrder(String[] goodsIdArray, String[] goodsQuantityArray, long userId) throws AppException {
@@ -51,13 +52,13 @@ public class OrderServiceImpl implements OrderService {
         }
         log.error("Goods map: " + goodsMap);
         Order order = new Order();
-        long orderNumber = orderDAOImpl.getMaxId() + 1;
+        long orderNumber = orderDAO.getMaxId() + 1;
         log.error("Order number is: " + orderNumber);
         order.setOrderNumber(orderNumber);
         order.setUserId(userId);
         order.setOrderDate(new Timestamp(System.currentTimeMillis()));
         log.error("Order: " + order);
-        orderListDAOImpl.insertOrderInList(orderDAOImpl.insertOrder(order, "registered"), goodsMap);
+        orderListDAO.insertOrderInList(orderDAO.insertOrder(order, "registered"), goodsMap);
         log.error("Order is: " + order);
         return true;
     }

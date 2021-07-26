@@ -13,6 +13,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class CommandAdminUserOrders implements Command {
+    private OrderService orderService = new OrderServiceImpl();
+
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws AppException {
         String path = Path.ADMIN_USER_ORDER;
@@ -51,7 +53,6 @@ public class CommandAdminUserOrders implements Command {
             return Path.ERRORPAGE;
         }
         System.err.println("statusID: " + statusID);
-        OrderService orderService = new OrderServiceImpl();
         UserOrders userOrders = orderService.getUserOrdersFilter(userId, statusID, sDate, eDate);
         System.out.println(userOrders);
         session.setAttribute("userOrdersF", userOrders);

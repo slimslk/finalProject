@@ -18,13 +18,13 @@ public class CatalogDAOImpl implements CatalogDAO {
     private static final Logger log = LogManager.getLogger(CatalogDAOImpl.class);
 
     private final int COUNT_OF_ROWS = 3;
-    private final DBManager dbManager = DBManager.getInstance();
-    private final String GET_ITEM_BY_GOODS_ID = "SELECT * FROM itemsCatalog WHERE goodsParamId=?";
-    private final String UPDATE_ITEM_BY_GOODS_ID = "UPDATE itemsCatalog SET price=?, quantity=?, addDate=? WHERE goodsParamId=?;";
-    private final String GET_COUNT_OF_GOODS = "SELECT COUNT(id) FROM itemsCatalog";
-    private final String COUNT_OF_GOODS = "SELECT COUNT(iC.id)";
+    private static final DBManager dbManager = DBManager.getInstance();
+    private static final String GET_ITEM_BY_GOODS_ID = "SELECT * FROM itemsCatalog WHERE goodsParamId=?";
+    private static final String UPDATE_ITEM_BY_GOODS_ID = "UPDATE itemsCatalog SET price=?, quantity=?, addDate=? WHERE goodsParamId=?;";
+    private static final String GET_COUNT_OF_GOODS = "SELECT COUNT(id) FROM itemsCatalog";
+    private static final String COUNT_OF_GOODS = "SELECT COUNT(iC.id)";
 
-    private final String GET_LIST_OF_GOODS_1 = "SELECT name,\n" +
+    private static final String GET_LIST_OF_GOODS_1 = "SELECT name,\n" +
             "       genderName,\n" +
             "       ageName,\n" +
             "       sizeName,\n" +
@@ -35,7 +35,7 @@ public class CatalogDAOImpl implements CatalogDAO {
             "       addDate,\n" +
             "       iC.id,\n" +
             "       goodsParamId\n";
-    private final String GET_LIST_OF_GOODS_2 = "FROM goodsParam\n" +
+    private static final String GET_LIST_OF_GOODS_2 = "FROM goodsParam\n" +
             "         INNER JOIN goods g ON g.id = goodsId\n" +
             "         INNER JOIN gender g2 on goodsParam.genderId = g2.id\n" +
             "         INNER JOIN age a on goodsParam.ageId = a.id\n" +

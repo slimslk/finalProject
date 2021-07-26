@@ -11,7 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class RoleDAOImpl implements RoleDAO {
-    private final String GET_ROLE_NAME = "select roleId from roles where roleName=?";
+    private static final String GET_ROLE_NAME = "select roleId from roles where roleName=?";
 
     private DBManager dbManager;
 

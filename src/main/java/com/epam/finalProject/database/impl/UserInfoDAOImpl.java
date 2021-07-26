@@ -15,9 +15,9 @@ import java.sql.SQLException;
 
 public class UserInfoDAOImpl implements UserInfoDAO {
     private static final Logger log = LogManager.getLogger(UserInfoDAOImpl.class);
-    private final String GET_USER_BY_USERNAME = "SELECT usersInfo.id, name, surname, userId FROM usersInfo INNER JOIN users u on usersInfo.userId = u.id WHERE username=?";
-    private final String GET_USER_BY_ID = "SELECT * FROM usersInfo  WHERE id=?";
-    private final String INSERT_USER_INFO = "INSERT INTO usersInfo(userId,name,surname) VALUES (?,?,?)";
+    private static final String GET_USER_BY_USERNAME = "SELECT usersInfo.id, name, surname, userId FROM usersInfo INNER JOIN users u on usersInfo.userId = u.id WHERE username=?";
+    private static final String GET_USER_BY_ID = "SELECT * FROM usersInfo  WHERE id=?";
+    private static final String INSERT_USER_INFO = "INSERT INTO usersInfo(userId,name,surname) VALUES (?,?,?)";
 
     public UserInfo getUserInfoById(long id) throws AppException {
         UserInfo userInfo = new UserInfo();

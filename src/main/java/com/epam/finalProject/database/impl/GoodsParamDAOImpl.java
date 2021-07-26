@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class GoodsParamDAOImpl implements GoodsParamDAO {
     private static final Logger log = LogManager.getLogger(GoodsParamDAOImpl.class);
     private final DBManager dbManager = DBManager.getInstance();
-    private final String GET_PARAMS_BY_ID = "SELECT * FROM goodsParam WHERE id=?";
+    private static final String GET_PARAMS_BY_ID = "SELECT * FROM goodsParam WHERE id=?";
 
     public GoodsParam getGoodsParamByID(long id) throws AppException {
         GoodsParam goodsParam = new GoodsParam();

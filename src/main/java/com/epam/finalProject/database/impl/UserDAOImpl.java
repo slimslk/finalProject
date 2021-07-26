@@ -17,12 +17,12 @@ public class UserDAOImpl implements UserDAO {
 
     private static final Logger log = LogManager.getLogger(UserDAOImpl.class);
 
-    private final String GET_USERS = "SELECT * FROM users INNER JOIN usersInfo uI ON users.id = uI.userId ORDER BY roleId DESC";
-    private final String FIND_USER_BY_ID = "select * from users where id=?";
-    private final String FIND_USER_BY_USERNAME = "select * from users where username=?";
-    private final String INSERT_USER = "insert into users (userName, password, roleId,status,locale) values (?,?,?,?,?)";
-    private final String UPDATE_USER_STATUS = "UPDATE users SET status=? WHERE username=?";
-    private final String UPDATE_USER_LOCALE = "UPDATE users SET locale=? WHERE username=?";
+    private static final String GET_USERS = "SELECT * FROM users INNER JOIN usersInfo uI ON users.id = uI.userId ORDER BY roleId DESC";
+    private static final String FIND_USER_BY_ID = "select * from users where id=?";
+    private static final String FIND_USER_BY_USERNAME = "select * from users where username=?";
+    private static final String INSERT_USER = "insert into users (userName, password, roleId,status,locale) values (?,?,?,?,?)";
+    private static final String UPDATE_USER_STATUS = "UPDATE users SET status=? WHERE username=?";
+    private static final String UPDATE_USER_LOCALE = "UPDATE users SET locale=? WHERE username=?";
 
     public void updateUserStatus(String username, int status) throws AppException {
         DBManager dbManager = DBManager.getInstance();
